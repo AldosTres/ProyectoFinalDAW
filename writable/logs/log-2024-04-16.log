@@ -1,0 +1,61 @@
+CRITICAL - 2024-04-16 21:14:42 --> Error: Class "app\Models\DataBaseHandler" not found
+in APPPATH\Controllers\Home.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 2 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-04-16 21:15:15 --> Error: Class "app\models\DataBaseHandler" not found
+in APPPATH\Controllers\Home.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 2 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-04-16 21:15:20 --> Error: Class "app\models\DataBaseHandler" not found
+in APPPATH\Controllers\Home.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 2 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-04-16 21:15:37 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:184
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(184): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'jumpstyle_leagu...', 3306, '', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(15): CodeIgniter\Database\BaseConnection->query('SELECT * FROM u...')
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(24): App\models\DataBaseHandler->jls_check_user('Aldous123', 'AlditoCaldito')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->check_login()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(15): CodeIgniter\Database\BaseConnection->query('SELECT * FROM u...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(24): App\models\DataBaseHandler->jls_check_user('Aldous123', 'AlditoCaldito')
+#4 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->check_login()
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2024-04-16 21:15:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\DataBaseHandler.php(15): CodeIgniter\Database\BaseConnection->query('SELECT * FROM usuarios WHERE nombre_usuario_inicio = \'Aldous123\' AND contraseña = \'AlditoCaldito\'')
+ 3 APPPATH\Controllers\Home.php(24): App\models\DataBaseHandler->jls_check_user('Aldous123', 'AlditoCaldito')
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-04-16 21:16:19 --> ErrorException: Undefined property: stdClass::$codigo
+in APPPATH\Models\DataBaseHandler.php on line 17.
+ 1 APPPATH\Models\DataBaseHandler.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$codigo', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Models\\DataBaseHandler.php', 17)
+ 2 APPPATH\Controllers\Home.php(24): App\models\DataBaseHandler->jls_check_user(Object(stdClass), 'AlditoCaldito')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-04-16 21:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
