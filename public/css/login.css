@@ -127,3 +127,10 @@ body {
   padding: 8px 15px;
   border-radius: 20px;
 }
+.form_login__link {
+  text-decoration: none;
+  color: rgb(44, 24, 128);
+}
+.form_login__link--no_color {
+  color: var(--eerie-black);
+}

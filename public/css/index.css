@@ -257,3 +257,30 @@ source {
     font-size: 28px;
   }
 }
+
+.available-tournament {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.available-tournaments__title {
+  margin-top: 0;
+  text-align: center;
+}
+.available-tournaments__tournament-element {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.available-tournaments__tournament-info {
+  margin-bottom: 10px;
+}

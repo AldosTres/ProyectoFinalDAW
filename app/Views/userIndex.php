@@ -23,8 +23,8 @@
         <i class="fa fa-bars fa-3x"></i>
         <div class="header-links">
             <ul>
-                <li data-menuanchor="fourthPage"><a href="login">Hola bienvenido</a></li>
-                <li data-menuanchor="thirdPage"><a href="#portfolio">EVENTOS</a></li>
+                <li data-menuanchor="fourthPage"><a href="get_login_page">Hola <?php echo session()->get('jumper_user_name') ?></a></li>
+                <li data-menuanchor="thirdPage"><a href="get_upload_tournament_page">Subir Torneo</a></li>
                 <li data-menuanchor="secondPage"><a href="#about">SOBRE NOSOTROS</a></li>
             </ul>
         </div>
@@ -58,7 +58,29 @@
                 <source src="<?php base_url() ?>video/sN.mp4" type="video/mp4">
             </video>
         </div>
-        <!-- end section -->
+
+        <div class="available-tournaments">
+            <h2 class="available-tournaments__title">Torneos Disponibles</h2>
+            <?php
+            foreach ($tournaments as $key => $value) {
+                echo "hola";
+            }
+            ?>
+            <div class="available-tournaments__tournament-element">
+                <a href="detalle_torneo.php?id=1"> <!-- Enlace a la página de detalle del torneo con ID 1 -->
+                    <div class="available-tournaments__tournament-info">
+                        <strong>Nombre del Torneo:</strong> Torneo de Baile 2024
+                    </div>
+                    <div class="available-tournaments__tournament-info">
+                        <strong>Fecha de Inicio:</strong> 2024-06-01
+                    </div>
+                    <div class="available-tournaments__tournament-info">
+                        <strong>Fecha de Fin:</strong> 2024-06-30
+                    </div>
+                </a>
+            </div>
+            <!-- Otros torneos se pueden agregar aquí -->
+        </div>
 </body>
 
 </html>

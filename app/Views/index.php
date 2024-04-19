@@ -23,7 +23,7 @@
         <i class="fa fa-bars fa-3x"></i>
         <div class="header-links">
             <ul>
-                <li data-menuanchor="fourthPage"><a href="login">INICIA SESIÖN</a></li>
+                <li data-menuanchor="fourthPage"><a href="get_login_page">INICIA SESIÖN</a></li>
                 <li data-menuanchor="thirdPage"><a href="#portfolio">EVENTOS</a></li>
                 <li data-menuanchor="secondPage"><a href="#about">SOBRE NOSOTROS</a></li>
             </ul>
@@ -58,7 +58,29 @@
                 <source src="<?php base_url() ?>video/sN.mp4" type="video/mp4">
             </video>
         </div>
-        <!-- end section -->
+
+        <div class="available-tournaments">
+            <h2 class="available-tournaments__title">Torneos Disponibles</h2>
+            <?php
+            foreach ($tournaments as $key => $tournament) {
+            ?>
+                <div class="available-tournaments__tournament-element">
+                    <a href="get_add_participant_page"> <!-- Enlace a la página de detalle del torneo con ID 1 -->
+                        <div class="available-tournaments__tournament-info">
+                            <strong>Nombre del Torneo:</strong> <?php echo $tournament['nombre'] ?>
+                        </div>
+                        <div class="available-tournaments__tournament-info">
+                            <strong>Fecha de Inicio:</strong> <?php echo $tournament['fecha_inicio'] ?>
+                        </div>
+                        <div class="available-tournaments__tournament-info">
+                            <strong>Fecha de Fin:</strong> <?php echo $tournament['fecha_fin'] ?>
+                        </div>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
 </body>
 
 </html>
