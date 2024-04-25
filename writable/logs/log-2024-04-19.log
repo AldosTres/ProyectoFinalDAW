@@ -1,2 +1,40 @@
 INFO - 2024-04-19 00:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-04-19 01:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-19 08:19:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-19 08:20:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-19 08:20:01 --> ErrorException: Undefined variable $tournaments
+in APPPATH\Views\userIndex.php on line 65.
+ 1 APPPATH\Views\userIndex.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tournaments', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php', 65)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('userIndex', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('userIndex')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-04-19 08:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-19 08:21:34 --> ErrorException: Undefined variable $tournaments
+in APPPATH\Views\userIndex.php on line 65.
+ 1 APPPATH\Views\userIndex.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tournaments', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php', 65)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('userIndex', [], true)
+ 5 APPPATH\Controllers\Home.php(69): view('userIndex')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-04-19 08:21:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-19 08:21:53 --> ErrorException: Undefined variable $tournaments
+in APPPATH\Views\userIndex.php on line 65.
+ 1 APPPATH\Views\userIndex.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tournaments', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php', 65)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\userIndex.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('userIndex', [], true)
+ 5 APPPATH\Controllers\Home.php(69): view('userIndex')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-04-19 08:22:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

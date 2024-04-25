@@ -50,10 +50,12 @@
 
     <div id="fullpage">
         <div class="section aboutme" data-anchor="aboutme">
-            <!-- <div class="aboutme__capa-vacia">
-                <h1 style="color:white">JUMPSTYLE<span style="color:#FF6363">/</span>LEAGUE SERIES</h1>
-                <p><span id="holder"></span><span class="blinking-cursor">|</span></p>
-            </div> -->
+            <div class="aboutme__capa-vacia">
+                <h1 style="color:white">DESCUBRE EL PODER DEL JUMPSTYLE</h1>
+                <!-- <p><span id="holder"></span><span class="blinking-cursor">|</span></p> -->
+                <button class="aboutme__find-btn">Descubrir</button>
+
+            </div>
             <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="nav-brand__background-video">
                 <source src="<?php base_url() ?>video/sN.mp4" type="video/mp4">
             </video>
@@ -81,6 +83,7 @@
             }
             ?>
         </div>
+    </div>
 </body>
 
 </html>

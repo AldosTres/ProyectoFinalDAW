@@ -1,5 +1,9 @@
 /* general styles */
 
+:root {
+  --redJumpstyle: hsla(0, 67%, 53%, 1);
+}
+
 body {
   font-family: "Raleway", sans-serif !important;
   margin: 0;
@@ -15,7 +19,7 @@ a {
 }
 
 h1 {
-  color: #ff6363;
+  color: var(--redJumpstyle);
   font-weight: bold;
 }
 
@@ -105,7 +109,7 @@ source {
 
 .fa-bars {
   display: none !important;
-  color: #ff6363;
+  color: var(--redJumpstyle);
   float: right;
   padding: 20px;
   position: fixed;
@@ -115,7 +119,7 @@ source {
 }
 
 .fa-times {
-  color: #ff6363;
+  color: var(--redJumpstyle);
   float: right;
   padding: 20px;
   right: 0;
@@ -143,7 +147,7 @@ source {
 }
 
 .header-links a:hover {
-  color: #ff6363 !important;
+  color: var(--redJumpstyle) !important;
 }
 
 /* slide out nav menu styles */
@@ -176,7 +180,7 @@ source {
 }
 
 .nav-links a:hover {
-  color: #ff6363;
+  color: var(--redJumpstyle);
   -webkit-transition: all 0.6s ease-in-out;
   -o-transition: all 0.6s ease-in-out;
   -ms-transition: all 0.6s ease-in-out;
@@ -212,11 +216,32 @@ source {
 
 /* main header section */
 
+/*
+* *TEXTO JUMPSTYLE POR ENCIMA DEL HEADER
+*/
+
+#fullpage {
+  position: relative; /* Asegura que los elementos internos posicionados relativamente se ajusten dentro de él */
+}
+
 .aboutme__capa-vacia {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 380px;
-  padding: 1px 1px 5px 5px;
+  position: absolute; /* Posiciona este elemento de forma absoluta dentro de su contenedor relativo */
+  top: 50%; /* Lo posiciona en la mitad superior del contenedor padre */
+  left: 50%; /* Lo posiciona en el centro horizontal del contenedor padre */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centra el elemento en el medio de su contenedor */
+  z-index: 2; /* Asegura que este elemento esté por encima del vídeo */
+  text-align: center; /* Centra el texto dentro del contenedor */
+  color: white; /* Color del texto */
+  font-size: 20px;
+}
+
+.nav-brand__background-video {
+  position: relative; /* Asegura que el vídeo sea un elemento de referencia para el posicionamiento absoluto */
+  z-index: 1; /* Asegura que el vídeo esté detrás del elemento .aboutme__capa-vacia */
+  opacity: 0.5;
 }
 
 .aboutme {
@@ -234,6 +259,60 @@ source {
 .fullpage__background-image {
   width: auto;
   height: 600px;
+}
+
+/*
+ * * BOTON DESCUBRIR
+ */
+
+.aboutme__find-btn {
+  font-size: 17px;
+  background: transparent;
+  border: none;
+  padding: 1em 1.5em;
+  color: #ffedd3;
+  text-transform: uppercase;
+  position: relative;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.aboutme__find-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--redJumpstyle);
+  transition: 0.5s ease;
+}
+
+.aboutme__find-btn:hover {
+  color: white;
+  transition-delay: 0.5s;
+}
+
+.aboutme__find-btn:hover::before {
+  width: 100%;
+}
+
+.aboutme__find-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: var(--redJumpstyle);
+  transition: 0.4s ease;
+  z-index: -1;
+}
+
+.aboutme__find-btn:hover::after {
+  height: 100%;
+  transition-delay: 0.4s;
+  color: white;
 }
 
 @media (min-width: 100px) and (max-width: 500px) {

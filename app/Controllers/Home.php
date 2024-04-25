@@ -53,19 +53,12 @@ class Home extends BaseController
         } else {
             //Devolviendo los datos correspondientes al user
             $user_data = $jls_database->jls_get_user_data($result);
-
-            //Devolviendo artículos y categorías de toda la página
-            // $articulosTienda = $jls_database->devolverTodosArticulos();
-            // $maleta["user"] = $datosUsuario;
-            // $maleta["articulos"] = $articulosTienda;
-            // $categoriasTienda = $jls_database->devolverCategorias();
-            // $maleta["categorias"] = $categoriasTienda;
-
-            //Guardando en sesion el nombre del user logeado
+            $tournaments = $jls_database->jls_get_all_active_tournaments();
+            $data['tournaments'] = $tournaments;
             session()->set("jumper_user_name", $user_data->nombre_usuario);
             session()->set("user_id", $result);
 
-            return view('userIndex');
+            return view('userIndex', $data);
         }
     }
 
