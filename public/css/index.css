@@ -1,7 +1,13 @@
 /* general styles */
 
 :root {
-  --redJumpstyle: hsla(0, 67%, 53%, 1);
+  --eerie-black: hsla(0, 2%, 11%, 1);
+  --red-jls: hsla(0, 67%, 53%, 1);
+  --red-jls-opacity: hsla(0, 67%, 53%, 0.8);
+  --white: hsla(0, 0%, 100%, 1);
+  --viridian: hsla(154, 15%, 49%, 1);
+  --platinum: hsla(0, 0%, 87%, 1);
+  --font: Helvetica;
 }
 
 body {
@@ -16,11 +22,6 @@ ul {
 
 a {
   text-decoration: none !important;
-}
-
-h1 {
-  color: var(--redJumpstyle);
-  font-weight: bold;
 }
 
 p {
@@ -226,7 +227,7 @@ source {
 
 .aboutme__capa-vacia {
   position: absolute; /* Posiciona este elemento de forma absoluta dentro de su contenedor relativo */
-  top: 50%; /* Lo posiciona en la mitad superior del contenedor padre */
+  top: 40%; /* Lo posiciona en la mitad superior del contenedor padre */
   left: 50%; /* Lo posiciona en el centro horizontal del contenedor padre */
   transform: translate(
     -50%,
@@ -247,7 +248,7 @@ source {
 .aboutme {
   height: max-content;
   width: 100%;
-  background-color: black;
+  background-color: var(--eerie-black);
 }
 
 .aboutme p {
@@ -284,7 +285,7 @@ source {
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: var(--redJumpstyle);
+  background-color: var(--red-jls);
   transition: 0.5s ease;
 }
 
@@ -304,7 +305,7 @@ source {
   bottom: 0;
   height: 0;
   width: 100%;
-  background-color: var(--redJumpstyle);
+  background-color: var(--red-jls);
   transition: 0.4s ease;
   z-index: -1;
 }
@@ -337,6 +338,8 @@ source {
   }
 }
 
+/*****************************************************SECCION TORNEOS************************************************************/
+
 .available-tournament {
   background-color: #f4f4f4;
   margin: 0;
@@ -362,4 +365,61 @@ source {
 }
 .available-tournaments__tournament-info {
   margin-bottom: 10px;
+}
+
+/**************************************************SECCION SOBRE NOSOTROS******************************************************/
+
+.about-us {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.about-us__card-container {
+  width: 25%;
+  height: auto;
+  border-radius: 20px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-us__img-origin-jumpers {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.about-us__text-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: justify;
+}
+
+.about-us__title-label-container {
+  margin-bottom: 10px;
+}
+
+.about-us__info-text-container {
+  margin-bottom: 20px;
+}
+
+.about-us__title-label-container {
+  font-weight: bold;
+  color: var(--viridian);
+  font-size: 30px;
+}
+.about-us__title-container {
+  font-weight: bolder;
+  font-size: 40px;
+}
+.about-us__info-text-container {
+  font-size: 17px;
 }

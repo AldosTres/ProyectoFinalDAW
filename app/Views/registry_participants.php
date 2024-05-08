@@ -11,9 +11,12 @@
 <body>
     <div class="form-registry-participant">
         <h2 class="form-registry-participant__title">Inscribir Participante</h2>
-        <form action="procesar_inscripcion.php" method="POST">
+        <form action="add_new_participant" method="POST">
             <label for="nombre">Nombre de bailarin:</label>
             <input type="text" id="jls-jumper-name" name="jls-jumper-name" class="form-registry-participant__jumper_name" required>
+            <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["jls-tournament-id"])) {
+                                                                        echo $_POST["jls-tournament-id"];
+                                                                    } ?>">
             <input type="submit" value="Inscribir" class="form-registry-participant__submit-button">
         </form>
     </div>

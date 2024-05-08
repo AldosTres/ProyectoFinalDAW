@@ -52,13 +52,23 @@
         <div class="section aboutme" data-anchor="aboutme">
             <div class="aboutme__capa-vacia">
                 <h1 style="color:white">DESCUBRE EL PODER DEL JUMPSTYLE</h1>
-                <!-- <p><span id="holder"></span><span class="blinking-cursor">|</span></p> -->
                 <button class="aboutme__find-btn">Descubrir</button>
-
             </div>
             <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="nav-brand__background-video">
                 <source src="<?php base_url() ?>video/sN.mp4" type="video/mp4">
             </video>
+        </div>
+
+        <div class="about-us">
+            <div class="about-us__card-container">
+                <img src="<?php echo base_url() ?>img/jumpstyleleagueseries_origin.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers">
+            </div>
+            <div class="about-us__text-container">
+                <span class="about-us__title-label-container">Nuestros inicios</span>
+                <h2 class="about-us__title-container">¿Qué es Jumpstyle League series?</h2>
+                <p class="about-us__info-text-container">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, sed ipsam. Inventore consectetur ipsum optio maiores in ipsam dolorem perferendis. Omnis cum unde adipisci excepturi hic in ea, repudiandae delectus.</p>
+                <p class="about-us__info-text-container">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores perspiciatis, quibusdam temporibus quam voluptate quisquam inventore. Mollitia eius, corrupti adipisci unde minus maxime natus distinctio, blanditiis quibusdam labore, quasi aliquid.</p>
+            </div>
         </div>
 
         <div class="available-tournaments">

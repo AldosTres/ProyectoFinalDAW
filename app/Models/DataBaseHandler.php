@@ -90,9 +90,9 @@ class DataBaseHandler extends Model
     /**
      * 
      */
-    function jls_get_all_active_tournaments()
+    public function jls_get_all_active_tournaments()
     {
-        $result = $this->db->query("SELECT * FROM torneos");
+        $result = $this->db->query("SELECT * FROM torneos WHERE activo = 1");
         $row = $result->getResultArray();
         return $row;
     }
@@ -100,7 +100,7 @@ class DataBaseHandler extends Model
     /**
      * 
      */
-    public function jls_add_new_participant($tournament_id, $user_id)
+    public function jls_add_new_participant($alias, $tournament_id, $user_id)
     {
         // Verificar si el usuario ya está inscrito en el torneo
         $inscrito = $this->jls_check_participant_exists($tournament_id, $user_id);
@@ -111,9 +111,9 @@ class DataBaseHandler extends Model
         } else {
             // El usuario no está inscrito, puedes proceder a registrar la inscripción
             $data = [
+                'alias' => $alias,
                 'id_torneo' => $tournament_id,
-                'id_usuario' => $user_id
-                // Puedes agregar más datos si es necesario, como fecha de inscripción, etc.
+                'id_usuario' => $user_id,
             ];
 
             // Insertar la inscripción en la base de datos
@@ -126,8 +126,21 @@ class DataBaseHandler extends Model
     // Función para verificar si el usuario ya está inscrito en el torneo
     private function jls_check_participant_exists($tournament_id, $user_id)
     {
-        $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND codigo_usuario = ?", [$tournament_id, $user_id]);
+        $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND id_usuario = ?", [$tournament_id, $user_id]);
 
         return $query->getResult() ? true : false;
+    }
+
+    /**
+     * Pre: se conocoe el parámetro $tournament_id como el id de un torneo en específico
+     * Post: devuelve los participantes correspondientes a torneo específico
+     * 
+     * @param int $tournament_id
+     */
+    public function jls_get_tournament_participants($tournament_id)
+    {
+        $query = $this->db->query("SELECT * FROM inscripciones WHERE id = {$tournament_id} AND activo = 1");
+        $row = $query->getResultArray();
+        return $row;
     }
 }

@@ -11,7 +11,7 @@ class Home extends BaseController
         $jls_database = new DatabaseHandler();
         $tournaments = $jls_database->jls_get_all_active_tournaments();
         $data['tournaments'] = $tournaments;
-        if (session()->get("codigoUsuario")) {
+        if (session()->get("user_id")) {
             return view('userIndex', $data);
         } else {
             return view('index', $data);
@@ -86,12 +86,22 @@ class Home extends BaseController
     {
         $jls_database = new DataBaseHandler();
         $jls_name = $this->request->getPost('jls-jumper-name');
-        $jls_tournament_id = $this->request->getPost('jls-tournament_id');
-        $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id);
-        if (session()->get("codigoUsuario")) {
-            return view('userIndex');
+        $jls_tournament_id = $this->request->getPost('jls-tournament-id');
+        $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
+        $tournaments = $jls_database->jls_get_all_active_tournaments();
+        $data['tournaments'] = $tournaments;
+        if (session()->get("user_id")) {
+            return view('userIndex', $data);
         } else {
-            return view('index');
+            return view('index', $data);
         }
+    }
+    public function get_tournamente_info_page(): string
+    {
+        $jls_database = new DataBaseHandler();
+        $jls_tournament_id = $this->request->getPost('tournament_id');
+        $jls_participants = $jls_database->jls_get_tournament_participants($jls_tournament_id);
+        $data["participants"] = $jls_participants;
+        return view("tournament_info", $data);
     }
 }
