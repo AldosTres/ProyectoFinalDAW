@@ -423,3 +423,44 @@ source {
 .about-us__info-text-container {
   font-size: 17px;
 }
+
+/***********************************CONTENIDO PROXIMOS EVENTOS**************************************************/
+
+.upcoming-events {
+  margin-top: 50px;
+}
+
+.upcoming-events__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.event {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.event__image {
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.event__info {
+  flex: 1;
+}
+
+.event__title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.event__date,
+.event__location {
+  margin-bottom: 5px;
+}
+
+.event__description {
+  font-size: 14px;
+}

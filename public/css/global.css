@@ -6,3 +6,68 @@ root {
   --platinum: hsla(0, 0%, 87%, 1);
   /* azul mariono */
 }
+
+/** ESTILOS PARA EL FOOTER **/
+
+/* public/css/styles.css */
+
+/* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.footer {
+  background-color: #333;
+  /* background-color: antiquewhite; */
+  color: var(--platinum);
+  padding: 20px 0;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer__container-element-first h4 {
+  margin-bottom: 10px;
+}
+
+.footer__container-logo img {
+  max-width: 100px;
+}
+
+.footer__container-social-media i {
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.footer__container-social-media i:hover {
+  color: var(--white);
+}
+
+.footer__container-link-element {
+  color: var(--platinum);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .footer__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__container-element-second {
+    margin: 20px 0;
+  }
+
+  .footer__container-social-media {
+    margin-top: 10px;
+  }
+}

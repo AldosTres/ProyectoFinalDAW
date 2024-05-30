@@ -16,3 +16,4 @@ $routes->post('upload_tournament', 'Home::upload_tournament');
 $routes->post('get_add_participant_page', 'Home::get_add_participant_page');
 $routes->post('get_tournamente_info_page', 'Home::get_tournamente_info_page');
 $routes->post('add_new_participant', 'Home::add_new_participant');
+$routes->get('get_vista_rapida', 'Home::get_vista_rapida');

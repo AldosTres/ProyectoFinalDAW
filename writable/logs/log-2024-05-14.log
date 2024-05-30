@@ -1,0 +1,195 @@
+INFO - 2024-05-14 13:11:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:11:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:22:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:36:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:36:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:37:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:03 --> ErrorException: include(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): include()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:22 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:25 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:26 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:26 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:31 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:47 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:48 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:49 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:49 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:37:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:37:54 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:38:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:38:21 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:38:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:38:54 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:39:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-14 13:39:08 --> ErrorException: require(): http:// wrapper is disabled in the server configuration by allow_url_include=0
+in APPPATH\Views\index.php on line 99.
+ 1 APPPATH\Views\index.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(): http:// wrapper is disabled in the server configuration by allow_url_include=0', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php', 99)
+ 2 APPPATH\Views\index.php(99): require()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 6 APPPATH\Controllers\Home.php(17): view('index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-05-14 13:39:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:47:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:50:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-14 13:51:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

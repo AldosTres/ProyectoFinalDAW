@@ -10,7 +10,7 @@
 
 body {
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
   align-items: center;
   height: 90vh;
   font-family: var(--font);
@@ -126,4 +126,51 @@ body {
   /* background-color: white; */
   color: var(--eerie-black);
   z-index: 6;
+}
+
+/*********************************IMAGEN LOGIN*******************************/
+
+.image-presentation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.img1 {
+  z-index: 5;
+  height: 60%;
+
+  position: absolute;
+}
+.img2 {
+  position: absolute;
+  height: 60%;
+  left: 0;
+  z-index: 4;
+}
+.img3 {
+  position: absolute;
+  z-index: 3;
+  height: 60%;
+  left: auto;
+}
+
+.img4 {
+  position: absolute;
+  z-index: 2;
+  height: 60%;
+  left: 24%;
+}
+.img5 {
+  position: absolute;
+  z-index: 1;
+  height: 60%;
+  left: 36%;
+}
+.image-presentation__img-element {
+  filter: sepia(1);
+  transition: filter 1s;
+}
+
+.image-presentation__img-element:hover {
+  filter: sepia(0);
 }
