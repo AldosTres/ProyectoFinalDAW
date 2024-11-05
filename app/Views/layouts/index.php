@@ -1,54 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php base_url() ?>css/index.css">
-    <script src="<?php echo base_url() ?>js/index.js"></script>
-    <meta name="description" content="Web designer and front-end developer">
-    <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.4/jquery.fullPage.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="icon" type="<?php base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" href="/images/favicon.ico">
-    <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?= base_url() ?>css/global.css">
-    <title>Jumpstyle League Series</title>
-</head>
+<?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
 
 <body>
-    <!-- navbar header -->
-    <div class="nav-header">
-        <div class="nav-brand">
-            <img src="<?php base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="xd">
-        </div>
-        <i class="fa fa-bars fa-3x"></i>
-        <div class="header-links">
-            <ul>
-                <li data-menuanchor="fourthPage"><a href="get_login_page">INICIA SESIÖN</a></li>
-                <li data-menuanchor="thirdPage"><a href="#portfolio">EVENTOS</a></li>
-                <li data-menuanchor="secondPage"><a href="get_vista_rapida">SOBRE NOSOTROS</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- end navbar header -->
+    <?php include_once TEMPLATES_VIEWS_PATH . 'navbar_header.php' ?>
 
-    <!-- sidebar slider -->
-    <div class="nav-screen">
-        <i class="fa fa-times fa-3x"></i>
-        <div class="nav-container">
-            <div class="nav-links">
-                <ul id='myMenu'>
-                    <li data-menuanchor="secondPage"><a href="get_vista_rapida">SOBRE NOSOTROS</a></li>
-                    <li data-menuanchor="thirdPage"><a href="#portfolio">PORTFOLIO</a></li>
-                    <li data-menuanchor="fourthPage"><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- end navbar slider -->
-
-    <!-- begin fullpage -->
+    <?php include_once TEMPLATES_VIEWS_PATH . 'sidebar.php' ?>
 
     <div id="fullpage">
         <div class="section aboutme" data-anchor="aboutme">
@@ -63,7 +18,8 @@
 
         <div class="about-us">
             <div class="about-us__card-container">
-                <img src="<?php echo base_url() ?>img/jumpstyleleagueseries_origin.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers">
+                <!-- <img src="<?php echo base_url() ?>img/jumpstyleleagueseries_origin.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers"> -->
+                <img src="<?php echo base_url() ?>img/allparticipantsjls.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers">
             </div>
             <div class="about-us__text-container">
                 <span class="about-us__title-label-container">Nuestros inicios</span>
@@ -81,15 +37,20 @@
                 <div class="available-tournaments__tournament-element">
                     <form action="get_tournamente_info_page" method="post">
                         <input type="hidden" name="tournament_id" value="<?= $tournament['id'] ?>">
-                        <button type="submit" class="tournament-info-button">
-                            <div class="available-tournaments__tournament-info">
-                                <strong>Nombre del Torneo:</strong> <?php echo $tournament['nombre'] ?>
+                        <button type="submit" class="available-tournaments__tournament-info">
+                            <div class="available-tournaments__tournament-img">
+                                <img src="<?php echo base_url() ?>img/copa_torneo.png" alt="origin-jumpers" class="" alt="tournament-image">
                             </div>
-                            <div class="available-tournaments__tournament-info">
-                                <strong>Fecha de Inicio:</strong> <?php echo $tournament['fecha_inicio'] ?>
-                            </div>
-                            <div class="available-tournaments__tournament-info">
-                                <strong>Fecha de Fin:</strong> <?php echo $tournament['fecha_fin'] ?>
+                            <div class="available-tournaments__tournament-desc">
+                                <div class="available-tournaments__tournament-title">
+                                    <strong><?php echo $tournament['nombre'] ?> </strong>
+                                </div>
+                                <div class="available-tournaments__tournament-start-date">
+                                    <strong>Fecha de Inicio:</strong> <?php echo $tournament['fecha_inicio'] ?>
+                                </div>
+                                <div class="available-tournaments__tournament-end-date">
+                                    <strong>Fecha de Fin:</strong> <?php echo $tournament['fecha_fin'] ?>
+                                </div>
                             </div>
                         </button>
                     </form>

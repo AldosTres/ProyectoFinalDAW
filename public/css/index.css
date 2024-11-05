@@ -425,7 +425,7 @@ source {
 }
 
 /***********************************CONTENIDO PROXIMOS EVENTOS**************************************************/
-
+/* 
 .upcoming-events {
   margin-top: 50px;
 }
@@ -463,4 +463,35 @@ source {
 
 .event__description {
   font-size: 14px;
+} */
+
+.available-tournaments__tournament-info {
+  display: flex;
+  height: 100px;
+  width: 30%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.available-tournaments__tournament-img img {
+  height: auto;
+  width: 100%;
+}
+.available-tournaments__tournament-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(146, 132, 132, 0.2);
+  padding: 3%;
+  display: flex;
+  align-items: center;
+}
+.available-tournaments__tournament-desc {
+  width: 60%;
+}
+
+.available-tournaments__title {
+  font-weight: bold;
+  color: var(--viridian);
+  font-size: 30px;
 }

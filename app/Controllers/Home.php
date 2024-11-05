@@ -11,6 +11,7 @@ class Home extends BaseController
         $jls_database = new DatabaseHandler();
         $tournaments = $jls_database->jls_get_all_active_tournaments();
         $data['tournaments'] = $tournaments;
+        $data['title'] = 'Jumpstyle League Series';
         if (session()->get("user_id")) {
             return view('layouts/userIndex', $data);
         } else {
@@ -35,10 +36,11 @@ class Home extends BaseController
         $user = $this->request->getPost('jls_username_init');
         $password = $this->request->getPost('jls_user_password');
         $resultado = $jls_database->jls_register_user($name, $user, $password);
-        return view('login');
+        return view('layouts/login');
     }
     public function logout(): string
     {
+        $data['title'] = 'Jumpstyle League Series';
         return view('layouts/index');
     }
 
@@ -55,6 +57,7 @@ class Home extends BaseController
             $user_data = $jls_database->jls_get_user_data($result);
             $tournaments = $jls_database->jls_get_all_active_tournaments();
             $data['tournaments'] = $tournaments;
+            $data['title'] = 'Jumpstyle League Series';
             session()->set("jumper_user_name", $user_data->nombre_usuario);
             session()->set("user_id", $result);
 
@@ -90,6 +93,7 @@ class Home extends BaseController
         $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
         $tournaments = $jls_database->jls_get_all_active_tournaments();
         $data['tournaments'] = $tournaments;
+        $data['title'] = 'Jumpstyle League Series';
         if (session()->get("user_id")) {
             return view('layouts/userIndex', $data);
         } else {
@@ -101,7 +105,8 @@ class Home extends BaseController
         $jls_database = new DataBaseHandler();
         $jls_tournament_id = $this->request->getPost('tournament_id');
         $jls_participants = $jls_database->jls_get_tournament_participants($jls_tournament_id);
-        $data["participants"] = $jls_participants;
+        $data['participants'] = $jls_participants;
+        $data['title'] = 'Torneo';
         return view("layouts/tournament_info", $data);
     }
 }
