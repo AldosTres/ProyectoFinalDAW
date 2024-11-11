@@ -1,3 +1,72 @@
-.fullpage {
-  margin: auto;
+root {
+  --eerie-black: hsla(0, 2%, 11%, 1);
+  --poppy: hsla(0, 67%, 53%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+  --viridian: hsla(154, 15%, 49%, 1);
+  --platinum: hsla(0, 0%, 87%, 1);
+  /* azul mariono */
+}
+
+.tournament-page {
+  padding-top: 5%;
+  height: max-content;
+  width: 100%;
+}
+
+.tournament-page__presentation {
+  height: max-content;
+  width: 100%;
+  background-color: var(--eerie-black);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+}
+
+/* CORRESPONDIENTE A BLOQUE INSCRIBIR E INFO DEL TORNEO*/
+.tournament-page__items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 2%;
+}
+/** BLOQUE ESPECIFICO INFORMACION DEL TORNEO*/
+.tournament-page__info {
+  width: 30%;
+  text-align: justify;
+}
+
+/** BLOQUE CORRESPONDIENTE A BLOQUE INSCRIBIR PARTICIPANTE */
+
+.tournament-page__form-registry-participant {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.form-registry-participant__item1 {
+  width: 20%;
+  padding: 4%;
+  border: 1px solid grey;
+  border-radius: 3%;
+  /* box-shadow: 2px 1px 1px; */
+  box-shadow: 0px 0px 5px 0px #333 inset;
+}
+
+.form-registry-participant__jumper-name {
+  margin-top: 2%;
+  width: 100%;
+}
+
+.form-registry-participant__item2 {
+  width: 50%;
+}
+
+.form-registry-participant__submit-button {
+  width: 200px;
+  padding: 5%;
+  font-size: 24px;
+  background-color: var(--poppy) !important;
+  /* color: var(--white); */
 }

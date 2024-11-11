@@ -14,6 +14,7 @@ body {
   font-family: "Raleway", sans-serif !important;
   margin: 0;
   min-height: 90vh;
+  width: 100%;
 }
 
 ul {
@@ -227,16 +228,18 @@ source {
 
 .aboutme__capa-vacia {
   position: absolute; /* Posiciona este elemento de forma absoluta dentro de su contenedor relativo */
-  top: 40%; /* Lo posiciona en la mitad superior del contenedor padre */
-  left: 50%; /* Lo posiciona en el centro horizontal del contenedor padre */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Centra el elemento en el medio de su contenedor */
+  /* Lo posiciona en la mitad superior del contenedor padre */
+  /* top: 40%; */
+  /*Lo posiciona en el centro horizontal del contenedor padre*/
+  /* left: 40%; */
+  /* Centra el elemento en el medio de su contenedor */
+  /* transform: translate(-50%, -50%); */
   z-index: 2; /* Asegura que este elemento esté por encima del vídeo */
   text-align: center; /* Centra el texto dentro del contenedor */
   color: white; /* Color del texto */
   font-size: 20px;
+  margin: auto;
+  padding: 25%;
 }
 
 .nav-brand__background-video {

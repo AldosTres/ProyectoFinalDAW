@@ -7,15 +7,33 @@
     <!-- Insercion del sidebar -->
     <?php include_once TEMPLATES_VIEWS_PATH . 'sidebar.php' ?>
 
-    <div class="fullpage">
-        <h1>Información del torneo</h1>
-        <form action="get_add_participant_page" method="post">
-            <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["tournament_id"])) {
-                                                                        echo $_POST["tournament_id"];
-                                                                    } ?>">
+    <div class="tournament-page">
+        <div class="tournament-page__presentation">
+            <h1 class="tournament-page__title">Información del torneo</h1>
+        </div>
+        <div class="tournament-page__items">
+            <div class="tournament-page__form-registry-participant">
+                <div class="form-registry-participant__item1">
+                    <h2 class="form-registry-participant__title">Inscribir Participante</h2>
+                    <br>
+                    <form action="add_new_participant" method="POST">
+                        <label for="nombre">Nombre de Jumper:</label>
+                        <input type="text" id="jls-jumper-name" name="jls-jumper-name" class="form-registry-participant__jumper-name" required>
+                        <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["jls-tournament-id"])) {
+                                                                                    echo $_POST["jls-tournament-id"];
+                                                                                } ?>">
+                </div>
+                <div class="form-registry-participant__item2">
+                    <input type="submit" value="Inscribir" class="form-registry-participant__submit-button">
+                </div>
+                </form>
+            </div>
+            <div class="tournament-page__info">
+                <h3 class="tournament-page__info-title">Información del torneo</h3>
+                <p class="tournament-page__info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque maxime eum vitae asperiores non fuga nobis! Deleniti consequuntur enim quis incidunt omnis ex. Facere accusantium nesciunt placeat ut voluptate?</p>
+            </div>
 
-            <input type="submit" value="Participar">
-        </form>
+        </div>
         <div>
             <h2>Lista de participantes</h2>
             <div>
