@@ -13,14 +13,13 @@
                 <button class="aboutme__find-btn">Descubrir</button>
             </div>
             <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="nav-brand__background-video">
-                <source src="<?php base_url() ?>video/sN.mp4" type="video/mp4">
+                <source src="<?= base_url() ?>video/sN.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="about-us">
             <div class="about-us__card-container">
-                <!-- <img src="<?php echo base_url() ?>img/jumpstyleleagueseries_origin.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers"> -->
-                <img src="<?php echo base_url() ?>img/allparticipantsjls.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers">
+                <img src="<?= base_url() ?>img/allparticipantsjls.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers">
             </div>
             <div class="about-us__text-container">
                 <span class="about-us__title-label-container">Nuestros inicios</span>
@@ -36,23 +35,24 @@
             foreach ($tournaments as $key => $tournament) {
             ?>
                 <div class="available-tournaments__tournament-element">
-                    <form action="get_tournamente_info_page" method="post">
+                    <form action="get_tournament_info_page" method="post">
                         <input type="hidden" name="tournament_id" value="<?= $tournament['id'] ?>">
                         <button type="submit" class="tournament-info-button">
                             <div class="available-tournaments__tournament-info">
-                                <strong>Nombre del Torneo:</strong> <?php echo $tournament['nombre'] ?>
+                                <strong>Nombre del Torneo:</strong> <?= $tournament['nombre'] ?>
                             </div>
                             <div class="available-tournaments__tournament-info">
-                                <strong>Fecha de Inicio:</strong> <?php echo $tournament['fecha_inicio'] ?>
+                                <strong>Fecha de Inicio:</strong> <?= $tournament['fecha_inicio'] ?>
                             </div>
                             <div class="available-tournaments__tournament-info">
-                                <strong>Fecha de Fin:</strong> <?php echo $tournament['fecha_fin'] ?>
+                                <strong>Fecha de Fin:</strong> <?= $tournament['fecha_fin'] ?>
                             </div>
                         </button>
                     </form>
 
                 </div>
         </div>
+
     <?php
             }
     ?>
@@ -79,6 +79,34 @@
             </div>
         </div>
         <!-- Agrega más eventos según sea necesario -->
+
+        <!-- PROBANDO SPOTIFY -->
+        <div class="music-recommendation">
+            <h2 class="music-recommendation__title">¡Escucha la Playlist Oficial de JLS!</h2>
+            <p class="music-recommendation__description">
+                Disfruta de las canciones seleccionadas especialmente para acompañarte en cada torneo.
+            </p>
+
+            <!-- Contenedor estilo tarjeta para la playlist -->
+            <div class="music-recommendation__card">
+                <iframe
+                    src="https://open.spotify.com/embed/playlist/3P5GOtafqK00O4dyy2jCNi?utm_source=generator"
+                    width="100%"
+                    height="380"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allow="encrypted-media">
+                </iframe>
+            </div>
+
+            <!-- Opcional: Botones para compartir o acceder directamente -->
+            <div class="music-recommendation__actions">
+                <a href="https://open.spotify.com/embed/playlist/3P5GOtafqK00O4dyy2jCNi?utm_source=generator"
+                    target="_blank"
+                    class="music-recommendation__button">Abrir en Spotify</a>
+                <button class="music-recommendation__button--share">Compartir</button>
+            </div>
+        </div>
     </div>
     <?php include_once TEMPLATES_VIEWS_PATH . 'footer.php'; ?>
 </body>

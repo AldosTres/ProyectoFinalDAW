@@ -76,13 +76,16 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * 
+     * Funcion que permite crear torneos para la página
+     * @param string $nombre
+     * @param string $fecha_inicio
+     * @param string $fecha_fin
+     * @return bool
      */
     public function jls_upload_new_tournament($nombre, $fecha_inicio, $fecha_fin)
     {
-        // Ejecutar la consulta
         if ($this->db->query("INSERT INTO torneos (nombre, fecha_inicio, fecha_fin) VALUES ('$nombre', '$fecha_inicio', '$fecha_fin')") === TRUE) {
-            return true; // Insertado correctamente
+            return true; // Inserción correcta
         } else {
             return false; // No insertado o insertado erróneamente
         }

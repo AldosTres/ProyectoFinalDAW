@@ -11,7 +11,6 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif !important;
   margin: 0;
   min-height: 90vh;
   width: 100%;
@@ -497,4 +496,69 @@ source {
   font-weight: bold;
   color: var(--viridian);
   font-size: 30px;
+}
+
+/* LISTA SPOTIFY */
+
+/* Contenedor principal */
+.music-recommendation {
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--platinum);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título y descripción */
+.music-recommendation__title {
+  font-size: 24px;
+  color: var(--eerie-black);
+  margin-bottom: 10px;
+}
+
+.music-recommendation__description {
+  font-size: 16px;
+  color: var(--viridian);
+  margin-bottom: 20px;
+}
+
+/* Tarjeta de la playlist */
+.music-recommendation__card {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Acciones de la playlist */
+.music-recommendation__actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.music-recommendation__button {
+  padding: 10px 15px;
+  color: var(--white);
+  background-color: var(--poppy);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.music-recommendation__button:hover {
+  background-color: #b22222;
+}
+
+.music-recommendation__button--share {
+  background-color: var(--viridian);
+}
+
+.music-recommendation__button--share:hover {
+  background-color: #3b8f8f;
 }

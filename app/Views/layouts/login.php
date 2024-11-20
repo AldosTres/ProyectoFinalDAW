@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script> -->
     <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php base_url() ?>css/login.css">
-    <link rel="stylesheet" href="<?php base_url() ?>css/global.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/login.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/global.css">
     <title>Inicia sesión</title>
 </head>
 
@@ -43,6 +43,21 @@
 
 
         <button id="form-login__button">Entrar</button>
+        <?php
+        if (session()->getFlashdata('user_not_found_error')) {
+        ?>
+            <div class="alert-message">
+                <?= session()->getFlashdata('user_not_found_error') ?>
+            </div>
+        <?php
+        } else if (isset($login_error)) {
+        ?>
+            <div class="alert-message">
+                <?= $login_error ?>
+            </div>
+        <?php
+        }
+        ?>
         <a class="form-login__forgot-link form_login__link" href="#">¿Olvidaste la contraseña?</a>
         <a href="get_register_user_page" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
     </form>

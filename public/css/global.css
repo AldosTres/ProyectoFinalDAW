@@ -1,4 +1,4 @@
-root {
+:root {
   --eerie-black: hsla(0, 2%, 11%, 1);
   --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
@@ -6,7 +6,9 @@ root {
   --platinum: hsla(0, 0%, 87%, 1);
   /* azul mariono */
 }
-
+* {
+  font-family: "Raleway", sans-serif;
+}
 /** ESTILOS PARA EL FOOTER **/
 
 /* public/css/styles.css */
@@ -70,4 +72,13 @@ root {
   .footer__container-social-media {
     margin-top: 10px;
   }
+}
+
+/******************************* CORRESPONDIENTE A LOS MENSAJES DE ALERTA*********************************/
+/* Estilo para el mensaje de error */
+.alert-message {
+  color: var(--poppy);
+  padding: 15px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  text-align: center; /* Centrar el texto */
 }

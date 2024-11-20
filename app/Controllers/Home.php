@@ -12,7 +12,7 @@ class Home extends BaseController
         $tournaments = $jls_database->jls_get_all_active_tournaments();
         $data['tournaments'] = $tournaments;
         $data['title'] = 'Jumpstyle League Series';
-        if (session()->get("user_id")) {
+        if (session()->get('user_id')) {
             return view('layouts/userIndex', $data);
         } else {
             return view('layouts/index', $data);
@@ -21,6 +21,7 @@ class Home extends BaseController
 
     public function get_login_page(): string
     {
+        //Uso return porque solo necesito mostrar la página, sin realizar nada más
         return view('layouts/login');
     }
 
@@ -51,15 +52,20 @@ class Home extends BaseController
         $password = $this->request->getPost('jls_user_password');
         $result = $jls_database->jls_check_user($user, $password);
         if ($result == 0) {
-            return view('layouts/login');
+            //No se ha encontrado al usuario
+            // session()->setFlashdata('login_error', 'El nombre de usuario o contraseña son incorrectos');
+            $data['login_error'] = 'El nombre de usuario o contraseña son incorrectos';
+            // return view('layouts/login');
+            // return redirect()->to('/get_login_page');
+            return view('layouts/login', $data);
         } else {
             //Devolviendo los datos correspondientes al user
             $user_data = $jls_database->jls_get_user_data($result);
             $tournaments = $jls_database->jls_get_all_active_tournaments();
             $data['tournaments'] = $tournaments;
             $data['title'] = 'Jumpstyle League Series';
-            session()->set("jumper_user_name", $user_data->nombre_usuario);
-            session()->set("user_id", $result);
+            session()->set('jumper_user_name', $user_data->nombre_usuario);
+            session()->set('user_id', $result);
 
             return view('layouts/userIndex', $data);
         }
@@ -85,22 +91,27 @@ class Home extends BaseController
         return view('layouts/registry_participants');
     }
 
-    public function add_new_participant(): string
+    public function add_new_participant()
     {
         $jls_database = new DataBaseHandler();
         $jls_name = $this->request->getPost('jls-jumper-name');
         $jls_tournament_id = $this->request->getPost('jls-tournament-id');
-        $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
-        $tournaments = $jls_database->jls_get_all_active_tournaments();
-        $data['tournaments'] = $tournaments;
-        $data['title'] = 'Jumpstyle League Series';
         if (session()->get("user_id")) {
-            return view('layouts/userIndex', $data);
+            $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
+            $tournaments = $jls_database->jls_get_all_active_tournaments();
+            $data['tournaments'] = $tournaments;
+            $data['title'] = 'Jumpstyle League Series';
+            // return view('layouts/userIndex', $data);
+            return redirect()->to('layouts/userIndex');
         } else {
-            return view('layouts/index', $data);
+            //Lo que hacemos es establecer un mensaje de un solo uso que se elimina después de ser utilizado, uso correcto en este caso
+            session()->setFlashdata("user_not_found_error", "Tiene que iniciar sesión para poder inscribirse");
+
+            //Redirijo a la página de inicio de sesión
+            return redirect()->to('/get_login_page');
         }
     }
-    public function get_tournamente_info_page(): string
+    public function get_tournament_info_page(): string
     {
         $jls_database = new DataBaseHandler();
         $jls_tournament_id = $this->request->getPost('tournament_id');
@@ -108,5 +119,10 @@ class Home extends BaseController
         $data['participants'] = $jls_participants;
         $data['title'] = 'Torneo';
         return view("layouts/tournament_info", $data);
+    }
+
+    public function admin(): string
+    {
+        return view('layouts/admin');
     }
 }

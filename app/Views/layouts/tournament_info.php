@@ -25,6 +25,13 @@
                 </div>
                 <div class="form-registry-participant__item2">
                     <input type="submit" value="Inscribir" class="form-registry-participant__submit-button">
+                    <?php
+                    if (isset($_SESSION['user_not_found_error'])) {
+                    ?>
+                        <p><?= $_SESSION['user_not_found_error'] ?></p>
+                    <?php
+                    }
+                    ?>
                 </div>
                 </form>
             </div>
