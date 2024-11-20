@@ -76,14 +76,31 @@ class Home extends BaseController
         return view('layouts/upload_tournament');
     }
 
-    public function upload_tournament(): string
+    public function upload_tournament()
     {
         $jls_database = new DataBaseHandler();
-        $tournament_name = $this->request->getPost('jls_tournament_name');
-        $tournament_init_date = $this->request->getPost('jls_tournament_init_date');
-        $tournament_end_date = $this->request->getPost('jls_tournament_end_date');
-        $result = $jls_database->jls_upload_new_tournament($tournament_name, $tournament_init_date, $tournament_end_date);
-        return view('layouts/upload_tournament');
+        $tournament_name = $this->request->getPost('name');
+        $tournament_init_date = $this->request->getPost('start-date');
+        $tournament_end_date = $this->request->getPost('end-date');
+
+        //Identificador unico para el logotipo del torneo
+        $unique_id = uniqid("torneo_", true);
+
+        //Obtengo la extension de la imagen para permitir que se suba imágenes con diferentes extensiones
+        $file_extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+
+        //Creo la ruta que se almacenará en BBDD y en la carpeta de imágenes
+        $logo_path = LOGO_TOURNAMENTS_PATH . $unique_id . '.' . $file_extension;
+
+        // Guarda la foto en el servidor
+        move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
+
+        $result = $jls_database->jls_upload_new_tournament($tournament_name, $tournament_init_date, $tournament_end_date, $unique_id);
+        if ($result) {
+            return redirect()->to('admin')->with('success', 'El torneo se ha creado correctamente');
+        } else {
+            return redirect()->to('admin')->with('error', 'No se ha podido crear el torneo. Verrifica si los datos introducidos son correctos');
+        }
     }
 
     public function get_add_participant_page(): string

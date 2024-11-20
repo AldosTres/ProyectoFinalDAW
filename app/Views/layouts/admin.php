@@ -43,11 +43,45 @@
             </div>
         </div>
         <div class="menu">
-            <div id="tournaments" class="menu__section menu__section--hidden">Contenido de Torneos</div>
+            <div id="simpleModal" class="modal">
+                <div class="modal-content">
+                    <div id="modalMessage" class="modalMessage">
+                        El contenido se ha subido correctamente Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium ipsa, hic minus velit ex tempora quos expedita voluptas dignissimos excepturi sequi sint ad praesentium eligendi nostrum similique exercitationem error aliquam.
+
+                    </div>
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                </div>
+            </div>
+            <div id="tournaments" class="menu__section menu__section--hidden">
+                <form action="upload_tournament" method="post" class="form-tournament" enctype="multipart/form-data">
+                    <h2 class="form-tournament__title">Iniciar nuevo torneo</h2>
+                    <div class="form-tournament__field">
+                        <label for="tournament-name" class="form-tournament__label">Nombre del torneo:</label>
+                        <input type="text" name="name" id="tournament-name" class="form-tournament__input">
+                    </div>
+                    <div class="form-tournament__field">
+                        <label for="tournament-start-date" class="form-tournament__label">Fecha de inicio:</label>
+                        <input type="date" name="start-date" id="tournament-start-date" class="form-tournament__input">
+                    </div>
+                    <div class="form-tournament__field">
+                        <label for="tournament-end-date" class="form-tournament__label">Fecha de finalización:</label>
+                        <input type="date" name="end-date" id="tournament-end-date" class="form-tournament__input">
+                    </div>
+                    <div class="form-tournament__field">
+                        <label for="tournament-logo" class="form-tournament__label">Logotipo del torneo:</label>
+                        <!-- <input type="text" name="logo" id="tournament-logo" class="form-tournament__input "> -->
+                        <input type="file" name="logo" id="tournament-logo" class="form-tournament__input form-tournament__input--file" accept="image/*" required>
+                    </div>
+                    <div class="form-tournament__buttons">
+                        <button type="submit" class="form-tournament__button form-tournament__button--submit">Crear</button>
+                        <button type="reset" class="form-tournament__button form-tournament__button--reset">Borrar datos</button>
+                    </div>
+                </form>
+            </div>
             <div id="users" class="menu__section menu__section--hidden">Contenido de Usuarios</div>
             <div id="events" class="menu__section menu__section--hidden">Contenido de Eventos</div>
             <div id="judges" class="menu__section menu__section--hidden">Contenido de Jueces</div>
-            <div id="setttings" class="menu__section menu__section--hidden">Contenido de Configuración</div>
+            <div id="settings" class="menu__section menu__section--hidden">Contenido de Configuración</div>
         </div>
     </div>
     <script src="<?= base_url() ?>js/admin_page_controller.js"></script>

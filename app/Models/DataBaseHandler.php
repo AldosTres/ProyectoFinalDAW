@@ -7,24 +7,27 @@ use CodeIgniter\Model;
 class DataBaseHandler extends Model
 {
     /**
-     * Pre: 
-     * Post: 
+       Verifica si el usuario existe en la BBDD
+     * @param mixed $user
+     * @param mixed $password
+     * @return mixed
      */
     function jls_check_user($user, $password)
     {
-        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = '{$user}' AND contraseña = '{$password}'");
+        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = ? AND contraseña = ?", [$user, $password]);
         $user = $result->getRow();
         return isset($user) ? $user->id : 0;
     }
 
     /**
-     * Pre:
-     * Post: función que comprueba si un nombre de user ya existe, devuelve el código del user
-     * si existe, y un 0 si no existe
+       Función que comprueba si un nombre de usuario ya existe, devuelve el código del user
+       si existe, y un 0 si no existe
+     * @param mixed $user
+     * @return mixed
      */
     function jls_check_user_name_exists($user)
     {
-        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = '{$user}'");
+        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = ?", [$user]);
         $user = $result->getRow();
         if (isset($user)) {
             return $user->id;
@@ -66,30 +69,44 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * 
-     */
-    public function jls_get_tournament_participant($tournament_id)
-    {
-        $result = $this->db->query("SELECT * FROM participantes WHERE torneo_id = {$tournament_id}");
-        $row = $result->getRow();
-        return $row;
-    }
-
-    /**
-     * Funcion que permite crear torneos para la página
+     * Funcion que permite crear torneos
      * @param string $nombre
      * @param string $fecha_inicio
      * @param string $fecha_fin
      * @return bool
      */
-    public function jls_upload_new_tournament($nombre, $fecha_inicio, $fecha_fin)
+    public function jls_upload_new_tournament($nombre, $fecha_inicio, $fecha_fin, $logo)
     {
-        if ($this->db->query("INSERT INTO torneos (nombre, fecha_inicio, fecha_fin) VALUES ('$nombre', '$fecha_inicio', '$fecha_fin')") === TRUE) {
-            return true; // Inserción correcta
-        } else {
-            return false; // No insertado o insertado erróneamente
+        //Comprobación inicial, para corroborar que todos los datos han sido rellenado
+        if (empty($nombre) || empty($fecha_inicio) || empty($fecha_fin)) {
+            log_message('error', 'Faltan datos para crear el torneo');
+            return false;
+        }
+        //Datos correspondientes al torneo
+        $data = [
+            'nombre' => $nombre,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_fin' => $fecha_fin,
+            'activo' => 1,
+            'logo_path' => $logo
+        ];
+        try {
+            //Inserto la linea
+            $this->db->table('torneos')->insert($data);
+
+            /**
+             * affectedRows() nos indicará si después de la inserción, se modificó algo en la tabla
+             * > 0, nos indicará que si hubo cambios, = 0 será que no hubo cambio y por ende, no se
+             * insertó
+             */
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            //Registrando el error cuando no se puede crear el torneo
+            log_message('error', 'No se ha podido crear el torneo: ' . $th->getMessage());
+            return false;
         }
     }
+
     /**
      * 
      */
@@ -110,7 +127,7 @@ class DataBaseHandler extends Model
 
         if ($inscrito) {
             // El usuario ya está inscrito, puedes manejar este caso según tu lógica de aplicación
-            return "El usuario ya está inscrito en este torneo.";
+            return false;
         } else {
             // El usuario no está inscrito, puedes proceder a registrar la inscripción
             $data = [
@@ -122,7 +139,7 @@ class DataBaseHandler extends Model
             // Insertar la inscripción en la base de datos
             $this->db->table('inscripciones')->insert($data);
 
-            return "El usuario se ha inscrito correctamente en el torneo.";
+            return true;
         }
     }
 
