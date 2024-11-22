@@ -1,9 +1,15 @@
 :root {
-  --eerie-black: hsla(0, 2%, 11%, 1);
+  --serie-black: hsla(0, 2%, 11%, 1);
   --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
   --platinum: hsla(0, 0%, 87%, 1);
+  --success: #04aa6d;
+  --success-transition: #46a049;
+  --danger: #f44336;
+  /* rgb(255, 114, 109) */
+  --danger-transition: #da190b;
+  /* rgb(255, 73, 66) */
 }
 
 * {
@@ -93,47 +99,95 @@ body {
   display: none;
 }
 
-/*MODAL TODO*/
+/**LOQUEARRRRR*/
 
-/* Estilos del Modal */
+/* From Uiverse.io by vinodjangid07 */
+
 .modal {
-  display: block; /* Inicialmente oculto */
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
+  display: none;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 999; /* Asegúrate de que esté sobre otros elementos */
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+.modal__container {
+  width: 300px;
+  /* height: fit-content; */
   max-width: 500px;
+  background: var(--white);
+  border-radius: 20px;
   display: flex;
-  align-items: start;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /*Separacion entre los elementos hijos del contenedors*/
+  padding: 30px; /* Separación entre el borde del contenedor y su contenido*/
+  position: relative;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.068);
 }
-
-.close-btn {
-  color: var(--poppy);
-  width: 2%;
-  font-size: 28px;
-  font-weight: bold;
+.modal__content {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-.modalMessage {
-  width: 90%;
-  text-align: justify;
+.modal__title {
+  font-size: 20px; /* Tamaño del texto */
+  font-weight: 800; /* Grosor del texto */
+  color: rgb(27, 27, 27);
 }
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
+.modal__description {
+  font-weight: 350;
+  color: rgb(102, 102, 102);
+}
+.modal__buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.modal__button {
+  width: 50%;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+}
+.modal__button--confirm {
+  background-color: var(--success);
+  color: white;
+}
+.modal__button--confirm:hover {
+  background-color: var(--success-transition);
+}
+.modal__button--cancel {
+  background-color: #ddd;
+}
+.modal__button--cancel:hover {
+  background-color: rgb(197, 197, 197);
+}
+.modal__close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none; /* Quitar borde */
+  background-color: transparent; /* Fondo transparente en vez de gris */
+  position: absolute; /* Se pegará al contenedor más cercano, "modal__container, este tiene position:relative" */
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.modal__close-button:hover {
+  color: rgb(255, 73, 66);
+  transition: color 0.4s;
 }

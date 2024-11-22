@@ -43,18 +43,47 @@
             </div>
         </div>
         <div class="menu">
-            <div id="simpleModal" class="modal">
-                <div class="modal-content">
-                    <div id="modalMessage" class="modalMessage">
-                        El contenido se ha subido correctamente Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium ipsa, hic minus velit ex tempora quos expedita voluptas dignissimos excepturi sequi sint ad praesentium eligendi nostrum similique exercitationem error aliquam.
-
+            <?php
+            if (session()->getFlashdata('success')) {
+            ?>
+                <!-- Con esc() evito que se inyecte código ya que convierte cualquier caracter especial en su representación en html < = &lt; -->
+                <input type="hidden" id="flash-data" name="success" value="<?= esc(session()->getFlashdata('success')) ?>">
+            <?php
+            } else if (session()->getFlashdata('error')) {
+            ?>
+                <input type="hidden" id="flash-data" name="error" value="<?= esc(session()->getFlashdata('error')) ?>">
+            <?php
+            }
+            ?>
+            <div class="modal" id="modal">
+                <!-- /* From Uiverse.io by vinodjangid07 */ -->
+                <div class="modal__container">
+                    <div class="modal__content">
+                        <p class="modal__title">Creación del torneo</p>
+                        <p class="modal__description" id="modal-message"></p>
                     </div>
-                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <div class="modal__buttons">
+                        <button class="modal__button modal__button--cancel">Cancel</button>
+                        <button class="modal__button modal__button--confirm">Confirmar</button>
+                    </div>
+                    <button class="modal__close-button" id="close-button">
+                        <i class="fa-solid fa-xmark"></i>
+                        <!-- link: https://fontawesome.com/v6/icons/xmark?f=classic&s=solid -->
+                    </button>
                 </div>
+                <!-- Licencia de Copyright -->
+                <!--
+                    Copyright - 2024 vinodjangid07 (Vinod Jangid)
+
+                    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+                    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                -->
             </div>
             <div id="tournaments" class="menu__section menu__section--hidden">
                 <form action="upload_tournament" method="post" class="form-tournament" enctype="multipart/form-data">
-                    <h2 class="form-tournament__title">Iniciar nuevo torneo</h2>
+                    <h2 class="form-tournament__title">Torneos</h2>
+                    <span>En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
                     <div class="form-tournament__field">
                         <label for="tournament-name" class="form-tournament__label">Nombre del torneo:</label>
                         <input type="text" name="name" id="tournament-name" class="form-tournament__input">
@@ -85,6 +114,7 @@
         </div>
     </div>
     <script src="<?= base_url() ?>js/admin_page_controller.js"></script>
+    <script src="<?= base_url() ?>js/modal_tournament.js"></script>
 </body>
 
 </html>
