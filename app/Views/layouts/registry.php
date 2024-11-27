@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php base_url() ?>css/login.css">
-    <link rel="stylesheet" href="<?php base_url() ?>css/global.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/login.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/global.css">
     <title>Registro</title>
 </head>
 
 <body>
-    <form action="register_user" class="form-login" method="post">
+    <form action="user/register" class="form-login" method="post">
         <div class="form-login__mark">
             <a href="index" class="form_login__link form_login__link--no_color">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -44,7 +44,7 @@
 
 
         <button id="form-login__button">Registrarse</button>
-        <a class="form-login__forgot-link form_login__link" href="get_login_page">¿Tienes cuenta? Inicia sesión</a>
+        <a class="form-login__forgot-link form_login__link" href="login">¿Tienes cuenta? Inicia sesión</a>
 
     </form>
 

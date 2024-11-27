@@ -20,7 +20,7 @@
         <img src="<?= base_url() ?>img/login_5.png" alt="" class="image-presentation__img-element img5">
     </div>
 
-    <form action="check_login" class="form-login" method="post">
+    <form action="login/check" class="form-login" method="post">
         <div class="form-login__mark">
             <a href="index" class="form-login__link form-login__link--no-color">
                 <i class="fa-solid fa-arrow-left form-login__icon"></i>
@@ -59,7 +59,7 @@
         }
         ?>
         <a class="form-login__forgot-link form_login__link" href="#">¿Olvidaste la contraseña?</a>
-        <a href="get_register_user_page" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
+        <a href="register" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
     </form>
 </body>
 

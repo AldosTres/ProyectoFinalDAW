@@ -35,7 +35,7 @@
             foreach ($tournaments as $key => $tournament) {
             ?>
                 <div class="available-tournaments__tournament-element">
-                    <form action="get_tournament_info_page" method="post">
+                    <form action="tournament" method="post">
                         <input type="hidden" name="tournament_id" value="<?= $tournament['id'] ?>">
                         <button type="submit" class="available-tournaments__tournament-info">
                             <div class="available-tournaments__tournament-img">

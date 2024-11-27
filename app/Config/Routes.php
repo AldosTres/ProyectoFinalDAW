@@ -7,14 +7,22 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('index', 'Home::index');
-$routes->get('get_login_page', 'Home::get_login_page');
-$routes->post('check_login', 'Home::check_login');
-$routes->post('register_user', 'Home::register_user');
-$routes->get('get_register_user_page', 'Home::get_register_user_page');
-$routes->get('get_upload_tournament_page', 'Home::get_upload_tournament_page');
-$routes->post('upload_tournament', 'Home::upload_tournament');
-$routes->post('get_add_participant_page', 'Home::get_add_participant_page');
-$routes->post('get_tournamente_info_page', 'Home::get_tournamente_info_page');
-$routes->post('add_new_participant', 'Home::add_new_participant');
-$routes->get('get_vista_rapida', 'Home::get_vista_rapida');
+$routes->get('login', 'Home::get_login_page');
+$routes->post('login/check', 'Home::check_login');
+$routes->get('register', 'Home::get_register_user_page');
+$routes->post('user/register', 'Home::register_user');
+$routes->post('tournament', 'Home::get_tournamente_info_page');
+$routes->post('tournament/add-participant', 'Home::add_new_participant');
 $routes->get('admin', 'Home::admin');
+$routes->post('admin/tournament/upload', 'Home::upload_tournament');
+
+
+/**
+ CAMBIAR CUANDO SE PUEDA
+ */
+
+// $routes->post('participant/add', 'Home::get_add_participant_page');
+// $routes->post('tournament/info', 'Home::get_tournamente_info_page');
+// $routes->post('participant/add/submit', 'Home::add_new_participant');
+// $routes->get('quick_view', 'Home::get_vista_rapida');
+// $routes->get('admin/dashboard', 'Home::admin');

@@ -80,32 +80,107 @@
                     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
                 -->
             </div>
-            <div id="tournaments" class="menu__section menu__section--hidden">
-                <form action="upload_tournament" method="post" class="form-tournament" enctype="multipart/form-data">
-                    <h2 class="form-tournament__title">Torneos</h2>
-                    <span>En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
-                    <div class="form-tournament__field">
-                        <label for="tournament-name" class="form-tournament__label">Nombre del torneo:</label>
-                        <input type="text" name="name" id="tournament-name" class="form-tournament__input">
+            <div id="tournaments" class="tournaments menu__section menu__section--hidden">
+                <h1 class="tournaments__title">Torneos</h1>
+                <span class="tournament__description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
+                <form action="tournament/upload" method="post" class="tournaments__form" enctype="multipart/form-data">
+                    <div class="tournaments__field">
+                        <label for="tournament-name" class="tournaments__field-label">Nombre del torneo:</label>
+                        <input type="text" name="name" id="tournament-name" class="form-tournament__field-input">
                     </div>
-                    <div class="form-tournament__field">
-                        <label for="tournament-start-date" class="form-tournament__label">Fecha de inicio:</label>
-                        <input type="date" name="start-date" id="tournament-start-date" class="form-tournament__input">
+                    <div class="tournaments__field">
+                        <label for="tournament-start-date" class="tournaments__field-label">Fecha de inicio:</label>
+                        <input type="date" name="start-date" id="tournament-start-date" class="form-tournament__field-input">
                     </div>
-                    <div class="form-tournament__field">
-                        <label for="tournament-end-date" class="form-tournament__label">Fecha de finalización:</label>
-                        <input type="date" name="end-date" id="tournament-end-date" class="form-tournament__input">
+                    <div class="tournaments__field">
+                        <label for="tournament-end-date" class="tournaments__field-label">Fecha de finalización:</label>
+                        <input type="date" name="end-date" id="tournament-end-date" class="form-tournament__field-input">
                     </div>
-                    <div class="form-tournament__field">
-                        <label for="tournament-logo" class="form-tournament__label">Logotipo del torneo:</label>
+                    <div class="tournaments__field">
+                        <label for="tournament-logo" class="tournaments__field-label">Logotipo del torneo:</label>
                         <!-- <input type="text" name="logo" id="tournament-logo" class="form-tournament__input "> -->
-                        <input type="file" name="logo" id="tournament-logo" class="form-tournament__input form-tournament__input--file" accept="image/*" required>
+                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournament__field-input--file" accept="image/*" required>
                     </div>
-                    <div class="form-tournament__buttons">
-                        <button type="submit" class="form-tournament__button form-tournament__button--submit">Crear</button>
-                        <button type="reset" class="form-tournament__button form-tournament__button--reset">Borrar datos</button>
+                    <div class="tournaments__buttons">
+                        <button type="submit" class="tournaments__button form-tournament__button--submit">Crear</button>
+                        <button type="reset" class="tournaments__button form-tournament__button--reset">Borrar datos</button>
                     </div>
                 </form>
+
+                <!-- Listado de torneos existentes -->
+
+                <div class="tournaments__list">
+                    <h3 class="tournaments__list-title">Listado de torneos</h3>
+                    <table class="tournaments__list-table">
+                        <thead class="tournaments__list-table-header">
+                            <!-- color: #dd5; -->
+                            <tr class="tournaments__list-table-row">
+                                <th class="tournaments__list-table-header-item">Nombre del Torneo</th>
+                                <th class="tournaments__list-table-header-item">Fecha de Inicio</th>
+                                <th class="tournaments__list-table-header-item">Fecha de Finalización</th>
+                                <th class="tournaments__list-table-header-item">Estado</th>
+                                <th class="tournaments__list-table-header-item">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tournaments__list-table-body">
+                            <tr class="tournaments-list-table-row">
+                                <td class="tournaments__list-table-item">Torneo 1</td>
+                                <td class="tournaments__list-table-item">2024-11-25</td>
+                                <td class="tournaments__list-table-item">2024-12-01</td>
+                                <td class="tournaments__list-table-item">
+                                    <span class="tournaments__list-status tournaments__list-status--active">Activo</span>
+                                </td>
+                                <td class="tournaments__list-table-item tournaments__list-table-item--actions">
+                                    <button class="tournaments__list-table-button tournaments_list-table-button--edit">Editar</button>
+                                    <button class="tournaments__list-table-button tournaments_list-table-button--delete">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- Filtrado y búsqueda de torneos -->
+                <!-- <div class="tournaments-filter">
+                    <input type="text" id="tournament-search" placeholder="Buscar torneo por nombre...">
+                    <select id="tournament-status">
+                        <option value="">Todos los estados</option>
+                        <option value="active">Activo</option>
+                        <option value="inactive">Inactivo</option>
+                        <option value="finished">Finalizado</option>
+                    </select>
+                    <button id="filter-tournaments">Filtrar</button>
+                </div> -->
+
+
+                <!-- 3. Gestión de participantes
+                Agrega un subapartado donde se pueda:
+
+                Ver los participantes registrados en cada torneo.
+                Agregar o eliminar participantes.
+                Exportar la lista de participantes en formatos como CSV o PDF -->
+
+                <!-- <div class="tournaments-participants">
+                    <h3>Gestión de Participantes</h3>
+                    <button id="view-participants">Ver participantes</button>
+                    <button id="add-participant">Añadir participante</button>
+                    <button id="export-participants">Exportar lista</button>
+                </div> -->
+
+                <!-- 4. Estadísticas y reportes
+                Proporciona un apartado para visualizar estadísticas de los torneos, como:
+
+                Número total de torneos creados.
+                Cantidad de participantes por torneo.
+                Torneos más populares o con más inscripciones.
+                5. Configuración avanzada
+                Agrega configuraciones opcionales al crear o gestionar torneos, como:
+
+                Capacidad máxima de participantes: Un límite que el sistema debe respetar.
+                Tipos de torneos: Individual, equipos, eliminación directa, etc.
+                Rondas: Define cuántas rondas habrá y los criterios de clasificación. -->
+
+
             </div>
             <div id="users" class="menu__section menu__section--hidden">Contenido de Usuarios</div>
             <div id="events" class="menu__section menu__section--hidden">Contenido de Eventos</div>

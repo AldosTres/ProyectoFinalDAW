@@ -14,7 +14,7 @@ class DataBaseHandler extends Model
      */
     function jls_check_user($user, $password)
     {
-        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = ? AND contraseña = ?", [$user, $password]);
+        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario = ? AND contraseña = ?", [$user, $password]);
         $user = $result->getRow();
         return isset($user) ? $user->id : 0;
     }
@@ -27,9 +27,11 @@ class DataBaseHandler extends Model
      */
     function jls_check_user_name_exists($user)
     {
-        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario_inicio = ?", [$user]);
+        $result = $this->db->query("SELECT * FROM usuarios WHERE nombre_usuario = ?", [$user]);
         $user = $result->getRow();
-        if (isset($user)) {
+
+        // Verifica explícitamente si se encontró un usuario
+        if ($user !== null) {
             return $user->id;
         } else {
             return 0;
@@ -37,33 +39,61 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * Pre:
-     * Post:
+       Función para registrar usuarios nuevos
+     * @param mixed $name
+     * @param mixed $user
+     * @param mixed $password
+     * @return bool
      */
     function jls_register_user($name, $user, $password)
     {
-        $exis = $this->jls_check_user_name_exists($user);
-        if ($exis == 0) {
-            $this->db->query("INSERT INTO usuarios(`nombre_usuario`, `nombre_usuario_inicio`, `contraseña`) VALUES ('{$name}', '{$user}' , '{$password}')");
+        //Datos correspondientes al torneo
+        try {
+            $exis = $this->jls_check_user_name_exists($user);
+            $data = [
+                'nombre_usuario' => $user,
+                'alias_usuario' => $name,
+                'contraseña' => $password,
+            ];
+            if ($exis == 0) {
+                //Inserto la linea
+                $this->db->table('usuarios')->insert($data);
+                /**
+                 * affectedRows() nos indicará si después de la inserción, se modificó algo en la tabla
+                 * > 0, nos indicará que si hubo cambios, = 0 será que no hubo cambio y por ende, no se
+                 * insertó
+                 */
+                return $this->db->affectedRows() > 0; //Retorna true o false
+            } else {
+                return false;
+            }
+        } catch (\Throwable $th) {
+            //Registrando el error cuando no se puede crear el torneo
+            log_message('error', 'No se ha podido registrar al usuario: ' . $th->getMessage());
+            return false;
         }
     }
 
     /**
-     * 
+       Función que devuelve la información sobre un usuario
+     * @param mixed $user_id
+     * @return array|T|\stdClass|null
      */
     function jls_get_user_data($user_id)
     {
-        $result = $this->db->query("SELECT * FROM usuarios WHERE id = {$user_id}");
+        $result = $this->db->query("SELECT * FROM usuarios WHERE id = ?", [$user_id]);
         $row = $result->getRow();
         return $row;
     }
 
     /**
-     * 
+       Función que devuelve toda la información de un torneo específico
+     * @param string $tournament_id
+     * @return array
      */
     public function jls_get_tournament_info($tournament_id)
     {
-        $result = $this->db->query("SELECT * FROM torneos WHERE id = {$tournament_id}");
+        $result = $this->db->query("SELECT * FROM torneos WHERE id = ?", [$tournament_id]);
         $row = $result->getRow();
         return $row;
     }
@@ -99,7 +129,7 @@ class DataBaseHandler extends Model
              * > 0, nos indicará que si hubo cambios, = 0 será que no hubo cambio y por ende, no se
              * insertó
              */
-            return $this->db->affectedRows() > 0;
+            return $this->db->affectedRows() > 0; //Retorn true o false
         } catch (\Throwable $th) {
             //Registrando el error cuando no se puede crear el torneo
             log_message('error', 'No se ha podido crear el torneo: ' . $th->getMessage());
@@ -143,7 +173,12 @@ class DataBaseHandler extends Model
         }
     }
 
-    // Función para verificar si el usuario ya está inscrito en el torneo
+    /**
+       Función que verifica si un usuario ya se encuentra registrado en un torneo
+     * @param string $tournament_id
+     * @param string $user_id
+     * @return bool
+     */
     private function jls_check_participant_exists($tournament_id, $user_id)
     {
         $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND id_usuario = ?", [$tournament_id, $user_id]);
@@ -152,14 +187,13 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * Pre: se conocoe el parámetro $tournament_id como el id de un torneo en específico
-     * Post: devuelve los participantes correspondientes a torneo específico
+       Devuelve a todos los participantes de un torneo específico
      * 
      * @param int $tournament_id
      */
     public function jls_get_tournament_participants($tournament_id)
     {
-        $query = $this->db->query("SELECT * FROM inscripciones WHERE id = {$tournament_id} AND activo = 1");
+        $query = $this->db->query("SELECT * FROM inscripciones WHERE id = ? AND activo = ?", [$tournament_id, 1]);
         $row = $query->getResultArray();
         return $row;
     }

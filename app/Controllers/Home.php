@@ -30,14 +30,25 @@ class Home extends BaseController
         return view('layouts/registry');
     }
 
-    public function register_user(): string
+    public function register_user()
     {
         $jls_database = new DataBaseHandler();
         $name = $this->request->getPost('jls_username');
         $user = $this->request->getPost('jls_username_init');
         $password = $this->request->getPost('jls_user_password');
+
+        if (empty($name) || empty($user) || empty($password)) {
+            return redirect()->to('register')->with('error', 'Todos los campos son obligatorios.');
+        }
+
         $resultado = $jls_database->jls_register_user($name, $user, $password);
-        return view('layouts/login');
+
+        if ($resultado) {
+            return redirect()->to('login')->with('success', 'Usuario registrado correctamente, inicia sesión para continuar.');
+        } else {
+            return redirect()->to('register')->with('error', 'El nombre de usuario o alias ya se encuentra en uso.');
+        }
+        // return view('layouts/login');
     }
     public function logout(): string
     {
@@ -71,10 +82,6 @@ class Home extends BaseController
         }
     }
 
-    public function get_upload_tournament_page(): string
-    {
-        return view('layouts/upload_tournament');
-    }
 
     public function upload_tournament()
     {
@@ -86,13 +93,13 @@ class Home extends BaseController
         //Identificador unico para el logotipo del torneo
         $unique_id = uniqid("torneo_", true);
 
-        //Obtengo la extension de la imagen para permitir que se suba imágenes con diferentes extensiones
+        //Obtengo la extension de la imagen para permitir que se suba imágenes con diferentes extensiones convirtiéndolo a minúsculas
         $file_extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
 
         //Creo la ruta que se almacenará en BBDD y en la carpeta de imágenes
         $logo_path = LOGO_TOURNAMENTS_PATH . $unique_id . '.' . $file_extension;
 
-        // Guarda la foto en el servidor
+        // Guarda la foto en la carpeta de imágenes
         move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
 
         $result = $jls_database->jls_upload_new_tournament($tournament_name, $tournament_init_date, $tournament_end_date, $unique_id);
@@ -103,10 +110,6 @@ class Home extends BaseController
         }
     }
 
-    public function get_add_participant_page(): string
-    {
-        return view('layouts/registry_participants');
-    }
 
     public function add_new_participant()
     {

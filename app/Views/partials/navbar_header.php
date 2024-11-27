@@ -13,7 +13,7 @@
                 <?php
                 } else {
                 ?>
-                    <a href="get_login_page">INICIA SESION</a>
+                    <a href="login">INICIA SESION</a>
                 <?php
                 } ?>
             </li>

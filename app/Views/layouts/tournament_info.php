@@ -16,7 +16,7 @@
                 <div class="form-registry-participant__item1">
                     <h2 class="form-registry-participant__title">Inscribir Participante</h2>
                     <br>
-                    <form action="add_new_participant" method="POST">
+                    <form action="tournament/add-participant" method="POST">
                         <label for="nombre">Nombre de Jumper:</label>
                         <input type="text" id="jls-jumper-name" name="jls-jumper-name" class="form-registry-participant__jumper-name" required>
                         <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["jls-tournament-id"])) {
