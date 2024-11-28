@@ -15,6 +15,7 @@ $routes->post('tournament', 'Home::get_tournamente_info_page');
 $routes->post('tournament/add-participant', 'Home::add_new_participant');
 $routes->get('admin', 'Home::admin');
 $routes->post('admin/tournament/upload', 'Home::upload_tournament');
+$routes->get('admin/tournament/list', 'Home::get_all_tournaments');
 
 
 /**

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url() ?>css/admin.css">
     <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
 
     <title>Administracion | JLS</title>
@@ -19,23 +20,23 @@
             </div>
             <div class="sidebar__content">
                 <ul class="sidebar__list">
-                    <li data-section="tournaments" class="sidebar__item">
+                    <li data-section="tournaments" class="sidebar__item" id="tournaments">
                         <i class="fa-solid fa-trophy"></i>
                         <a class="sidebar__link" href="">Torneos</a>
                     </li>
-                    <li data-section="users" class="sidebar__item">
+                    <li data-section="users" class="sidebar__item" id="users">
                         <i class="fa-solid fa-users"></i>
                         <a class="sidebar__link" href="">Usuarios</a>
                     </li>
-                    <li data-section="events" class="sidebar__item">
+                    <li data-section="events" class="sidebar__item" id="events">
                         <i class="fa-solid fa-calendar-days"></i>
                         <a class="sidebar__link" href="">Eventos</a>
                     </li>
-                    <li data-section="judges" class="sidebar__item">
+                    <li data-section="judges" class="sidebar__item" id="judges">
                         <i class="fa-solid fa-gavel"></i>
                         <a class="sidebar__link" href="">Jueces</a>
                     </li>
-                    <li data-section="settings" class="sidebar__item">
+                    <li data-section="settings" class="sidebar__item" id="settings">
                         <i class="fa-solid fa-gear"></i>
                         <a class="sidebar__link" href="">Configuración</a>
                     </li>
@@ -122,19 +123,8 @@
                                 <th class="tournaments__list-table-header-item">Opciones</th>
                             </tr>
                         </thead>
-                        <tbody class="tournaments__list-table-body">
-                            <tr class="tournaments-list-table-row">
-                                <td class="tournaments__list-table-item">Torneo 1</td>
-                                <td class="tournaments__list-table-item">2024-11-25</td>
-                                <td class="tournaments__list-table-item">2024-12-01</td>
-                                <td class="tournaments__list-table-item">
-                                    <span class="tournaments__list-status tournaments__list-status--active">Activo</span>
-                                </td>
-                                <td class="tournaments__list-table-item tournaments__list-table-item--actions">
-                                    <button class="tournaments__list-table-button tournaments_list-table-button--edit">Editar</button>
-                                    <button class="tournaments__list-table-button tournaments_list-table-button--delete">Eliminar</button>
-                                </td>
-                            </tr>
+                        <tbody class="tournaments__list-table-body" id="tournament-list">
+
                         </tbody>
                     </table>
                 </div>
@@ -190,6 +180,7 @@
     </div>
     <script src="<?= base_url() ?>js/admin_page_controller.js"></script>
     <script src="<?= base_url() ?>js/modal_tournament.js"></script>
+    <script src="<?= base_url() ?>js/list_all_tournaments.js"></script>
 </body>
 
 </html>

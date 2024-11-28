@@ -138,14 +138,28 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * 
+       Función que devuelve todos los torneos activos
+     * @return array
      */
     public function jls_get_all_active_tournaments()
     {
-        $result = $this->db->query("SELECT * FROM torneos WHERE activo = 1");
+        $result = $this->db->query("SELECT * FROM torneos WHERE activo = ?", [1]);
         $row = $result->getResultArray();
         return $row;
     }
+
+    /**
+       Función que devuelve todos los torneos
+     * @return array
+     */
+    public function jls_get_all_tournaments()
+    {
+        $result = $this->db->query("SELECT * FROM torneos");
+        $row = $result->getResultArray();
+        return $row;
+    }
+
+
 
     /**
      * 

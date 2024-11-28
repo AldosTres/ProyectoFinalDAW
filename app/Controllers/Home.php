@@ -145,4 +145,17 @@ class Home extends BaseController
     {
         return view('layouts/admin');
     }
+
+    public function get_all_tournaments()
+    {
+        $jls_database = new DataBaseHandler();
+        $tournaments = $jls_database->jls_get_all_tournaments();
+
+        $response = [
+            'status' => 'success',
+            'tournaments' => $tournaments
+        ];
+
+        return json_encode($response);
+    }
 }
