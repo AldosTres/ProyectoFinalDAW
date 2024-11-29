@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index(): string
     {
         $jls_database = new DatabaseHandler();
-        $tournaments = $jls_database->jls_get_all_active_tournaments();
+        $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
         $data['tournaments'] = $tournaments;
         $data['title'] = 'Jumpstyle League Series';
         if (session()->get('user_id')) {
@@ -72,7 +72,7 @@ class Home extends BaseController
         } else {
             //Devolviendo los datos correspondientes al user
             $user_data = $jls_database->jls_get_user_data($result);
-            $tournaments = $jls_database->jls_get_all_active_tournaments();
+            $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
             $data['tournaments'] = $tournaments;
             $data['title'] = 'Jumpstyle League Series';
             session()->set('jumper_user_name', $user_data->nombre_usuario);
@@ -146,10 +146,11 @@ class Home extends BaseController
         return view('layouts/admin');
     }
 
-    public function get_all_tournaments()
+    public function get_tournaments()
     {
         $jls_database = new DataBaseHandler();
-        $tournaments = $jls_database->jls_get_all_tournaments();
+        $status = isset($_GET['status']) ? $_GET['status'] : 'all'; //Cuando no está seteado, por defecto es todos. Recibo del js.
+        $tournaments = $jls_database->jls_get_tournaments_by_filter($status);
 
         $response = [
             'status' => 'success',

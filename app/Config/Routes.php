@@ -15,15 +15,6 @@ $routes->post('tournament', 'Home::get_tournamente_info_page');
 $routes->post('tournament/add-participant', 'Home::add_new_participant');
 $routes->get('admin', 'Home::admin');
 $routes->post('admin/tournament/upload', 'Home::upload_tournament');
-$routes->get('admin/tournament/list', 'Home::get_all_tournaments');
+$routes->get('admin/tournament/list', 'Home::get_tournaments');
 
-
-/**
- CAMBIAR CUANDO SE PUEDA
- */
-
-// $routes->post('participant/add', 'Home::get_add_participant_page');
-// $routes->post('tournament/info', 'Home::get_tournamente_info_page');
-// $routes->post('participant/add/submit', 'Home::add_new_participant');
-// $routes->get('quick_view', 'Home::get_vista_rapida');
 // $routes->get('admin/dashboard', 'Home::admin');

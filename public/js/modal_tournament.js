@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showModal(type, message) {
         let modal = document.getElementById('modal')
-        let modalMessage = document.getElementById('modal-message')
+        let modalMessage = document.getElementById('modal-content')
         modal.style.display = 'flex'
         modal.style.alignItems = 'center'
         modal.style.justifyContent = 'center'

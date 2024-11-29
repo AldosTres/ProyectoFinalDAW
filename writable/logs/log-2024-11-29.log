@@ -1,0 +1,230 @@
+INFO - 2024-11-29 08:31:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-29 08:41:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-29 08:41:48 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...', Array)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-29 08:41:48 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 2 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 3 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 4 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 5 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 6 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:48 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM torneosWHERE activo = 0', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 4 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 5 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-11-29 08:41:50 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...', Array)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-29 08:41:50 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 2 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 3 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 4 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 5 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 6 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM torneosWHERE activo = 0', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 4 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 5 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-11-29 08:41:50 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...', Array)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-29 08:41:50 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 2 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 3 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 4 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 5 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 6 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM torneosWHERE activo = 0', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 4 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 5 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-11-29 08:41:50 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...', Array)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-29 08:41:50 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 2 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 3 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 4 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 5 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 6 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:41:50 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM torneosWHERE activo = 0', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE activo = 0')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE activo = 0')
+ 4 APPPATH\Models\DataBaseHandler.php(224): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE activo = ?', [...])
+ 5 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('inactive')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-11-29 08:44:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-29 08:45:35 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(231): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...', Array)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('ongoing')
+#5 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-29 08:45:35 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\DataBaseHandler.php(231): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin', [])
+ 2 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('ongoing')
+ 3 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 4 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:45:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin')
+ 3 APPPATH\Models\DataBaseHandler.php(231): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin', [])
+ 4 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('ongoing')
+ 5 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 6 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-11-29 08:45:35 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin')
+ 4 APPPATH\Models\DataBaseHandler.php(231): CodeIgniter\Database\BaseConnection->query('SELECT * FROM torneosWHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin', [])
+ 5 APPPATH\Controllers\Home.php(154): App\models\DataBaseHandler->jls_get_tournaments_by_filter('ongoing')
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournaments()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-11-29 08:46:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-29 08:53:56 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 884.
+ 1 SYSTEMPATH\Model.php(663): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(869): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\Home.php(12): CodeIgniter\Model->__call('jls_get_all_active_tournaments', [])
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-11-29 08:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-29 08:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-29 08:56:37 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 884.
+ 1 SYSTEMPATH\Model.php(663): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(869): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\Home.php(75): CodeIgniter\Model->__call('jls_get_all_active_tournaments', [])
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->check_login()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-11-29 08:57:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

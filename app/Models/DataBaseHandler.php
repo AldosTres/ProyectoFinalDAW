@@ -137,16 +137,6 @@ class DataBaseHandler extends Model
         }
     }
 
-    /**
-       Función que devuelve todos los torneos activos
-     * @return array
-     */
-    public function jls_get_all_active_tournaments()
-    {
-        $result = $this->db->query("SELECT * FROM torneos WHERE activo = ?", [1]);
-        $row = $result->getResultArray();
-        return $row;
-    }
 
     /**
        Función que devuelve todos los torneos
@@ -159,6 +149,43 @@ class DataBaseHandler extends Model
         return $row;
     }
 
+
+    /**
+       Función que obtiene los torneos dependiendo de un estado que se pasa por parámetro
+       Por defecto obtiene todos los torneos
+     * @param mixed $status
+     * @return array
+     */
+    public function jls_get_tournaments_by_filter($status = null)
+    {
+        $query = 'SELECT * FROM torneos';
+        $params = [];
+        switch ($status) {
+            case 'ongoing':
+                //Un torneo puede estar en curso activo o inactivo.
+                $query .= ' WHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin';
+                break;
+            case 'active':
+                $query .= ' WHERE activo = ?';
+                $params[] = 1;
+                break;
+            case 'inactive':
+                $query .= ' WHERE activo = ?';
+                $params[] = 0;
+                break;
+            case 'finished':
+                //Si el torneo finaliza, se entiende que queda desactivado
+                $query .= ' WHERE activo = ? AND fecha_fin < CURRENT_TIME';
+                $params[] = 0;
+                break;
+            default:
+                //En caso contrario a todos estos, mostrará todos los torneos
+                break;
+        }
+        $result = $this->db->query($query, $params);
+        $row = $result->getResultArray();
+        return $row;
+    }
 
 
     /**

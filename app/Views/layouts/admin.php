@@ -59,14 +59,17 @@
             <div class="modal" id="modal">
                 <!-- /* From Uiverse.io by vinodjangid07 */ -->
                 <div class="modal__container">
+                    <!-- Contenido del modal -->
                     <div class="modal__content">
-                        <p class="modal__title">Creación del torneo</p>
-                        <p class="modal__description" id="modal-message"></p>
+                        <p class="modal__title" id="modal-title">Creación del torneo</p>
+                        <p class="modal__content" id="modal-content"></p>
                     </div>
+                    <!-- Botones de acción -->
                     <div class="modal__buttons">
-                        <button class="modal__button modal__button--cancel">Cancel</button>
-                        <button class="modal__button modal__button--confirm">Confirmar</button>
+                        <button class="modal__button modal__button--cancel" id="cancel-button">Cancel</button>
+                        <button class="modal__button modal__button--confirm" id="confirm-button">Confirmar</button>
                     </div>
+                    <!-- Botón para cerrar el modal -->
                     <button class="modal__close-button" id="close-button">
                         <i class="fa-solid fa-xmark"></i>
                         <!-- link: https://fontawesome.com/v6/icons/xmark?f=classic&s=solid -->
@@ -87,20 +90,20 @@
                 <form action="tournament/upload" method="post" class="tournaments__form" enctype="multipart/form-data">
                     <div class="tournaments__field">
                         <label for="tournament-name" class="tournaments__field-label">Nombre del torneo:</label>
-                        <input type="text" name="name" id="tournament-name" class="form-tournament__field-input">
+                        <input type="text" name="name" id="tournament-name" class="tournaments__field-input">
                     </div>
                     <div class="tournaments__field">
                         <label for="tournament-start-date" class="tournaments__field-label">Fecha de inicio:</label>
-                        <input type="date" name="start-date" id="tournament-start-date" class="form-tournament__field-input">
+                        <input type="date" name="start-date" id="tournament-start-date" class="tournaments__field-input">
                     </div>
                     <div class="tournaments__field">
                         <label for="tournament-end-date" class="tournaments__field-label">Fecha de finalización:</label>
-                        <input type="date" name="end-date" id="tournament-end-date" class="form-tournament__field-input">
+                        <input type="date" name="end-date" id="tournament-end-date" class="tournaments__field-input">
                     </div>
                     <div class="tournaments__field">
                         <label for="tournament-logo" class="tournaments__field-label">Logotipo del torneo:</label>
                         <!-- <input type="text" name="logo" id="tournament-logo" class="form-tournament__input "> -->
-                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournament__field-input--file" accept="image/*" required>
+                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file" accept="image/*" required>
                     </div>
                     <div class="tournaments__buttons">
                         <button type="submit" class="tournaments__button form-tournament__button--submit">Crear</button>
@@ -129,18 +132,22 @@
                     </table>
                 </div>
 
-
                 <!-- Filtrado y búsqueda de torneos -->
-                <!-- <div class="tournaments-filter">
-                    <input type="text" id="tournament-search" placeholder="Buscar torneo por nombre...">
-                    <select id="tournament-status">
-                        <option value="">Todos los estados</option>
-                        <option value="active">Activo</option>
-                        <option value="inactive">Inactivo</option>
-                        <option value="finished">Finalizado</option>
+                <div class="tournaments__filter">
+                    <div class="tournaments__field">
+                        <label class="tournaments__field-label" for="tournament-search">Nombre: </label>
+                        <input type="text" class="tournaments__field-input" id="tournament-search" placeholder="Buscar torneo por nombre...">
+                    </div>
+                    <select class="tournaments__select" id="filter-status" name="filter-status">
+                        <option class="tournaments__select-option tournaments__select-option--hidden" value="" hidden>Filtrar por estado</option>
+                        <option class="tournaments__select-option" value="all">Mostrar todos</option>
+                        <option class="tournaments__select-option" value="ongoing">En curso</option>
+                        <option class="tournaments__select-option" value="active">Activos</option>
+                        <option class="tournaments__select-option" value="inactive">Inactivos</option>
+                        <option class="tournaments__select-option" value="finished">Finalizados</option>
                     </select>
-                    <button id="filter-tournaments">Filtrar</button>
-                </div> -->
+                    <button class="tournaments_button tournaments_button--filter" id="filter-button">Filtrar</button>
+                </div>
 
 
                 <!-- 3. Gestión de participantes

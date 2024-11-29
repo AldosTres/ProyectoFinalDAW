@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // let tournamentsButton = document.getElementById('tournaments')
-
-    function addtournamentToTable (tournaments) {
-        // let tournamentList = document.getElementById('tournament-list')
+    function addtournamentsToTable (tournaments) {
         let rows = ``
         for (const tournament of tournaments) {
             rows += `<tr class="tournaments-list-table-row">
@@ -20,24 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Evita duplicación de datos al añadir de nuevo contenido
         $('#tournament-list').empty().append(rows)
-        // $('#tournament-list').empty().text('sjdhfkjsdfh')
     }
 
-    function chargeOnAllTournaments() {
-        console.log('funciona')
+    function loadAllTournaments() {
         $.ajax({
             type: 'GET',
             url: 'admin/tournament/list',
             success: function(response) {
-                var data = JSON.parse(response);
+                let data = JSON.parse(response);
                 if (data.status === 'success') {
-                    var tournaments = data.tournaments
-                    // var ultimoMensaje = data.ultimoMensaje;
-                    // mensajes.forEach(function(mensaje) {
-                    //     agregarMensaje(mensaje.mensaje, mensaje.emisor);
-                    // });
-                    // agregarUltimoMensaje(ultimoMensaje.mensaje, ultimoMensaje.emisor);
-                    addtournamentToTable(tournaments)
+                    let tournaments = data.tournaments
+                    addtournamentsToTable(tournaments)
                 }
             },
             error: function(xhr, status, error) {
@@ -48,8 +38,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // addtournamentToTable();
     }
 
+    function loadTournamentsByStatus() {
+        console.log('no funciona algo')
+
+        let status = $('#filter-status').val();
+        $.ajax({
+            type: 'GET',
+            url: 'admin/tournament/list',
+            data: {status}, //Envío a la función del Home.php, 
+            success: function (response) {
+                let data = JSON.parse(response);
+                if (data.status === 'success') {
+                    let tournaments = data.tournaments
+                    addtournamentsToTable(tournaments)
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText)
+            }
+        });
+    }
+
     //Método JQuery parecido a AddEventListener, ya que al devolver un objeto JQuery, debo aplicar un método igual
-    $('#tournaments').on('click', chargeOnAllTournaments)
-    
+    $('#tournaments').on('click', loadAllTournaments)
+    $('#filter-button').on('click', loadTournamentsByStatus)
 })
-console.log("Archivo JS externo cargado correctamente");
