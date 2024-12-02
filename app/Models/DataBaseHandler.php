@@ -240,6 +240,13 @@ class DataBaseHandler extends Model
     }
 
 
+    public function jls_get_old_tournament_logo_name($tournament_id)
+    {
+        $query = $this->db->query("SELECT * FROM torneos WHERE id = ?", [$tournament_id]);
+        $row = $query->getRow();
+        return $row->logo_path;
+    }
+
     /**
      * Función que actualiza los datos de un torneo específico
      * @param mixed $id

@@ -89,18 +89,28 @@ class Home extends BaseController
         $tournament_name = $this->request->getPost('name');
         $tournament_init_date = $this->request->getPost('start-date');
         $tournament_end_date = $this->request->getPost('end-date');
+        $tournament_logo = $this->request->getFile('logo');
 
         //Identificador unico para el logotipo del torneo
         $unique_id = uniqid("torneo_", true);
 
+        // Verifico si el archivo es válido
+        if ($tournament_logo->isValid() && !$tournament_logo->hasMoved()) {
+            // Obtengo la extensión del archivo
+            $file_extension = $tournament_logo->getExtension();
+            // Muevo el archivo al destino
+            $tournament_logo->move(LOGO_TOURNAMENTS_PATH, $unique_id . '.' . $file_extension);
+        }
+
+
         //Obtengo la extension de la imagen para permitir que se suba imágenes con diferentes extensiones convirtiéndolo a minúsculas
-        $file_extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+        // $file_extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
 
         //Creo la ruta que se almacenará en BBDD y en la carpeta de imágenes
-        $logo_path = LOGO_TOURNAMENTS_PATH . $unique_id . '.' . $file_extension;
+        // $logo_path = LOGO_TOURNAMENTS_PATH . $unique_id . '.' . $file_extension;
 
         // Guarda la foto en la carpeta de imágenes
-        move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
+        // move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
 
         $result = $jls_database->jls_upload_new_tournament($tournament_name, $tournament_init_date, $tournament_end_date, $unique_id);
         if ($result) {
@@ -160,17 +170,63 @@ class Home extends BaseController
         return json_encode($response);
     }
 
-    public function edit_tournaments()
+    public function get_tournament_for_edit()
     {
         $jls_database = new DataBaseHandler();
-        if (isset($_GET['t'])) {
-            $tournament_id = $_GET['t'];
+        if (isset($_GET['tournamentId'])) {
+            $tournament_id = $_GET['tournamentId'];
         }
         $tournament_info = $jls_database->jls_get_tournament_info($tournament_id);
         $response = [
             'status' => 'success',
             'tournament_info' => $tournament_info,
         ];
+        return json_encode($response);
+    }
+
+    public function edit_tournament()
+    {
+        $jls_database = new DataBaseHandler();
+        $id = $this->request->getPost('tournament-id');
+        $name = $this->request->getPost('edit-name');
+        $start_date = $this->request->getPost('edit-start-date');
+        $end_date = $this->request->getPost('edit-end-date');
+        $logo = $this->request->getFile('edit-logo');
+
+        $old_logo_name = $jls_database->jls_get_old_tournament_logo_name($id);
+        //Identificador unico para el logotipo del torneo
+        $unique_id = uniqid("torneo_", true);
+
+        // Verifico si el archivo es válido
+        if ($logo->isValid() && !$logo->hasMoved()) {
+            // Obtengo la extensión del archivo
+            $file_extension = $logo->getExtension();
+            //Logotipo que tenía antes el torneo
+            $old_logo_path = LOGO_TOURNAMENTS_PATH . $old_logo_name . '.jpg';
+            // Muevo el archivo al destino
+            $logo->move(LOGO_TOURNAMENTS_PATH, $unique_id . '.' . $file_extension);
+
+            // Verifico si el archivo existe y lo elimino
+            if (file_exists($old_logo_path)) {
+                unlink($old_logo_path);  // Elimino el archivo antiguo
+            }
+        }
+
+        $result = $jls_database->jls_update_tournament_data($id, $name, $start_date, $end_date, 1, $unique_id);
+        if ($result) {
+
+            $response = [
+                'status' => 'success',
+                'title' => 'Torneo modificado',
+                'message' => 'El torneo ' . $name . ' se ha modificado correctamente'
+            ];
+        } else {
+            $response = [
+                'status' => 'success',
+                'title' => 'Error de modificación',
+                'message' => 'Ha ocurrido un error al modificar el torneo'
+            ];
+        }
         return json_encode($response);
     }
 }

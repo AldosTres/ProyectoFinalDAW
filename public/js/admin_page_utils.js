@@ -15,6 +15,7 @@ function selectOption(event) {
 
 /**
      * Funcion que retorna las filas de una tabla con su respectivo contenido
+     * *CORREGIR NOMBRE
      * @param {*} data //Torneos, usuarios, jueces, eventos, torneos...
      * @param {*} renderTemplate //El contenido de la tabla, las filas
      * @returns 

@@ -107,12 +107,13 @@
                     <div class="tournaments__field">
                         <label for="tournament-logo" class="tournaments__field-label">Logotipo del torneo:</label>
                         <!-- <input type="text" name="logo" id="tournament-logo" class="form-tournament__input "> -->
-                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file" accept="image/*" required>
+                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file" accept=".jpg" required>
                     </div>
                     <div class="tournaments__buttons">
                         <button type="submit" class="tournaments__button form-tournament__button--submit">Crear</button>
                         <button type="reset" class="tournaments__button form-tournament__button--reset">Borrar datos</button>
                     </div>
+
                 </form>
 
                 <!-- Listado de torneos existentes -->
