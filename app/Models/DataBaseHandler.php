@@ -131,8 +131,6 @@ class DataBaseHandler extends Model
              */
             return $this->db->affectedRows() > 0; //Retorn true o false
         } catch (\Throwable $th) {
-            //Registrando el error cuando no se puede crear el torneo
-            log_message('error', 'No se ha podido crear el torneo: ' . $th->getMessage());
             return false;
         }
     }
@@ -206,11 +204,13 @@ class DataBaseHandler extends Model
                 'id_torneo' => $tournament_id,
                 'id_usuario' => $user_id,
             ];
-
-            // Insertar la inscripción en la base de datos
-            $this->db->table('inscripciones')->insert($data);
-
-            return true;
+            try {
+                // Insertar la inscripción en la base de datos
+                $this->db->table('inscripciones')->insert($data);
+                return $this->db->affectedRows() > 0;
+            } catch (\Throwable $th) {
+                return false;
+            }
         }
     }
 
@@ -237,5 +237,34 @@ class DataBaseHandler extends Model
         $query = $this->db->query("SELECT * FROM inscripciones WHERE id = ? AND activo = ?", [$tournament_id, 1]);
         $row = $query->getResultArray();
         return $row;
+    }
+
+
+    /**
+     * Función que actualiza los datos de un torneo específico
+     * @param mixed $id
+     * @param mixed $nombre
+     * @param mixed $fecha_inicio
+     * @param mixed $fecha_fin
+     * @param mixed $activo
+     * @param mixed $logo_path
+     * @return bool
+     */
+    public function jls_update_tournament_data($id, $nombre, $fecha_inicio, $fecha_fin, $activo, $logo_path)
+    {
+        $data = [
+            'nombre' => $nombre,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_fin' => $fecha_fin,
+            'activo' => $activo,
+            //En caso de que no cambie de foto, no actualizo la ruta
+            'logo_path' => isset($logo_path) && $logo_path !== '' ? $logo_path : null
+        ];
+        try {
+            $this->db->table('torneos')->update($data, ['id' => $id]);
+            return $this->db->affectedRows() > 0; //Retorn true o false
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

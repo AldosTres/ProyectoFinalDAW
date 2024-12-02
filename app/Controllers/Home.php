@@ -159,4 +159,18 @@ class Home extends BaseController
 
         return json_encode($response);
     }
+
+    public function edit_tournaments()
+    {
+        $jls_database = new DataBaseHandler();
+        if (isset($_GET['t'])) {
+            $tournament_id = $_GET['t'];
+        }
+        $tournament_info = $jls_database->jls_get_tournament_info($tournament_id);
+        $response = [
+            'status' => 'success',
+            'tournament_info' => $tournament_info,
+        ];
+        return json_encode($response);
+    }
 }

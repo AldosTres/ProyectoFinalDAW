@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/admin.css">
     <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="<?= base_url() ?>js/modals.js" type="module"></script>
+    <script src="<?= base_url() ?>js/tournaments.js" type="module"></script>
+    <script src="<?= base_url() ?>js/admin_page_utils.js" type="module"></script>
+    <!-- <script src="<?= base_url() ?>js/list_all_tournaments.js" type="module"></script> -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
 
     <title>Administracion | JLS</title>
@@ -20,23 +24,23 @@
             </div>
             <div class="sidebar__content">
                 <ul class="sidebar__list">
-                    <li data-section="tournaments" class="sidebar__item" id="tournaments">
+                    <li data-section="tournaments" class="sidebar__item" id="sidebar-tournaments">
                         <i class="fa-solid fa-trophy"></i>
                         <a class="sidebar__link" href="">Torneos</a>
                     </li>
-                    <li data-section="users" class="sidebar__item" id="users">
+                    <li data-section="users" class="sidebar__item" id="sidebar-users">
                         <i class="fa-solid fa-users"></i>
                         <a class="sidebar__link" href="">Usuarios</a>
                     </li>
-                    <li data-section="events" class="sidebar__item" id="events">
+                    <li data-section="events" class="sidebar__item" id="sidebar-events">
                         <i class="fa-solid fa-calendar-days"></i>
                         <a class="sidebar__link" href="">Eventos</a>
                     </li>
-                    <li data-section="judges" class="sidebar__item" id="judges">
+                    <li data-section="judges" class="sidebar__item" id="sidebar-judges">
                         <i class="fa-solid fa-gavel"></i>
                         <a class="sidebar__link" href="">Jueces</a>
                     </li>
-                    <li data-section="settings" class="sidebar__item" id="settings">
+                    <li data-section="settings" class="sidebar__item" id="sidebar-settings">
                         <i class="fa-solid fa-gear"></i>
                         <a class="sidebar__link" href="">Configuración</a>
                     </li>
@@ -61,8 +65,8 @@
                 <div class="modal__container">
                     <!-- Contenido del modal -->
                     <div class="modal__content">
-                        <p class="modal__title" id="modal-title">Creación del torneo</p>
-                        <p class="modal__content" id="modal-content"></p>
+                        <p class="modal__title" id="modal-title"></p>
+                        <div class="modal__body-content" id="modal-content"></div>
                     </div>
                     <!-- Botones de acción -->
                     <div class="modal__buttons">
@@ -87,7 +91,7 @@
             <div id="tournaments" class="tournaments menu__section menu__section--hidden">
                 <h1 class="tournaments__title">Torneos</h1>
                 <span class="tournament__description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
-                <form action="tournament/upload" method="post" class="tournaments__form" enctype="multipart/form-data">
+                <form action="admin/tournament/upload" method="post" class="tournaments__form" enctype="multipart/form-data">
                     <div class="tournaments__field">
                         <label for="tournament-name" class="tournaments__field-label">Nombre del torneo:</label>
                         <input type="text" name="name" id="tournament-name" class="tournaments__field-input">
@@ -119,7 +123,8 @@
                         <thead class="tournaments__list-table-header">
                             <!-- color: #dd5; -->
                             <tr class="tournaments__list-table-row">
-                                <th class="tournaments__list-table-header-item">Nombre del Torneo</th>
+                                <th class="tournaments__list-table-header-item">Id</th>
+                                <th class="tournaments__list-table-header-item">Nombre</th>
                                 <th class="tournaments__list-table-header-item">Fecha de Inicio</th>
                                 <th class="tournaments__list-table-header-item">Fecha de Finalización</th>
                                 <th class="tournaments__list-table-header-item">Estado</th>
@@ -140,7 +145,7 @@
                     </div>
                     <select class="tournaments__select" id="filter-status" name="filter-status">
                         <option class="tournaments__select-option tournaments__select-option--hidden" value="" hidden>Filtrar por estado</option>
-                        <option class="tournaments__select-option" value="all">Mostrar todos</option>
+                        <option class="tournaments__select-option" value="all" selected>Mostrar todos</option>
                         <option class="tournaments__select-option" value="ongoing">En curso</option>
                         <option class="tournaments__select-option" value="active">Activos</option>
                         <option class="tournaments__select-option" value="inactive">Inactivos</option>
@@ -185,9 +190,6 @@
             <div id="settings" class="menu__section menu__section--hidden">Contenido de Configuración</div>
         </div>
     </div>
-    <script src="<?= base_url() ?>js/admin_page_controller.js"></script>
-    <script src="<?= base_url() ?>js/modal_tournament.js"></script>
-    <script src="<?= base_url() ?>js/list_all_tournaments.js"></script>
 </body>
 
 </html>
