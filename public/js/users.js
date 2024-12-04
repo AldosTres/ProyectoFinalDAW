@@ -14,7 +14,7 @@ $(document).ready(function () {
         return `<tr class="users__list-table-row">
                         <td class="users__list-table-item" id="user-id">${user.id}</td>
                         <td class="users__list-table-item">${user.alias_usuario}</td>
-                        <td class="users__list-table-item">${user.rol}</td>
+                        <td class="users__list-table-item">${user.rol_nombre}</td>
                         <td class="users__list-table-item">
                             <span class="users__list-status users__list-status--${user.activo ? 'active' : 'inactive'}">${user.activo ? 'ACTIVO' : 'INACTIVO'}</span>
                         </td>

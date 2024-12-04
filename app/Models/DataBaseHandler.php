@@ -110,7 +110,7 @@ class DataBaseHandler extends Model
      * @param string $tournament_id
      * @return array
      */
-    public function jls_get_tournament_info($tournament_id)
+    function jls_get_tournament_info($tournament_id)
     {
         $result = $this->db->query("SELECT * FROM torneos WHERE id = ?", [$tournament_id]);
         $row = $result->getRow();
@@ -124,7 +124,7 @@ class DataBaseHandler extends Model
      * @param string $fecha_fin
      * @return bool
      */
-    public function jls_upload_new_tournament($nombre, $fecha_inicio, $fecha_fin, $logo)
+    function jls_upload_new_tournament($nombre, $fecha_inicio, $fecha_fin, $logo)
     {
         //Comprobación inicial, para corroborar que todos los datos han sido rellenado
         if (empty($nombre) || empty($fecha_inicio) || empty($fecha_fin)) {
@@ -161,15 +161,15 @@ class DataBaseHandler extends Model
      * @return array
      */
 
-    public function jls_get_tournaments_by_filter($status = null)
+    function jls_get_tournaments_by_filter($status = null)
     {
         $builder = $this->db->table('torneos');
 
         switch ($status) {
             case 'ongoing':
                 // Un torneo puede estar en curso, activo o inactivo.
-                $builder->where('fecha_inicio <=', date('Y-m-d H:i:s'))
-                    ->where('fecha_fin >=', date('Y-m-d H:i:s'));
+                $builder->where('fecha_inicio <=', 'CURRENT_TIME', false)
+                    ->where('fecha_fin >=', 'CURRENT_TIME', false);
                 break;
             case 'active':
                 $builder->where('activo', 1);
@@ -225,7 +225,7 @@ class DataBaseHandler extends Model
     /**
      * 
      */
-    public function jls_add_new_participant($alias, $tournament_id, $user_id)
+    function jls_add_new_participant($alias, $tournament_id, $user_id)
     {
         // Verificar si el usuario ya está inscrito en el torneo
         $inscrito = $this->jls_check_participant_exists($tournament_id, $user_id);
@@ -267,15 +267,19 @@ class DataBaseHandler extends Model
      * 
      * @param int $tournament_id
      */
-    public function jls_get_tournament_participants($tournament_id)
+    function jls_get_tournament_participants($tournament_id)
     {
         $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND activo = ?", [$tournament_id, 1]);
         $row = $query->getResultArray();
         return $row;
     }
 
-
-    public function jls_get_old_tournament_logo_name($tournament_id)
+    /**
+       Funcion que obtiene el logotipo de un torneo
+     * @param mixed $tournament_id
+     * @return mixed
+     */
+    function jls_get_tournament_logo_name($tournament_id)
     {
         $query = $this->db->query("SELECT * FROM torneos WHERE id = ?", [$tournament_id]);
         $row = $query->getRow();
@@ -292,7 +296,7 @@ class DataBaseHandler extends Model
      * @param mixed $logo_path
      * @return bool
      */
-    public function jls_update_tournament_data($id, $nombre, $fecha_inicio, $fecha_fin, $activo, $logo_path)
+    function jls_update_tournament_data($id, $nombre, $fecha_inicio, $fecha_fin, $activo, $logo_path)
     {
         try {
             $data = [
@@ -364,28 +368,28 @@ class DataBaseHandler extends Model
 
 
 
-    public function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
+    function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
     {
-        $builder = $this->db->table('usuarios');
+        //Utilizo alias como u o r para evitar ambiguedades
+        $builder = $this->db->table('usuarios u');
+        $builder->select('u.id, u.alias_usuario, r.nombre AS rol_nombre, u.activo, u.fecha_registro, u.ultima_conexion'); // AS para evitar ambiguedades también
+        $builder->join('roles r', 'r.id = u.id_rol');
         if ($alias && $alias != 'all') {
             $builder->like('alias_usuario', $alias);
         }
         if ($role && $role != 'all') {
-            $builder->where('rol', $role);
+            $builder->where('', $role);
         }
         if ($status && $status != 'all') {
             $builder->where('activo', $status);
         }
 
         //Filtrado por fecha
-        if ($registration_start && $registration_end) {
-            //Buscando entre dos fechas
-            $builder->where('fecha_registro >=', $registration_start);
-            $builder->where('fecha_registro <=', $registration_end);
-        } else if ($registration_start) {
+        if ($registration_start) {
             //Buscando usuarios registrados el mismo día o después de la fecha elegida
             $builder->where('fecha_registro >=', $registration_start);
-        } else if ($registration_end) {
+        }
+        if ($registration_end) {
             //Buscando usuarios registrados el mismo día o antes de la fecha elegida
             $builder->where('fecha_registro <=', $registration_end);
         }

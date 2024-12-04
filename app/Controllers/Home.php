@@ -197,7 +197,7 @@ class Home extends BaseController
         $end_date = $this->request->getPost('edit-end-date');
         $logo = $this->request->getFile('edit-logo');
 
-        $old_logo_name = $jls_database->jls_get_old_tournament_logo_name($id);
+        $old_logo_name = $jls_database->jls_get_tournament_logo_name($id);
         //Identificador unico para el logotipo del torneo
         $unique_id = uniqid("torneo_", true);
 
@@ -258,7 +258,7 @@ class Home extends BaseController
         $jls_database = new DataBaseHandler();
         $alias = $_GET['alias'] ?? 'all';
         $role = $_GET['role'] ?? 'all';
-        $status = $_GET['role'] ?? 'all';;
+        $status = $_GET['status'] ?? 'all';;
         $registration_start = $this->request->getGet('registrationStart') ?? null;
         $registration_end = $this->request->getGet('registrationEnd') ?? null;
         $users = $jls_database->jls_get_users_by_filter($alias, $role, $status, $registration_start, $registration_end);

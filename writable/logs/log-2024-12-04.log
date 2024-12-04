@@ -271,3 +271,421 @@ WHERE `alias` LIKE :alias: ESCAPE \'!\'', [...], false)
 10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
 INFO - 2024-12-04 17:33:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-12-04 17:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-12-04 22:42:50 --> ParseError: syntax error, unexpected token "if"
+in APPPATH\Models\DataBaseHandler.php on line 371.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(290): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ProyectoDaw\\app\\models\\DataBaseHandler.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(266): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\models\\DataBaseHandler')
+ 3 APPPATH\Controllers\Home.php(11): CodeIgniter\Autoloader\Autoloader->loadClass('App\\models\\DataBaseHandler')
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 22:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:44:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:44:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:46:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:49:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:49:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:49:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:51:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-04 22:51:17 --> mysqli_sql_exception: Unknown column 'roles.nombre' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 22:51:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 22:51:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 22:51:17 --> [Caused by] mysqli_sql_exception: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-12-04 22:51:19 --> mysqli_sql_exception: Unknown column 'roles.nombre' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 22:51:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 22:51:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 22:51:19 --> [Caused by] mysqli_sql_exception: Unknown column 'roles.nombre' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `roles`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(395): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 22:52:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 22:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:00:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-04 23:01:09 --> mysqli_sql_exception: Column 'id' in field list is ambiguous in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `u...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `u...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `u...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `u...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 23:01:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in field list is ambiguous
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:01:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in field list is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:01:09 --> [Caused by] mysqli_sql_exception: Column 'id' in field list is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `usuarios`.`alias_usuario`, `r`.`id`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 23:01:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:01:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:02:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-04 23:02:11 --> mysqli_sql_exception: Unknown column 'r.id_rol' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 23:02:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'r.id_rol' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:02:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'r.id_rol' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:02:11 --> [Caused by] mysqli_sql_exception: Unknown column 'r.id_rol' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id`, `usuarios`.`alias_usuario`, `r`.`id_rol`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios`
+JOIN `roles` `r` ON `usuarios`.`id_rol` = `r`.`id`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 23:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:03:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:05:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:05:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-04 23:05:56 --> mysqli_sql_exception: Unknown column 'usuarios.alias_usuario' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `u`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 23:05:56 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'usuarios.alias_usuario' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:05:56 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'usuarios.alias_usuario' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:05:56 --> [Caused by] mysqli_sql_exception: Unknown column 'usuarios.alias_usuario' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `usuarios`.`alias_usuario`, `r`.`nombre`, `usuarios`.`activo`, `usuarios`.`fecha_registro`, `usuarios`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 23:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-04 23:06:14 --> mysqli_sql_exception: Unknown column 'usuarios.id_rol' in 'on clause' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `u`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', NULL, NULL)
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_users()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2024-12-04 23:06:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'usuarios.id_rol' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 2 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 4 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 5 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:06:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'usuarios.id_rol' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 4 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 7 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-04 23:06:14 --> [Caused by] mysqli_sql_exception: Unknown column 'usuarios.id_rol' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`, `u`.`alias_usuario`, `r`.`nombre`, `u`.`activo`, `u`.`fecha_registro`, `u`.`ultima_conexion`
+FROM `usuarios` `u`
+JOIN `roles` `r` ON `r`.`id` = `usuarios`.`id_rol`', [], false)
+ 5 APPPATH\Models\DataBaseHandler.php(392): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Home.php(264): App\models\DataBaseHandler->jls_get_users_by_filter('', 'all', 'all', null, null)
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_users()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-04 23:06:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:15:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:24:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:26:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:29:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-04 23:31:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

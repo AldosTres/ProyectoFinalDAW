@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     //Método JQuery parecido a AddEventListener, ya que al devolver un objeto JQuery, debo aplicar un método igual
     $('#sidebar-tournaments').on('click', loadTournamentsByStatus)
-    $('#filter-button').on('click', loadTournamentsByStatus)
+    $('#tournaments-filter-button').on('click', loadTournamentsByStatus)
 
 
     /**

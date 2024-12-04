@@ -59,7 +59,7 @@
         }
         ?>
         <a class="form-login__forgot-link form_login__link" href="#">¿Olvidaste la contraseña?</a>
-        <a href="register" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
+        <a href="<?= base_url() ?>register" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
     </form>
 </body>
 
