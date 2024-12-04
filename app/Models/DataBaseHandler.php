@@ -39,6 +39,25 @@ class DataBaseHandler extends Model
     }
 
     /**
+     * Función que me permite actualizar la última conexión de los usuarios del sistema
+     * @param mixed $user_id
+     * @return bool
+     */
+    function jls_update_last_connection($user_id)
+    {
+        try {
+            //De esta manera si me permite introducir correctamente CURRENT_TIME
+            $this->db->table('usuarios')
+                ->set('ultima_conexion', 'CURRENT_TIME', false) // El 'false' evita que se ponga comillas alrededor de la expresión
+                ->where('id', $user_id)
+                ->update();
+            return $this->db->affectedRows() > 0; //Retorn true o false
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    /**
        Función para registrar usuarios nuevos
      * @param mixed $name
      * @param mixed $user
@@ -135,55 +154,72 @@ class DataBaseHandler extends Model
         }
     }
 
-
-    /**
-       Función que devuelve todos los torneos
-     * @return array
-     */
-    public function jls_get_all_tournaments()
-    {
-        $result = $this->db->query("SELECT * FROM torneos");
-        $row = $result->getResultArray();
-        return $row;
-    }
-
-
     /**
        Función que obtiene los torneos dependiendo de un estado que se pasa por parámetro
        Por defecto obtiene todos los torneos
      * @param mixed $status
      * @return array
      */
+
     public function jls_get_tournaments_by_filter($status = null)
     {
-        $query = 'SELECT * FROM torneos';
-        $params = [];
+        $builder = $this->db->table('torneos');
+
         switch ($status) {
             case 'ongoing':
-                //Un torneo puede estar en curso activo o inactivo.
-                $query .= ' WHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin';
+                // Un torneo puede estar en curso, activo o inactivo.
+                $builder->where('fecha_inicio <=', date('Y-m-d H:i:s'))
+                    ->where('fecha_fin >=', date('Y-m-d H:i:s'));
                 break;
             case 'active':
-                $query .= ' WHERE activo = ?';
-                $params[] = 1;
+                $builder->where('activo', 1);
                 break;
             case 'inactive':
-                $query .= ' WHERE activo = ?';
-                $params[] = 0;
+                $builder->where('activo', 0);
                 break;
             case 'finished':
-                //Si el torneo finaliza, se entiende que queda desactivado
-                $query .= ' WHERE activo = ? AND fecha_fin < CURRENT_TIME';
-                $params[] = 0;
+                $builder->where('activo', 0)
+                    ->where('fecha_fin <', date('Y-m-d H:i:s'));
                 break;
             default:
-                //En caso contrario a todos estos, mostrará todos los torneos
+                // Mostrar todos los torneos (no se aplican filtros adicionales).
                 break;
         }
-        $result = $this->db->query($query, $params);
-        $row = $result->getResultArray();
-        return $row;
+
+        $query = $builder->get();
+        return $query->getResultArray();
     }
+
+    // public function jls_get_tournaments_by_filter($status = null)
+    // {
+    //     $query = 'SELECT * FROM torneos';
+    //     $params = [];
+    //     switch ($status) {
+    //         case 'ongoing':
+    //             //Un torneo puede estar en curso activo o inactivo.
+    //             $query .= ' WHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin';
+    //             break;
+    //         case 'active':
+    //             $query .= ' WHERE activo = ?';
+    //             $params[] = 1;
+    //             break;
+    //         case 'inactive':
+    //             $query .= ' WHERE activo = ?';
+    //             $params[] = 0;
+    //             break;
+    //         case 'finished':
+    //             //Si el torneo finaliza, se entiende que queda desactivado
+    //             $query .= ' WHERE activo = ? AND fecha_fin < CURRENT_TIME';
+    //             $params[] = 0;
+    //             break;
+    //         default:
+    //             //En caso contrario a todos estos, mostrará todos los torneos
+    //             break;
+    //     }
+    //     $result = $this->db->query($query, $params);
+    //     $row = $result->getResultArray();
+    //     return $row;
+    // }
 
 
     /**
@@ -193,18 +229,17 @@ class DataBaseHandler extends Model
     {
         // Verificar si el usuario ya está inscrito en el torneo
         $inscrito = $this->jls_check_participant_exists($tournament_id, $user_id);
-
         if ($inscrito) {
             // El usuario ya está inscrito, puedes manejar este caso según tu lógica de aplicación
             return false;
         } else {
             // El usuario no está inscrito, puedes proceder a registrar la inscripción
-            $data = [
-                'alias' => $alias,
-                'id_torneo' => $tournament_id,
-                'id_usuario' => $user_id,
-            ];
             try {
+                $data = [
+                    'alias' => $alias,
+                    'id_torneo' => $tournament_id,
+                    'id_usuario' => $user_id,
+                ];
                 // Insertar la inscripción en la base de datos
                 $this->db->table('inscripciones')->insert($data);
                 return $this->db->affectedRows() > 0;
@@ -224,7 +259,7 @@ class DataBaseHandler extends Model
     {
         $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND id_usuario = ?", [$tournament_id, $user_id]);
 
-        return $query->getResult() ? true : false;
+        return $query->getRow() ? true : false;
     }
 
     /**
@@ -234,7 +269,7 @@ class DataBaseHandler extends Model
      */
     public function jls_get_tournament_participants($tournament_id)
     {
-        $query = $this->db->query("SELECT * FROM inscripciones WHERE id = ? AND activo = ?", [$tournament_id, 1]);
+        $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND activo = ?", [$tournament_id, 1]);
         $row = $query->getResultArray();
         return $row;
     }
@@ -259,19 +294,103 @@ class DataBaseHandler extends Model
      */
     public function jls_update_tournament_data($id, $nombre, $fecha_inicio, $fecha_fin, $activo, $logo_path)
     {
-        $data = [
-            'nombre' => $nombre,
-            'fecha_inicio' => $fecha_inicio,
-            'fecha_fin' => $fecha_fin,
-            'activo' => $activo,
-            //En caso de que no cambie de foto, no actualizo la ruta
-            'logo_path' => isset($logo_path) && $logo_path !== '' ? $logo_path : null
-        ];
         try {
+            $data = [
+                'nombre' => $nombre,
+                'fecha_inicio' => $fecha_inicio,
+                'fecha_fin' => $fecha_fin,
+                'activo' => $activo,
+                //En caso de que no cambie de foto, no actualizo la ruta
+                'logo_path' => isset($logo_path) && $logo_path !== '' ? $logo_path : null
+            ];
             $this->db->table('torneos')->update($data, ['id' => $id]);
             return $this->db->affectedRows() > 0; //Retorn true o false
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    //      1. Listado de usuarios
+    // Datos a mostrar en la tabla:
+    // ID del usuario.
+    // Nombre o alias.
+    // Correo electrónico.
+    // Rol (usuario, juez, administrador, etc.).
+    // Estado (activo/inactivo/desactivado).
+    // Número de torneos inscritos.
+    // Fecha del último inicio de sesión (sí, lo puedes implementar con una columna en la tabla usuarios que se actualice en cada inicio de sesión).
+    // Opciones rápidas:
+    // Botón para editar el usuario (cambiar rol o modificar información relevante).
+    // Botón para desactivar/activar al usuario (baneo temporal o reactivo).
+    // 2. Filtro y búsqueda
+    // Permitir que el administrador busque y filtre usuarios por:
+
+    // Nombre o alias.
+    // Correo electrónico.
+    // Rol.
+    // Estado.
+    // Fecha de registro.
+    // Esto facilita encontrar usuarios específicos rápidamente.
+    // 3. Gestión de roles y estado
+    // Cambiar roles: Una opción clave para designar usuarios como jueces, administradores, etc.
+    // Desactivar usuarios: Lo que mencionas es ideal. En lugar de eliminarlos, se desactivan, dejando la cuenta en un estado de "no usable" pero sin perder el historial.
+    // Nota: Si es necesario, puedes registrar en otra tabla o columna la razón de la desactivación (opcional).
+    // 4. Estadísticas individuales
+    // Además del número de torneos en los que ha participado un usuario, puedes agregar:
+
+    // Inscripciones activas: Si hay torneos en los que está inscrito pero aún no han comenzado.
+    // Participaciones completadas: Cuántos torneos ha completado el usuario.
+    // 5. Último inicio de sesión
+    // Actualizar la fecha en la tabla de usuarios cada vez que el usuario se loguee es una muy buena idea.
+
+    // Implementación sugerida:
+    // Crear una columna ultimo_login en la tabla usuarios.
+    // En el proceso de login, después de validar las credenciales, actualizas esa columna con la fecha y hora actuales (CURRENT_TIMESTAMP).
+    // 6. Crear un nuevo usuario (opcional)
+    // Aunque no es imprescindible, tener una opción para crear usuarios manualmente puede ser útil en ciertos casos, como:
+
+    // Registrar un juez o administrador sin pasar por el registro estándar.
+    // Registrar usuarios masivamente para un evento o torneo grande.
+    // Si decides implementarlo, podrías incluir un formulario básico con:
+
+    // Nombre/alias.
+    // Correo electrónico.
+    // Rol inicial (usuario, juez, etc.).
+    // Estado inicial (activo/inactivo).
+    // 7. Auditoría (opcional pero útil):
+    // Registrar quién realizó cambios importantes como desactivar usuarios o cambiar roles. Esto puede ser útil para rastrear acciones en caso de errores o problemas administrativos.
+
+
+
+
+
+    public function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
+    {
+        $builder = $this->db->table('usuarios');
+        if ($alias && $alias != 'all') {
+            $builder->like('alias_usuario', $alias);
+        }
+        if ($role && $role != 'all') {
+            $builder->where('rol', $role);
+        }
+        if ($status && $status != 'all') {
+            $builder->where('activo', $status);
+        }
+
+        //Filtrado por fecha
+        if ($registration_start && $registration_end) {
+            //Buscando entre dos fechas
+            $builder->where('fecha_registro >=', $registration_start);
+            $builder->where('fecha_registro <=', $registration_end);
+        } else if ($registration_start) {
+            //Buscando usuarios registrados el mismo día o después de la fecha elegida
+            $builder->where('fecha_registro >=', $registration_start);
+        } else if ($registration_end) {
+            //Buscando usuarios registrados el mismo día o antes de la fecha elegida
+            $builder->where('fecha_registro <=', $registration_end);
+        }
+
+        $result = $builder->get();
+        return $result->getResultArray();
     }
 }

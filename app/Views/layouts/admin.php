@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/admin.css">
     <script src="https://kit.fontawesome.com/d10a6cd004.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="<?= base_url() ?>js/admin_page_utils.js" type="module"></script>
     <script src="<?= base_url() ?>js/modals.js" type="module"></script>
     <script src="<?= base_url() ?>js/tournaments.js" type="module"></script>
-    <script src="<?= base_url() ?>js/admin_page_utils.js" type="module"></script>
+    <script src="<?= base_url() ?>js/users.js" type="module"></script>
     <!-- <script src="<?= base_url() ?>js/list_all_tournaments.js" type="module"></script> -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
 
@@ -89,7 +90,7 @@
                 -->
             </div>
             <div id="tournaments" class="tournaments menu__section menu__section--hidden">
-                <h1 class="tournaments__title">Torneos</h1>
+                <h2 class="tournaments__title">Torneos</h2>
                 <span class="tournament__description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
                 <form action="admin/tournament/upload" method="post" class="tournaments__form" enctype="multipart/form-data">
                     <div class="tournaments__field">
@@ -120,7 +121,7 @@
 
                 <div class="tournaments__list">
                     <h3 class="tournaments__list-title">Listado de torneos</h3>
-                    <table class="tournaments__list-table">
+                    <table class="tournaments__list-table table">
                         <thead class="tournaments__list-table-header">
                             <!-- color: #dd5; -->
                             <tr class="tournaments__list-table-row">
@@ -144,7 +145,7 @@
                         <label class="tournaments__field-label" for="tournament-search">Nombre: </label>
                         <input type="text" class="tournaments__field-input" id="tournament-search" placeholder="Buscar torneo por nombre...">
                     </div>
-                    <select class="tournaments__select" id="filter-status" name="filter-status">
+                    <select class="tournaments__select" id="tournament-filter-status" name="filter-status">
                         <option class="tournaments__select-option tournaments__select-option--hidden" value="" hidden>Filtrar por estado</option>
                         <option class="tournaments__select-option" value="all" selected>Mostrar todos</option>
                         <option class="tournaments__select-option" value="ongoing">En curso</option>
@@ -152,7 +153,7 @@
                         <option class="tournaments__select-option" value="inactive">Inactivos</option>
                         <option class="tournaments__select-option" value="finished">Finalizados</option>
                     </select>
-                    <button class="tournaments_button tournaments_button--filter" id="filter-button">Filtrar</button>
+                    <button class="tournaments_button tournaments_button--filter" id="tournaments-filter-button">Filtrar</button>
                 </div>
 
 
@@ -185,7 +186,76 @@
 
 
             </div>
-            <div id="users" class="menu__section menu__section--hidden">Contenido de Usuarios</div>
+            <div id="users" class="users menu__section menu__section--hidden">
+                <h2 class="users__title">Usuarios</h2>
+                <span class="users__description">En este apartado encontrarás todas las operaciones que puedes realizar con los usuarios: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                <h3>Filtrar Usuarios</h3>
+
+                <div class="users__filter">
+                    <!-- Campo de búsqueda por alias -->
+                    <div class="users__field">
+                        <label class="users__field-label" for="user-alias-search">Alias:</label>
+                        <input type="text" class="users__field-input" id="user-alias-search" name="alias" placeholder="Buscar usuario por alias...">
+                    </div>
+
+                    <!-- Selección por rol -->
+                    <div class="users__field">
+                        <label class="users__field-label" for="filter-role">Rol:</label>
+                        <select class="users__select" id="user-filter-role" name="role">
+                            <option class="users__select-option users__select-option--hidden" value="" hidden>Filtrar por rol</option>
+                            <option class="users__select-option" value="all" selected>Mostrar todos</option>
+                            <option class="users__select-option" value="admin">Administrador</option>
+                            <option class="users__select-option" value="judge">Juez</option>
+                            <option class="users__select-option" value="participant">Participante</option>
+                        </select>
+                    </div>
+
+                    <!-- Selección por estado -->
+                    <div class="users__field">
+                        <label class="users__field-label" for="user-filter-status">Estado:</label>
+                        <select class="users__select" id="filter-status" name="status">
+                            <option class="users__select-option users__select-option--hidden" value="" hidden>Filtrar por estado</option>
+                            <option class="users__select-option" value="all" selected>Mostrar todos</option>
+                            <option class="users__select-option" value="active">Activo</option>
+                            <option class="users__select-option" value="inactive">Inactivo</option>
+                        </select>
+                    </div>
+
+                    <!-- Fechas de registro -->
+                    <div class="users__field">
+                        <label class="users__field-label" for="registration-start">Registro desde:</label>
+                        <input type="date" class="users__field-input" id="user-registration-start" name="registration_start">
+                    </div>
+                    <div class="users__field">
+                        <label class="users__field-label" for="registration-end">Registro hasta:</label>
+                        <input type="date" class="users__field-input" id="user-registration-end" name="registration_end">
+                    </div>
+
+                    <!-- Botón de filtrado -->
+                    <button class="users_button users_button--filter" id="user-filter-button" type="submit">Filtrar</button>
+                </div>
+
+
+                <div class="users__list">
+                    <h3 class="users__list-title">Listado de usuarios</h3>
+                    <table class="users__list-table table">
+                        <thead class="users__list-table-header">
+                            <tr class="users__list-table-row">
+                                <th class="users__list-table-header-item">Id</th>
+                                <th class="users__list-table-header-item">Alias</th>
+                                <th class="users__list-table-header-item">Rol</th>
+                                <th class="users__list-table-header-item">Estado</th>
+                                <th class="users__list-table-header-item">Fecha de Registro</th>
+                                <th class="users__list-table-header-item">Última Conexión</th>
+                                <th class="users__list-table-header-item">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="users__list-table-body" id="user-list">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div id="events" class="menu__section menu__section--hidden">Contenido de Eventos</div>
             <div id="judges" class="menu__section menu__section--hidden">Contenido de Jueces</div>
             <div id="settings" class="menu__section menu__section--hidden">Contenido de Configuración</div>

@@ -19,16 +19,16 @@
                     <form action="tournament/add-participant" method="POST">
                         <label for="nombre">Nombre de Jumper:</label>
                         <input type="text" id="jls-jumper-name" name="jls-jumper-name" class="form-registry-participant__jumper-name" required>
-                        <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["jls-tournament-id"])) {
-                                                                                    echo $_POST["jls-tournament-id"];
+                        <input type="hidden" name="jls-tournament-id" value="<?php if (isset($_POST["tournament_id"])) {
+                                                                                    echo $_POST["tournament_id"];
                                                                                 } ?>">
                 </div>
                 <div class="form-registry-participant__item2">
                     <input type="submit" value="Inscribir" class="form-registry-participant__submit-button">
                     <?php
-                    if (isset($_SESSION['user_not_found_error'])) {
+                    if (session()->get('user_not_found_error')) {
                     ?>
-                        <p><?= $_SESSION['user_not_found_error'] ?></p>
+                        <p><?= session()->get('user_not_found_error') ?></p>
                     <?php
                     }
                     ?>

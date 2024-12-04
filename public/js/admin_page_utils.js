@@ -38,7 +38,7 @@ export function renderTableRows (data, renderTemplate) {
  */
 export function loadRenderedData(url, params = {}, succesFunction) {
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: url,
         data: params,
         success: function (response) {

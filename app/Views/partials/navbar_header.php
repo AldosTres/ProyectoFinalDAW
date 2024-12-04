@@ -1,6 +1,6 @@
 <div class="nav-header">
     <div class="nav-brand">
-        <img src="<?php base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="xd">
+        <img src="<?= base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="index-logo">
     </div>
     <i class="fa fa-bars fa-3x"></i>
     <div class="header-links">
@@ -13,7 +13,7 @@
                 <?php
                 } else {
                 ?>
-                    <a href="login">INICIA SESION</a>
+                    <a href="<?= base_url() ?>login">INICIA SESION</a>
                 <?php
                 } ?>
             </li>

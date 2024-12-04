@@ -14,7 +14,7 @@ $(document).ready(function () {
      * @returns 
      */
     function generateTournamentRowTemplate (tournament) {
-            return `<tr class="tournaments-list-table-row">
+            return `<tr class="tournaments__list-table-row">
                         <td class="tournaments__list-table-item" id="tournament-id">${tournament.id}</td>
                         <td class="tournaments__list-table-item">${tournament.nombre}</td>
                         <td class="tournaments__list-table-item">${tournament.fecha_inicio}</td>
@@ -25,16 +25,17 @@ $(document).ready(function () {
                         <td class="tournaments__list-table-item tournaments__list-table-item--actions">
                             <button class="tournaments__list-table-button tournaments_list-table-button--edit" data-id="${tournament.id}">Editar</button>
                             <button class="tournaments__list-table-button tournaments_list-table-button--delete">Eliminar</button>
+                            <button class="tournaments__list-table-button tournaments_list-table-button--show-participants" data-id="${tournament.id}">Ver participantes</button>
                         </td>
-                    </tr>`;
+                    </tr>`
     }
 
     /**
      * Funcion que obtiene el valor del estado del filtro, y dependiendo del filtro obtiene unos torneos u otros,
-     * seguidamente muestra estos torneos en #tournament-list
+     * En caso de que no exista filtro, muestra todos seguidamente muestra estos torneos en #tournament-list
      */
     function loadTournamentsByStatus() {
-        let status = $('#filter-status').val()
+        let status = $('#tournament-filter-status').val()
         loadRenderedData('admin/tournament/list', {status}, (data) => {
             let tournaments = data.tournaments
             let rows = renderTableRows(tournaments, generateTournamentRowTemplate)
@@ -116,4 +117,41 @@ $(document).ready(function () {
             }
         });
     }
+
+    function generateParticipantRowTemplate(participant) {
+        return `<tr class="participants__list-table-row">
+                    <td class="participants__list-table-item">${participant.id}</td>
+                    <td class="participants__list-table-item">${participant.alias}</td>
+                    <td class="participants__list-table-item participants__list-table-item--actions">
+                        <button class="participants__list-table-button participants__list-table-button--ban" data-id="1">Banear usuario</button>
+                        <button class="participants__list-table-button participants__list-table-button--delete" data-id="1">Eliminar</button>
+                    </td>
+                </tr>`
+    }
+
+    function handleTournamentParticipants() {
+        let tournamentId = $(this).attr('data-id');
+        let participantsTable = `<table class="participants__list-table">
+                                    <thead class="participants__list-table-header">
+                                        <tr class="participants__list-table-row">
+                                            <th class="participants__list-table-header-item">Id Inscripción</th>
+                                            <th class="participants__list-table-header-item">Alias</th>
+                                            <th class="participants__list-table-header-item">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="participants__list-table-body" id="participants-list">`
+
+        
+        loadRenderedData('admin/tournament/participants',{tournamentId}, (data) => {
+            let participants = data.participants
+            let rows = renderTableRows(participants, generateParticipantRowTemplate)
+            participantsTable += rows
+            participantsTable += `      </tbody>
+                                </table>`
+            showModal('Participantes', participantsTable);
+        })                       
+    }
+
+    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--show-participants', handleTournamentParticipants)
+
 });

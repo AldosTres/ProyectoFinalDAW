@@ -75,6 +75,7 @@ class Home extends BaseController
             $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
             $data['tournaments'] = $tournaments;
             $data['title'] = 'Jumpstyle League Series';
+            $jls_database->jls_update_last_connection($result);
             session()->set('jumper_user_name', $user_data->nombre_usuario);
             session()->set('user_id', $result);
 
@@ -123,22 +124,25 @@ class Home extends BaseController
 
     public function add_new_participant()
     {
+        // MEJORAR
+        // ENVIAR A LA PAGINA DEL TORNEO POR GET
+
         $jls_database = new DataBaseHandler();
         $jls_name = $this->request->getPost('jls-jumper-name');
         $jls_tournament_id = $this->request->getPost('jls-tournament-id');
         if (session()->get("user_id")) {
-            $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
-            $tournaments = $jls_database->jls_get_all_active_tournaments();
+            $result = $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
+            $tournaments = $jls_database->jls_get_tournaments_by_filter();
             $data['tournaments'] = $tournaments;
             $data['title'] = 'Jumpstyle League Series';
-            // return view('layouts/userIndex', $data);
-            return redirect()->to('layouts/userIndex');
+            return view('layouts/userIndex', $data);
+            // return redirect()->to('tournament');
         } else {
             //Lo que hacemos es establecer un mensaje de un solo uso que se elimina después de ser utilizado, uso correcto en este caso
             session()->setFlashdata("user_not_found_error", "Tiene que iniciar sesión para poder inscribirse");
 
             //Redirijo a la página de inicio de sesión
-            return redirect()->to('/get_login_page');
+            return redirect()->to('/login');
         }
     }
     public function get_tournament_info_page(): string
@@ -214,7 +218,6 @@ class Home extends BaseController
 
         $result = $jls_database->jls_update_tournament_data($id, $name, $start_date, $end_date, 1, $unique_id);
         if ($result) {
-
             $response = [
                 'status' => 'success',
                 'title' => 'Torneo modificado',
@@ -227,6 +230,43 @@ class Home extends BaseController
                 'message' => 'Ha ocurrido un error al modificar el torneo'
             ];
         }
+        return json_encode($response);
+    }
+    public function get_tournament_participants()
+    {
+        $jls_database = new DataBaseHandler();
+        if (isset($_GET['tournamentId'])) {
+            $tournament_id = $_GET['tournamentId'];
+            $participants = $jls_database->jls_get_tournament_participants($tournament_id);
+            $response = [
+                'status' => 'success',
+                'participants' => $participants
+            ];
+            return json_encode($response);
+        } else {
+            $response = [
+                'status' => 'error',
+                'message' => 'fallo al recibir respuesta del servidor'
+            ];
+            return json_encode($response);
+        }
+    }
+
+    public function get_users()
+    {
+        // alias, role, status, registrationStart, registrationEnd
+        $jls_database = new DataBaseHandler();
+        $alias = $_GET['alias'] ?? 'all';
+        $role = $_GET['role'] ?? 'all';
+        $status = $_GET['role'] ?? 'all';;
+        $registration_start = $this->request->getGet('registrationStart') ?? null;
+        $registration_end = $this->request->getGet('registrationEnd') ?? null;
+        $users = $jls_database->jls_get_users_by_filter($alias, $role, $status, $registration_start, $registration_end);
+
+        $response = [
+            'status' => 'success',
+            'users' => $users
+        ];
         return json_encode($response);
     }
 }
