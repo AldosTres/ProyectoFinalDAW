@@ -223,7 +223,11 @@ class DataBaseHandler extends Model
 
 
     /**
-     * 
+       Función que añade un nuevo participante a un torneo
+     * @param mixed $alias
+     * @param mixed $tournament_id
+     * @param mixed $user_id
+     * @return bool
      */
     function jls_add_new_participant($alias, $tournament_id, $user_id)
     {
@@ -287,7 +291,7 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * Función que actualiza los datos de un torneo específico
+       Función que actualiza los datos de un torneo específico
      * @param mixed $id
      * @param mixed $nombre
      * @param mixed $fecha_inicio
@@ -367,13 +371,22 @@ class DataBaseHandler extends Model
 
 
 
-
+    /**
+     * 
+       Función que permite obtener usuarios por filtros, en caso de que no haya filtros, obtiene todos
+     * @param mixed $alias
+     * @param mixed $role
+     * @param mixed $status
+     * @param mixed $registration_start
+     * @param mixed $registration_end
+     * @return array
+     */
     function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
     {
         //Utilizo alias como u o r para evitar ambiguedades
         $builder = $this->db->table('usuarios u');
         $builder->select('u.id, u.alias_usuario, r.nombre AS rol_nombre, u.activo, u.fecha_registro, u.ultima_conexion'); // AS para evitar ambiguedades también
-        $builder->join('roles r', 'r.id = u.id_rol');
+        $builder->join('tipos_rol r', 'r.id = u.id_rol');
         if ($alias && $alias != 'all') {
             $builder->like('alias_usuario', $alias);
         }
@@ -396,5 +409,63 @@ class DataBaseHandler extends Model
 
         $result = $builder->get();
         return $result->getResultArray();
+    }
+
+    /**
+     * 
+       Funcion que obtiene los distintos tipos de rol de usuario
+     * @return array
+     */
+    function jls_get_user_rol_types()
+    {
+        $builder = $this->db->table('tipos_rol');
+        $result = $builder->get();
+        return $result->getResultArray();
+    }
+
+    /**
+     * 
+       Función que cambia el rol de un usuario
+     * @param int $user_id
+     * @param int $rol_id
+     * @return bool
+     */
+    function jls_change_user_rol($user_id, $rol_id)
+    {
+        // Validar los parámetros
+        if (!is_numeric($user_id) || $user_id <= 0 || !is_numeric($rol_id) || $rol_id <= 0) {
+            return false;
+        }
+        try {
+            $builder = $this->db->table('usuarios');
+            $data = [
+                'id_rol' => $rol_id
+            ];
+            $builder->update($data, ['id' => $user_id]);
+            return $this->db->affectedRows() > 0; //Retorn true o false
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+
+    /**
+     * 
+       Función que cambio el estado de un usuario
+     * @param mixed $user_id
+     * @return bool
+     */
+    function jls_change_user_status($user_id, $activo)
+    {
+        try {
+            $builder = $this->db->table('usuarios');
+            $data = [
+                'activo' => !$activo
+            ];
+            $builder->update($data, ['id' => $user_id]);
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

@@ -251,7 +251,6 @@
                             </tr>
                         </thead>
                         <tbody class="users__list-table-body" id="user-list">
-
                         </tbody>
                     </table>
                 </div>
@@ -261,6 +260,16 @@
             <div id="settings" class="menu__section menu__section--hidden">Contenido de Configuración</div>
         </div>
     </div>
+
+    <form action="" class="users__form">
+        <div class="userss__field">
+            <label for="" class="users_field-label"></label>
+            <select name="" id="" class="users__select">
+                <option value="" class="users__select-option"></option>
+            </select>
+        </div>
+    </form>
+
 </body>
 
 </html>

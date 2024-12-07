@@ -20,6 +20,10 @@ $routes->get('admin/tournament/get-data-for-edit', 'Home::get_tournament_for_edi
 $routes->post('admin/tournament/update', 'Home::edit_tournament');
 $routes->get('admin/tournament/participants', 'Home::get_tournament_participants');
 $routes->get('admin/users/list', 'Home::get_users');
+$routes->get('admin/users/roles', 'Home::get_user_rol_types');
+$routes->post('admin/users/change-rol', 'Home::change_user_rol');
+$routes->get('admin/users/change-status', 'Home::change_user_status');
+
 
 
 

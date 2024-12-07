@@ -225,7 +225,7 @@ class Home extends BaseController
             ];
         } else {
             $response = [
-                'status' => 'success',
+                'status' => 'error',
                 'title' => 'Error de modificación',
                 'message' => 'Ha ocurrido un error al modificar el torneo'
             ];
@@ -246,7 +246,7 @@ class Home extends BaseController
         } else {
             $response = [
                 'status' => 'error',
-                'message' => 'fallo al recibir respuesta del servidor'
+                'message' => 'Fallo al recibir respuesta del servidor'
             ];
             return json_encode($response);
         }
@@ -268,5 +268,68 @@ class Home extends BaseController
             'users' => $users
         ];
         return json_encode($response);
+    }
+
+    public function get_user_rol_types()
+    {
+        $jls_database = new DataBaseHandler();
+        $user_rol_types = $jls_database->jls_get_user_rol_types();
+        $response = [
+            'status' => 'success',
+            'user_rol_types' => $user_rol_types
+        ];
+        return json_encode($response);
+    }
+
+    public function change_user_rol()
+    {
+        $jls_database = new DataBaseHandler();
+        $user_id = $this->request->getPost('user-id');
+        $rol_id = $this->request->getPost('rol-select');
+        $result = $jls_database->jls_change_user_rol($user_id, $rol_id);
+        if ($result) {
+            $response = [
+                'status' => 'succes',
+                'title' => 'Rol de usuario modificado',
+                'message' => 'se ha modificado correctamente el rol de usuario'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'Rol de usuario',
+                'message' => 'No se ha podido modificar el rol de usuario'
+            ];
+        }
+        return json_encode($response);
+    }
+
+    public function change_user_status()
+    {
+        $jls_database = new DataBaseHandler();
+        if (isset($_GET['userId']) && isset($_GET['userStatus'])) {
+            $user_id = $_GET['userId'];
+            $user_status = $_GET['userStatus'];
+            $result = $jls_database->jls_change_user_status($user_id, $user_status);
+            if ($result) {
+                $response = [
+                    'status' => 'success',
+                    'title' => 'Cambio de estado',
+                    'message' => 'Estado de usuario cambiado correctamente'
+                ];
+            } else {
+                $response = [
+                    'status' => 'error',
+                    'title' => 'Cambio de estado',
+                    'message' => 'No se ha podido completar el cambio de estado'
+                ];
+            }
+            return json_encode($response);
+        } else {
+            $response = [
+                'status' => 'error',
+                'message' => 'Ha ocurrido un fallo al encontrar al usuario o al estado del usuaro'
+            ];
+            return json_encode($response);
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { showModal, closeModal } from './modals.js';
-import { renderTableRows, loadRenderedData } from "./admin_page_utils.js";
+import { renderItems, loadRenderedData } from "./admin_page_utils.js";
 
 $(document).ready(function () {
     //Abriendo el modal en cuanto reciba un flashdata indicando que se ha creado un torneo
@@ -36,9 +36,9 @@ $(document).ready(function () {
      */
     function loadTournamentsByStatus() {
         let status = $('#tournament-filter-status').val()
-        loadRenderedData('admin/tournament/list', {status}, (data) => {
+        loadRenderedData('GET','admin/tournament/list', {status}, (data) => {
             let tournaments = data.tournaments
-            let rows = renderTableRows(tournaments, generateTournamentRowTemplate)
+            let rows = renderItems(tournaments, generateTournamentRowTemplate)
             $('#tournament-list').empty().append(rows);
         })
     }
@@ -49,7 +49,7 @@ $(document).ready(function () {
 
 
     /**
-     * Función que genera una plantilla HTML para un formulario de torneo con datos prellenados.
+     * Función que genera una plantilla HTML para un formulario de torneo con datos prellenados. 
      * @param {*} tournament 
      * @returns 
      */
@@ -80,19 +80,6 @@ $(document).ready(function () {
     }
 
     /**
-     * Obtiene la información de un torneo para editarla y muestra un modal con un formulario prellenado.
-     */
-    function handelTournamentEdit() {
-        let tournamentId = $(this).attr('data-id');
-        loadRenderedData('admin/tournament/get-data-for-edit', {tournamentId}, (data) => {
-            let tournament = data.tournament_info
-            let tournamentFormForEdit = generateTournamentFormTemplate(tournament)
-            showModal('Modificación datos torneo', tournamentFormForEdit, () => {
-                submitEditTournamentForm($('#edit-tournament-form'))
-            })
-        })
-    }
-    /**
      * Como genereo dinámicamente el contenido de la tabla, no funciona el añadirles eventos, ya que no están presentes en el DOM
      * cuando se hace $(document).ready() y no se enlaza nunca, para manejar esto, empleamos la delegación de eventos, es decir
      * aplicamos el evento .on() pero a un ancestro de estos existente ya en el DOM, de esta manera, cualquier boton añadido dinamicamente
@@ -102,22 +89,33 @@ $(document).ready(function () {
 
     function submitEditTournamentForm(form) {
         let formData = new FormData(form[0]); //Para trabajar directamente con el objeto DOM y no con el objeto jquery
-        $.ajax({
-            type: 'POST',
-            url: 'admin/tournament/update',
-            data: formData,
-            processData: false, // Necesario para enviar archivos
-            contentType: false, // Necesario para enviar archivos
-            success: function (response) {
-                closeModal()
-                let data = JSON.parse(response);
-                if (data.status === 'success') {
-                    showModal(data.title, data.message);
-                }
-            }
-        });
+        
+        loadRenderedData('POST', 'admin/tournament/update', formData, (data) => {
+                closeModal();          // Cierra el modal
+                showModal(data.title, data.message); // Muestra mensaje del servidor
+        }, true)
     }
 
+    /**
+     * Obtiene la información de un torneo para editarla y muestra un modal con un formulario prellenado.
+     */
+    function handelTournamentEdit() {
+        let tournamentId = $(this).attr('data-id');
+        loadRenderedData('GET', 'admin/tournament/get-data-for-edit', {tournamentId}, (data) => {
+            let tournament = data.tournament_info
+            let tournamentFormForEdit = generateTournamentFormTemplate(tournament)
+            showModal('Modificación datos torneo', tournamentFormForEdit, () => {
+                submitEditTournamentForm($('#edit-tournament-form'))
+            })
+        })
+    }
+
+
+    /**
+     * 
+     * @param {*} participant 
+     * @returns 
+     */
     function generateParticipantRowTemplate(participant) {
         return `<tr class="participants__list-table-row">
                     <td class="participants__list-table-item">${participant.id}</td>
@@ -141,17 +139,14 @@ $(document).ready(function () {
                                     </thead>
                                     <tbody class="participants__list-table-body" id="participants-list">`
 
-        
-        loadRenderedData('admin/tournament/participants',{tournamentId}, (data) => {
+        loadRenderedData('GET', 'admin/tournament/participants',{tournamentId}, (data) => {
             let participants = data.participants
-            let rows = renderTableRows(participants, generateParticipantRowTemplate)
+            let rows = renderItems(participants, generateParticipantRowTemplate)
             participantsTable += rows
             participantsTable += `      </tbody>
                                 </table>`
             showModal('Participantes', participantsTable);
         })                       
     }
-
     $('.tournaments__list-table').on('click', '.tournaments_list-table-button--show-participants', handleTournamentParticipants)
-
 });
