@@ -155,36 +155,12 @@
                     </select>
                     <button class="tournaments_button tournaments_button--filter" id="tournaments-filter-button">Filtrar</button>
                 </div>
-
-
-                <!-- 3. Gestión de participantes
-                Agrega un subapartado donde se pueda:
-
-                Ver los participantes registrados en cada torneo.
-                Agregar o eliminar participantes.
-                Exportar la lista de participantes en formatos como CSV o PDF -->
-
-                <!-- <div class="tournaments-participants">
-                    <h3>Gestión de Participantes</h3>
-                    <button id="view-participants">Ver participantes</button>
-                    <button id="add-participant">Añadir participante</button>
-                    <button id="export-participants">Exportar lista</button>
-                </div> -->
-
-                <!-- 4. Estadísticas y reportes
-                Proporciona un apartado para visualizar estadísticas de los torneos, como:
-
-                Número total de torneos creados.
-                Cantidad de participantes por torneo.
-                Torneos más populares o con más inscripciones.
-                5. Configuración avanzada
+                <!-- 5. Configuración avanzada
                 Agrega configuraciones opcionales al crear o gestionar torneos, como:
 
                 Capacidad máxima de participantes: Un límite que el sistema debe respetar.
                 Tipos de torneos: Individual, equipos, eliminación directa, etc.
                 Rondas: Define cuántas rondas habrá y los criterios de clasificación. -->
-
-
             </div>
             <div id="users" class="users menu__section menu__section--hidden">
                 <h2 class="users__title">Usuarios</h2>
@@ -255,21 +231,35 @@
                     </table>
                 </div>
             </div>
-            <div id="events" class="menu__section menu__section--hidden">Contenido de Eventos</div>
-            <div id="judges" class="menu__section menu__section--hidden">Contenido de Jueces</div>
+            <div id="events" class="menu__section menu__section--hidden">
+                <h2 class="users__title">Eventos</h2>
+                <span class="users__description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+            </div>
+            <div id="judges" class="menu__section menu__section--hidden">
+                <div class="tournament__bracket">
+                    <div class="tournament__bracket-round">
+                        <h1 class="tournament__bracket-round-title">Semifinal</h1>
+                        <div class="tournament__bracket-match">
+                            <div class="tournament__bracket-date">18 Junio 2025</div>
+                            <div class="tournament__bracket-score"> SABEDRO WINS</div>
+                            <div class="tournament__bracket-participants">
+                                <div class="tournament__bracket-first-participant tournament__bracket-participant">
+                                    <span class="tournament__bracket-participant-alias">TrydaleB</span>
+                                    <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                                </div>
+                                <div class="vs"></div>
+                                <div class="tournament__bracket-second-participant tournament__bracket-participant">
+                                    <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                                    <span class="tournament__bracket-participant-alias">Daiser</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="settings" class="menu__section menu__section--hidden">Contenido de Configuración</div>
         </div>
     </div>
-
-    <form action="" class="users__form">
-        <div class="userss__field">
-            <label for="" class="users_field-label"></label>
-            <select name="" id="" class="users__select">
-                <option value="" class="users__select-option"></option>
-            </select>
-        </div>
-    </form>
-
 </body>
 
 </html>

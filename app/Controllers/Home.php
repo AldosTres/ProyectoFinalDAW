@@ -332,4 +332,19 @@ class Home extends BaseController
             return json_encode($response);
         }
     }
+
+    public function get_tournament_bracket($tournament_id)
+    {
+        // Lógica para obtener el bracket del torneo con el ID dado
+        $jls_database = new DataBaseHandler();
+        $rounds_type = $jls_database->jls_get_rounds();
+
+        $response = [
+            'status' => 'success',
+            'rounds_type' => $rounds_type,
+            'toournament_id' => $tournament_id
+        ];
+        // Responder con los datos en formato JSON
+        return json_encode($response);
+    }
 }

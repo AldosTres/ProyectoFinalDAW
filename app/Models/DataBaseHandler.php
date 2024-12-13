@@ -468,4 +468,20 @@ class DataBaseHandler extends Model
             return false;
         }
     }
+
+    /**
+       Función que obtiene las rondas disponibles en la tabla tipos_ronda
+     * @return array|bool
+     */
+    function jls_get_rounds()
+    {
+        try {
+            $builder = $this->db->table('tipos_ronda');
+            $builder->orderBy('id', 'ASC');
+            $result = $builder->get();
+            return $result->getResultArray();
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
