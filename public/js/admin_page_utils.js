@@ -32,7 +32,7 @@ export function renderItems (data, renderTemplate) {
 }
 
 /**
- * Función diseñada para realizar una solicitud GET a un servidor, recibir datos en formato JSON,
+ * Función diseñada para realizar una solicitud GET/POST a un servidor, recibir datos en formato JSON,
  * y ejecutar una función de éxito personalizada si la solicitud es exitosa
  * @param {*} url 
  * @param {*} params //Parametros que podamos ingresar, en el caso de torneos, el estado del filtro

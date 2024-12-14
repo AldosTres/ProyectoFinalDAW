@@ -1,5 +1,5 @@
-import { showModal, closeModal } from './modals.js';
-import { renderItems, loadRenderedData } from "./admin_page_utils.js";
+import { showModal, closeModal } from './modals.js'
+import { renderItems, loadRenderedData } from "./admin_page_utils.js"
 
 $(document).ready(function () {
     //Abriendo el modal en cuanto reciba un flashdata indicando que se ha creado un torneo
@@ -40,7 +40,7 @@ $(document).ready(function () {
         loadRenderedData('GET','admin/tournament/list', {status}, (data) => {
             let tournaments = data.tournaments
             let rows = renderItems(tournaments, generateTournamentRowTemplate)
-            $('#tournament-list').empty().append(rows);
+            $('#tournament-list').empty().append(rows)
         })
     }
 
@@ -85,11 +85,11 @@ $(document).ready(function () {
      * @param {*} form 
      */
     function submitEditTournamentForm(form) {
-        let formData = new FormData(form[0]); //Para trabajar directamente con el objeto DOM y no con el objeto jquery
+        let formData = new FormData(form[0]) //Para trabajar directamente con el objeto DOM y no con el objeto jquery
         
         loadRenderedData('POST', 'admin/tournament/update', formData, (data) => {
-                closeModal();          // Cierra el modal
-                showModal(data.title, data.message); // Muestra mensaje del servidor
+                closeModal()          // Cierra el modal
+                showModal(data.title, data.message) // Muestra mensaje del servidor
         }, true)
     }
 
@@ -97,7 +97,7 @@ $(document).ready(function () {
      * Obtiene la información de un torneo para editarla y muestra un modal con un formulario prellenado.
      */
     function handelTournamentEdit() {
-        let tournamentId = $(this).attr('data-id');
+        let tournamentId = $(this).attr('data-id')
         loadRenderedData('GET', 'admin/tournament/get-data-for-edit', {tournamentId}, (data) => {
             let tournament = data.tournament_info
             let tournamentFormForEdit = generateTournamentFormTemplate(tournament)
@@ -133,7 +133,7 @@ $(document).ready(function () {
     }
 
     function handleTournamentParticipants() {
-        let tournamentId = $(this).attr('data-id');
+        let tournamentId = $(this).attr('data-id')
         let participantsTable = `<table class="participants__list-table">
                                     <thead class="participants__list-table-header">
                                         <tr class="participants__list-table-row">
@@ -150,14 +150,62 @@ $(document).ready(function () {
             participantsTable += rows
             participantsTable += `      </tbody>
                                 </table>`
-            showModal('Participantes', participantsTable);
+            showModal('Participantes', participantsTable)
         })        
     }
     $('.tournaments__list-table').on('click', '.tournaments_list-table-button--show-participants', handleTournamentParticipants)
 
+    /**
+     * Función que calcula el número de enfrentamientos de un torneo dependiendo del numero de participantes y el índice de ronda
+     * en el que se encuentre
+     * @param {*} numParticipants 
+     * @param {*} roundIndex 
+     * @returns 
+     */
+    function calculateNumMatches(numParticipants, roundIndex) {
+        return numParticipants / Math.pow(2, roundIndex + 1) //8/2^1, 8/2^2, 8/2^3
+    }
 
-    function generahtml(rounds, tournamentId) {
-        const numParticipants = 8;
+    /**
+     * Función que devuelve un template u otro dependiendo de isFirstRound(bool)
+     * @param {*} isFirstRound 
+     * @param {*} tournamentId 
+     * @returns 
+     */
+    function createMatchHtml(isFirstRound, tournamentId) {
+        if (isFirstRound) {
+            return `
+                <div class="tournament__bracket-match">
+                    <div class="tournament__bracket-date">18 Junio 2025</div>
+                    <div class="tournament__bracket-score">Esperando Ganador...</div>
+                    <div class="tournament__bracket-participants">
+                        <button class="tournament__bracket-add-participants-btn" id="add-participants" value="${tournamentId}">
+                            Añadir Participantes
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </button>
+                    </div>
+                </div>`
+        }
+        return `
+            <div class="tournament__bracket-match">
+                <div class="tournament__bracket-date">18 Junio 2025</div>
+                <div class="tournament__bracket-score">Esperando Ganador...</div>
+                <div class="tournament__bracket-participants">
+                    <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
+                    <div class="vs"></div>
+                    <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">Esperando resultado...</div>
+                </div>
+            </div>`
+    }
+    
+
+    /**
+     * Función que genera un template de bracket de un torneo dinámico
+     * @param {*} rounds 
+     * @param {*} tournamentId 
+     */
+    function generateBracketHtml(tournamentRounds, tournamentId) {
+        const numParticipants = 8
         let html = ``
         // Generar las rondas
         // html += `<div class="tela">
@@ -166,93 +214,82 @@ $(document).ready(function () {
         //             <h2 class="tournament__bracket-round-title">Numero ronda</h2>
         //          </div>`
         // html += `<h2 class="tournament__bracket-round-title">Numero ronda</h2>`
-        html += `<div class="tournament__bracket">`;
-        rounds.forEach((round, index) => {
+        html += `<div class="tournament__bracket">`
+        tournamentRounds.forEach((round, index) => {
             html += `<div class="tournament__bracket-round">
                          <h2 class="tournament__bracket-round-title">${round.nombre}</h2>`
             
             // Generar los enfrentamientos de esta ronda
-            const numMatches = numParticipants / Math.pow(2, index + 1) // Matches por ronda
+            const numMatches = calculateNumMatches(numParticipants,index)
+
             for (let j = 0; j < numMatches; j++) {
-                
-                if (index === 0) {
-                    html += `<div class="tournament__bracket-match">
-                                 <div class="tournament__bracket-date">18 Junio 2025</div>
-                                 <div class="tournament__bracket-score">Esperando Ganador...</div>
-                                 <div class="tournament__bracket-participants">
-                                      <button class="tournament__bracket-add-participants-btn" id="add-participants" value="${tournamentId}">
-                                      Añadir Participantes
-                                      <i class="fa-solid fa-circle-plus"></i>
-                                      </button>
-                                 </div>
-                             </div>`
-                } else {
-                    html += `<div class="tournament__bracket-match">
-                                 <div class="tournament__bracket-date">18 Junio 2025</div>
-                                 <div class="tournament__bracket-score">Esperando Ganador...</div>
-                                 <div class="tournament__bracket-participants">
-                                     <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
-                                     <div class="vs"></div>
-                                     <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">Esperando resultado...</div>
-                                 </div>
-                             </div>`
-                }
+                html += createMatchHtml(index===0, tournamentId)
             }
             html += `</div>`
-        });
+        })
         html += `</div>`
         $("#tournaments").html(html)
     }
     /**
-     * Función que genera una plantilla para la visualización de un grupo de torneo
+     * Función que busca información en el servidor para pasar información necesaria a generateBracketHtml
      * @param {*} tournament
      */
-    function generateTournamentBracketTemplate() {
-        $('#tournaments').empty() //Vaciamos primero el contenido de tournaments para mostrar ahí la información del torneo
-        
+    function loadAndRenderTournamentBracket() {
+        $('#tournaments').empty()
         //Atributo data-id del boton manage-tournament
         let tournamentId = $(this).attr('data-id')
         const url = `admin/tournament/bracket/${tournamentId}`
         loadRenderedData('GET', url, {}, (data) => {
-            const rounds = data.rounds_type || [];
+            const rounds = data.rounds_type || []
             // const t = data.tournament_id
-            if (rounds.length === 0) {
-                $('#tournaments').html("<p>No hay rondas disponibles para este torneo.</p>");
-                return;
-            } else {
-                generahtml(rounds, tournamentId)
-            }
+            generateBracketHtml(rounds, tournamentId)
         })
     }
 
+    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--manage-tournament', loadAndRenderTournamentBracket)
     // Participante
     // <span class="tournament__bracket-participant-alias">TrydaleB</span>
     // <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
 
-    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--manage-tournament', generateTournamentBracketTemplate)
     
-    function generateAddParticipantFormTemplate(participant) {
-        return `<li>
-                    <input type="checkbox" id="participant-${participant.id}" name="participant" value="${participant.id}">
-                    <label for="participant-${participant.id}">${participant.alias}</label>
+    /**
+     * Función que genera una template de elemento <li> que contiene el alias de un participante y un checkbox para seleccionarlo
+     * @param {*} participant 
+     * @returns 
+     */
+
+    function generateParticipantItemHtml(participant) {
+        return `<li class="participants__form_item">
+                    <input type="checkbox" class="participants__form-item-checkbox" id="participant-${participant.id}" name="participant" value="${participant.id}">
+                    <label for="participant-${participant.id}" class="participants__form-item-label">${participant.alias}</label>
                 </li>`
     }
 
-    function handleTournamentsParticipantsForm() {
-        let tournamentId = $(this).val();
+    /**
+     * Función que muestra en un modal un formulario para elegir participantes para el enfrentamiento de un torneo específico
+     */
+    function loadAndDisplayParticipantsForm() {
+        let tournamentId = $(this).val()
         console.log(tournamentId)
         let participantsForm = `<form id="addParticipantForm" class="participants__form">
-                                    <ul class="participants-list participants__form-list">`
+                                    <ul class="participants__form-list">`
         loadRenderedData('GET', 'admin/tournament/participants',{tournamentId}, (data) => {
             let participants = data.participants
-            let rows = renderItems(participants, generateAddParticipantFormTemplate)
+            let rows = renderItems(participants, generateParticipantItemHtml)
             participantsForm += rows
             participantsForm += `   </ul>
                                 </form>`
-            showModal('Selecciona participantes', participantsForm);
+            showModal('Selecciona participantes', participantsForm, () => {
+                //:checked controlo los checkbox que han sido seleccionados
+                console.log($('.participants__form-item-checkbox:checked').length)
+            })
         }) 
     }
 
-    $('#tournaments').on('click', '#add-participants', handleTournamentsParticipantsForm)
+    $('#tournaments').on('click', '#add-participants', loadAndDisplayParticipantsForm)
 
+
+    function submitParticipantForm() {
+    
+    }
 });

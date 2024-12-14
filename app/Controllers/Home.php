@@ -342,7 +342,7 @@ class Home extends BaseController
         $response = [
             'status' => 'success',
             'rounds_type' => $rounds_type,
-            'toournament_id' => $tournament_id
+            'tournament_id' => $tournament_id
         ];
         // Responder con los datos en formato JSON
         return json_encode($response);
