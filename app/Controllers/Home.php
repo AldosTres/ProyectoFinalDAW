@@ -237,7 +237,7 @@ class Home extends BaseController
         $jls_database = new DataBaseHandler();
         if (isset($_GET['tournamentId'])) {
             $tournament_id = $_GET['tournamentId'];
-            $participants = $jls_database->jls_get_tournament_participants($tournament_id);
+            $participants = $jls_database->jls_get_tournament_participants($tournament_id, true);
             $response = [
                 'status' => 'success',
                 'participants' => $participants

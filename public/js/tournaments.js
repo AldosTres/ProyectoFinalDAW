@@ -258,10 +258,10 @@ $(document).ready(function () {
             const numMatches = calculateNumMatches(numParticipants,index)
 
             for (let j = 0; j < numMatches; j++) {
-                if (matchs.length == 0) {
-                    html += createMatchHtml(index===0, tournamentId, j, index + 1)
-                } else {
+                if (matchs) {
                     html += createMatchHtml(index===0, tournamentId, j, index + 1,matchs.length > 0, matchs[j])
+                } else {
+                    html += createMatchHtml(index===0, tournamentId, j, index + 1)
                 }
             }
             html += `</div>`
@@ -313,36 +313,52 @@ $(document).ready(function () {
      * Función que muestra en un modal un formulario para elegir participantes para el enfrentamiento de un torneo específico
      */
     function loadAndDisplayParticipantsForm() {
-        let tournamentId = $('.tournament__bracket').attr('data-id')
-        let matchPosition = $(this).attr('data-match-position')
-        let roundId = $(this).attr('data-round-id')
-        let participants = []
-        let participantsForm = `<form id="add-articipant-Form" class="participants__form">
-                                    <ul class="participants__form-list">`
-        loadRenderedData('GET', 'admin/tournament/participants',{tournamentId}, (data) => {
-            let participants = data.participants
-            let rows = renderItems(participants, generateParticipantItemHtml)
-            participantsForm += rows
-            participantsForm += `   </ul>
-                                </form>`
+        const tournamentId = $('.tournament__bracket').attr('data-id');
+        const matchPosition = $(this).attr('data-match-position');
+        const roundId = $(this).attr('data-round-id');
+        
+        const participantsFormStart = `
+            <form id="add-participant-form" class="participants__form">
+                <ul class="participants__form-list">`;
+    
+        loadRenderedData('GET', 'admin/tournament/participants', { tournamentId }, (data) => {
+            // Verificar si los participantes existen y no son nulos
+            const participants = data.participants || [];
+            const rows = participants.length > 0 
+                ? renderItems(participants, generateParticipantItemHtml) 
+                : `<li>No hay participantes disponibles para este torneo.</li>`;
+    
+            // Completar el formulario
+            const participantsForm = `
+                ${participantsFormStart}
+                    ${rows}
+
+                </ul>
+            </form>`;
+    
+            // Mostrar modal con el formulario
             showModal('Selecciona participantes', participantsForm, () => {
-                // console.log($('.participants__form-item-checkbox:checked'))
-                //:checked controlo los checkbox que han sido seleccionados          
-                if ($('.participants__form-item-checkbox:checked').length > 2 || $('.participants__form-item-checkbox:checked').length == 0) {
-                    showModal('Elección participantes', 'Tienes que seleccionar 2 participantes')
-                } else {
-                    
-                    $('.participants__form-item-checkbox:checked').each(function (index) {
-                        // participants.push($(this).val())
-                        participants[index] = $(this).val()
-                        
-                    })
-                    // console.log(participants[1].id_usuario)
-                    submitParticipantForm(tournamentId, matchPosition, roundId, participants[0], participants[1])
+                //Para que el boton confirmar solo cierre en caso de que participants no tenga ningun elemento
+                if (participants.length > 0) {
+                    const selectedCheckboxes = $('.participants__form-item-checkbox:checked');
+                    if (selectedCheckboxes.length !== 2) {
+                        showModal('Elección de participantes', 'Tienes que seleccionar exactamente 2 participantes.');
+                        return;
+                    }
+        
+                    // Obtener los valores seleccionados
+                    const selectedParticipants = [];
+                    selectedCheckboxes.each(function () {
+                        selectedParticipants.push($(this).val());
+                    });
+        
+                    // Enviar los participantes seleccionados
+                    submitParticipantForm(tournamentId, matchPosition, roundId, selectedParticipants[0], selectedParticipants[1]);
                 }
-            })
-        }) 
+            });
+        });
     }
+    
 
     $('#tournaments').on('click', '#add-participants', loadAndDisplayParticipantsForm)
 

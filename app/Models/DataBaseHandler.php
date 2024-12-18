@@ -3,6 +3,7 @@
 namespace App\models;
 
 use CodeIgniter\Model;
+use InvalidArgumentException;
 
 class DataBaseHandler extends Model
 {
@@ -94,9 +95,9 @@ class DataBaseHandler extends Model
     }
 
     /**
-       Función que devuelve la información sobre un usuario
-     * @param mixed $user_id
-     * @return array|T|\stdClass|null
+     * Función que devuelve la información sobre un usuario
+     * @param mixed $user_id El ID del usuario a buscar.
+     * @return array|\stdClass|null Retorna un array asociativo, un objeto stdClass, o null si no se encuentra el usuario.
      */
     function jls_get_user_data($user_id)
     {
@@ -190,38 +191,6 @@ class DataBaseHandler extends Model
         return $query->getResultArray();
     }
 
-    // public function jls_get_tournaments_by_filter($status = null)
-    // {
-    //     $query = 'SELECT * FROM torneos';
-    //     $params = [];
-    //     switch ($status) {
-    //         case 'ongoing':
-    //             //Un torneo puede estar en curso activo o inactivo.
-    //             $query .= ' WHERE CURRENT_TIME BETWEEN fecha_inicio AND fecha_fin';
-    //             break;
-    //         case 'active':
-    //             $query .= ' WHERE activo = ?';
-    //             $params[] = 1;
-    //             break;
-    //         case 'inactive':
-    //             $query .= ' WHERE activo = ?';
-    //             $params[] = 0;
-    //             break;
-    //         case 'finished':
-    //             //Si el torneo finaliza, se entiende que queda desactivado
-    //             $query .= ' WHERE activo = ? AND fecha_fin < CURRENT_TIME';
-    //             $params[] = 0;
-    //             break;
-    //         default:
-    //             //En caso contrario a todos estos, mostrará todos los torneos
-    //             break;
-    //     }
-    //     $result = $this->db->query($query, $params);
-    //     $row = $result->getResultArray();
-    //     return $row;
-    // }
-
-
     /**
        Función que añade un nuevo participante a un torneo
      * @param mixed $alias
@@ -267,16 +236,88 @@ class DataBaseHandler extends Model
     }
 
     /**
-       Devuelve a todos los participantes de un torneo específico
-     * 
-     * @param int $tournament_id
+       Devuelve a todos los participantes de un torneo específico o en caso de que $existsBracket = true, devuelve
+       solo los participantes que no se encuentran en la tabla rondas
+     * @param mixed $tournament_id
+     * @param mixed $existsBracket
+     * @throws \InvalidArgumentException
+     * @return array|bool
      */
-    function jls_get_tournament_participants($tournament_id)
+    function jls_get_tournament_participants($tournament_id, $existsBracket = false)
     {
-        $query = $this->db->query("SELECT * FROM inscripciones WHERE id_torneo = ? AND activo = ?", [$tournament_id, 1]);
-        $row = $query->getResultArray();
-        return $row;
+        // SELECT * FROM usuarios u WHERE NOT EXISTS (
+        //     SELECT r.* FROM rondas r 
+        //     JOIN inscripciones i1 ON i1.id = r.id_participante1
+        //     JOIN inscripciones i2 ON i2.id = r.id_participante2
+        //     where r.id_torneo = $tournament_id   
+        //     WHERE u.id = i1.id_usuario OR u.id = i2.id_usuario)
+        //Pero esta subconsulta no devuelve nada, luego la consulta entera devolvería todos los usuarios
+        try {
+            // Valida el ID del torneo
+            if (!is_numeric($tournament_id)) {
+                throw new InvalidArgumentException("El ID del torneo debe ser un valor numérico.");
+            }
+
+            // Si existe un bracket, devuelvo solo a los que no se encuentran ya seleccionados para rondas
+            if ($existsBracket) {
+                /**
+                 * Importante aplicar esto ya que si no hay filas en rondas para el torneo dado,
+                 * la subconsulta de NOT EXISTS no encontrará resultados, y todos los usuarios serán devueltos.
+                 */
+                $exists = $this->db->table('rondas')
+                    ->where('id_torneo', $tournament_id)
+                    ->countAllResults();
+
+                // Si no hay rondas, devuelve todos los usuarios inscritos al torneo
+                if ($exists === 0) {
+                    $query = $this->db->table('inscripciones')
+                        ->select('usuarios.*')
+                        ->join('usuarios', 'inscripciones.id_usuario = usuarios.id', 'inner')
+                        ->where('inscripciones.id_torneo', $tournament_id)
+                        ->where('inscripciones.activo', 1)
+                        ->get();
+
+                    return $query->getResultArray();
+                }
+
+                $builder = $this->db->table('usuarios');
+
+                // Subconsulta para verificar participantes en rondas
+                $subquery = $this->db->table('rondas')
+                    ->join('inscripciones AS i1', 'rondas.id_participante1 = i1.id', 'inner')
+                    ->join('inscripciones AS i2', 'rondas.id_participante2 = i2.id', 'inner')
+                    ->select('1')
+                    ->where('rondas.id_torneo', $tournament_id) // Usuarios solo del torneo específico
+                    ->groupStart()
+                    ->where('i1.id_usuario = usuarios.id')
+                    ->orWhere('i2.id_usuario = usuarios.id')
+                    ->groupEnd();
+
+                // Consulta principal
+                $builder->select('*')
+                    ->where("NOT EXISTS ({$subquery->getCompiledSelect()})", null, false);
+
+                $query = $builder->get();
+                return $query->getResultArray(); // O getResult(), según prefieras.
+            }
+
+            // Si no existe bracket, selecciona inscripciones activas del torneo Función predeterminada
+            $query = $this->db->table('inscripciones')
+                ->select('*')
+                ->where('id_torneo', $tournament_id)
+                ->where('activo', 1)
+                ->get();
+
+            return $query->getResultArray();
+        } catch (InvalidArgumentException $e) {
+            log_message('error', 'Argumento inválido: ' . $e->getMessage());
+            return false;
+        } catch (\Throwable $th) {
+            log_message('error', 'Error al obtener participantes del torneo: ' . $th->getMessage());
+            return false;
+        }
     }
+
 
     /**
        Funcion que obtiene el logotipo de un torneo
@@ -318,38 +359,11 @@ class DataBaseHandler extends Model
         }
     }
 
-    //      1. Listado de usuarios
-    // Datos a mostrar en la tabla:
-    // ID del usuario.
-    // Nombre o alias.
-    // Correo electrónico.
-    // Rol (usuario, juez, administrador, etc.).
-    // Estado (activo/inactivo/desactivado).
-    // Número de torneos inscritos.
-    // Fecha del último inicio de sesión (sí, lo puedes implementar con una columna en la tabla usuarios que se actualice en cada inicio de sesión).
-    // Opciones rápidas:
-    // Botón para editar el usuario (cambiar rol o modificar información relevante).
-    // Botón para desactivar/activar al usuario (baneo temporal o reactivo).
-    // 2. Filtro y búsqueda
-    // Permitir que el administrador busque y filtre usuarios por:
-
-    // Nombre o alias.
-    // Correo electrónico.
-    // Rol.
-    // Estado.
-    // Fecha de registro.
-    // Esto facilita encontrar usuarios específicos rápidamente.
-    // 3. Gestión de roles y estado
-    // Cambiar roles: Una opción clave para designar usuarios como jueces, administradores, etc.
-    // Desactivar usuarios: Lo que mencionas es ideal. En lugar de eliminarlos, se desactivan, dejando la cuenta en un estado de "no usable" pero sin perder el historial.
-    // Nota: Si es necesario, puedes registrar en otra tabla o columna la razón de la desactivación (opcional).
     // 4. Estadísticas individuales
     // Además del número de torneos en los que ha participado un usuario, puedes agregar:
 
     // Inscripciones activas: Si hay torneos en los que está inscrito pero aún no han comenzado.
     // Participaciones completadas: Cuántos torneos ha completado el usuario.
-    // 5. Último inicio de sesión
-    // Actualizar la fecha en la tabla de usuarios cada vez que el usuario se loguee es una muy buena idea.
 
     // Implementación sugerida:
     // Crear una columna ultimo_login en la tabla usuarios.
@@ -367,9 +381,6 @@ class DataBaseHandler extends Model
     // Estado inicial (activo/inactivo).
     // 7. Auditoría (opcional pero útil):
     // Registrar quién realizó cambios importantes como desactivar usuarios o cambiar roles. Esto puede ser útil para rastrear acciones en caso de errores o problemas administrativos.
-
-
-
 
     /**
      * 

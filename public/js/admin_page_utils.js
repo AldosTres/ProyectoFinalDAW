@@ -1,8 +1,8 @@
 import { showModal, closeModal } from "./modals.js";
 /**
-     * Función que sirve para seleccionar una opción del menu admin y mostrar su contenido
-     * @param {*} event 
-     */
+ * Función que sirve para seleccionar una opción del menu admin y mostrar su contenido
+ * @param {*} event 
+ */
 function selectOption(event) {
     // Evitar que el enlace recargue la página
     event.preventDefault();
@@ -15,20 +15,14 @@ function selectOption(event) {
 }
 
 /**
-     * Funcion que retorna las filas de una tabla con su respectivo contenido
-     * *CORREGIR NOMBRE
-     * @param {*} data //Torneos, usuarios, jueces, eventos, torneos...
-     * @param {*} renderTemplate //El contenido de la tabla, las filas
-     * @returns 
-     */
+ * Función que recorre un array de datos y genera un string HTML a partir de una plantilla de renderizado.
+ * @param {Array} data - Array de datos (ej.: torneos, usuarios, jueces, etc.).
+ * @param {Function} renderTemplate - Función que recibe un elemento del array y devuelve un string HTML.
+ * @returns {string} - String que contiene las filas HTML generadas.
+ */
 export function renderItems (data, renderTemplate) {
-    let rows = ``
-    //Recorro un array del que obtengo su item y ese item se pasa a la funcion renderTemplate, correspondiente a cada apartado de 
-    //menu de admin, redner template es solo, un ejemplo de la fila de la tabla, el esqueleto
-    for (const item of data) {
-        rows += renderTemplate(item)
-    }
-    return rows;
+    //.map aplica a cada elemento del array una función y el resultado lo aplica en un nuevo array
+    return data.map(item => renderTemplate(item)).join() //.join() combina los elementos del array en un solo string
 }
 
 /**
