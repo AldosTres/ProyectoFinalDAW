@@ -1,0 +1,153 @@
+INFO - 2024-12-15 00:01:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:02:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:03:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:04:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:05:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:06:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:06:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:09:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:10:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:10:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:11:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:16:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:17:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 00:17:15 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(498): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '18', '17', '1', '1')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2024-12-15 00:18:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 00:18:15 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(498): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '11', '18', '1', '1')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2024-12-15 00:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 00:23:24 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(507): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '18', '12', '1', '1')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2024-12-15 00:23:36 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(507): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '13', '14', '1', '3')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2024-12-15 00:25:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 00:25:26 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(522): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '14', '15', '1', '1')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2024-12-15 00:25:26 --> Error de base de datos: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+INFO - 2024-12-15 00:29:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 00:29:21 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(522): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '18', '12', '1', '1')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2024-12-15 00:29:21 --> Error de base de datos: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+ERROR - 2024-12-15 00:30:05 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(522): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(359): App\models\DataBaseHandler->jls_add_new_tournament_round('2', '16', '17', '1', '2')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_participant_to_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2024-12-15 00:30:05 --> Error de base de datos: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`rondas`, CONSTRAINT `participante1_inscripcion` FOREIGN KEY (`id_participante1`) REFERENCES `inscripciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+INFO - 2024-12-15 00:30:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:51:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 00:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 01:50:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 01:50:25 --> mysqli_sql_exception: Column 'id_torneo' in where clause is ambiguous in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(552): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(342): App\models\DataBaseHandler->jls_get_participant_info('2')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournament_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2024-12-15 01:51:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 01:51:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 01:53:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 01:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 01:54:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 02:00:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-12-15 02:00:18 --> mysqli_sql_exception: Unknown column 'i2.alias_usuario' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(554): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(342): App\models\DataBaseHandler->jls_get_participant_info('2')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_tournament_bracket('2')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2024-12-15 02:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 02:01:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-15 23:26:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

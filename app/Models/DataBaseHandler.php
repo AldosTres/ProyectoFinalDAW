@@ -391,6 +391,7 @@ class DataBaseHandler extends Model
             $builder->like('alias_usuario', $alias);
         }
         if ($role && $role != 'all') {
+            //  revisar
             $builder->where('', $role);
         }
         if ($status && $status != 'all') {
@@ -478,6 +479,83 @@ class DataBaseHandler extends Model
         try {
             $builder = $this->db->table('tipos_ronda');
             $builder->orderBy('id', 'ASC');
+            $result = $builder->get();
+            return $result->getResultArray();
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    /**
+       Función que permite insertar enfrentamientos en la tabla rondas
+     * @param mixed $tournament_id
+     * @param mixed $first_participant_id
+     * @param mixed $second_participant_id
+     * @param mixed $round_type_id
+     * @param mixed $match_position
+     * @return bool
+     */
+    function jls_add_new_tournament_match($tournament_id, $first_participant_id, $second_participant_id, $round_type_id, $match_position)
+    {
+        // Validación básica
+        if (
+            !is_numeric($tournament_id) || !is_numeric($first_participant_id) || !is_numeric($second_participant_id) ||
+            !is_numeric($round_type_id) || !is_numeric($match_position)
+        ) {
+            log_message('error', 'Datos inválidos para añadir una nueva ronda');
+            return false;
+        }
+
+        if ($first_participant_id === $second_participant_id) {
+            log_message('error', 'Los participantes no pueden ser iguales');
+            return false;
+        }
+
+        try {
+            $data = [
+                'id_torneo' => $tournament_id,
+                'id_participante1' => $first_participant_id,
+                'id_participante2' => $second_participant_id,
+                'id_tipo_ronda' => $round_type_id,
+                'posicion_enfrentamiento' => $match_position
+            ];
+
+            $this->db->table('rondas')->insert($data);
+
+            if ($this->db->affectedRows() > 0) {
+                return true;
+            } else {
+                log_message('error', 'No se pudo insertar la nueva ronda en la base de datos');
+                return false;
+            }
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            log_message('error', 'Error de base de datos: ' . $e->getMessage());
+            return false;
+        } catch (\Throwable $th) {
+            log_message('error', 'Error inesperado: ' . $th->getMessage());
+            return false;
+        }
+    }
+
+    /**
+       Función que recupera información de las rondas de un torneo
+     * @param mixed $tournament_id
+     * @return array|bool
+     */
+    function jls_get_round_info($tournament_id)
+    {
+        try {
+            $builder = $this->db->table('rondas r');
+            // $builder->select('r.id, u1.alias_usuario AS participante1_alias, u2.alias_usuario AS participante2_alias, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
+            $builder->select('r.id, i1.alias AS participante1_alias, i2.alias AS participante2_alias, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
+            // sí o sí necesito hacer dos JOIN porque estás consultando la tabla inscripciones dos veces para
+            // relacionarla con diferentes campos de la tabla rondas: id_participante1 y id_participante2. 
+            $builder->join('inscripciones i1', 'r.id_participante1 = i1.id');
+            $builder->join('inscripciones i2', 'r.id_participante2 = i2.id');
+            // $builder->join('usuarios u1', 'i1.id_usuario = u1.id');
+            // $builder->join('usuarios u2', 'i2.id_usuario = u2.id');
+            $builder->where('r.id_torneo', $tournament_id);
+            $builder->orderBy('r.posicion_enfrentamiento', 'ASC');
             $result = $builder->get();
             return $result->getResultArray();
         } catch (\Throwable $th) {

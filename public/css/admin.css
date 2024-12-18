@@ -278,15 +278,23 @@ body {
 /* Participantes */
 .tournament__bracket-participants {
   display: flex;
-  justify-content: space-evenly; /* Separa los participantes */
+  justify-content: space-around; /* Separa los participantes */
   align-items: center;
   gap: 10px;
+  min-width: 120px;
+  max-width: 100%;
+
+  /* flex-wrap: wrap; */
 }
 
 .tournament__bracket-participant {
   display: flex;
   align-items: center; /* Centrar texto con imagen de participante */
+  justify-content: space-around;
   gap: 5px;
+  flex-wrap: wrap;
+  max-width: 45%;
+  min-width: 110px;
 }
 
 .tournament__bracket-participant-alias {
@@ -354,10 +362,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.vs::before {
+/* .vs::before {
   content: "VS";
   color: var(--serie-black);
-}
+} */
 
 /* Arreglar estilo */
 .tela {

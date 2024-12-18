@@ -338,12 +338,42 @@ class Home extends BaseController
         // Lógica para obtener el bracket del torneo con el ID dado
         $jls_database = new DataBaseHandler();
         $rounds_type = $jls_database->jls_get_rounds();
+        //revisar
+        $created_rounds = $jls_database->jls_get_round_info($tournament_id);
 
         $response = [
             'status' => 'success',
             'rounds_type' => $rounds_type,
-            'tournament_id' => $tournament_id
+            'tournament_id' => $tournament_id,
+            'matches' => $created_rounds ?? null
         ];
+        // Responder con los datos en formato JSON
+        return json_encode($response);
+    }
+
+    public function add_participant_to_bracket($tournament_id)
+    {
+        $jls_database = new DataBaseHandler();
+        // matchPosition, roundId, firstParticipantId, secondParticipantId
+        $first_participant_id = $this->request->getPost('firstParticipantId');
+        $second_participant_id = $this->request->getPost('secondParticipantId');
+        $round_type_id = $this->request->getPost('roundId');
+        $match_position = $this->request->getPost('matchPosition');
+        $result = $jls_database->jls_add_new_tournament_match($tournament_id, $first_participant_id, $second_participant_id, $round_type_id, $match_position);
+        if ($result) {
+            $response = [
+                'status' => 'success',
+                'title' => 'Enfrentamiento añadido',
+                'message' => 'Se ha añadido correctamente el enfrentamiento'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'Error enfrentamiento, id torneo=' . $tournament_id,
+                'message' => 'id torneo: ' . $tournament_id . 'id_u_1: ' . $first_participant_id . ' id_u_2: ' . $second_participant_id . ' id_ronda: ' . $round_type_id . ' posMatch: ' . $match_position
+            ];
+        }
+
         // Responder con los datos en formato JSON
         return json_encode($response);
     }

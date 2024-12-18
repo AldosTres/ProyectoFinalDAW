@@ -172,30 +172,65 @@ $(document).ready(function () {
      * @param {*} tournamentId 
      * @returns 
      */
-    function createMatchHtml(isFirstRound, tournamentId) {
-        if (isFirstRound) {
-            return `
-                <div class="tournament__bracket-match">
+    function createMatchHtml(isFirstRound, tournamentId, matchPosition, roundId, existsMatch = false, match = null) {
+        if (existsMatch) {
+            if (roundId == match['id_tipo_ronda']) {
+                return `
+                <div class="tournament__bracket-match" data-id="${matchPosition}">
                     <div class="tournament__bracket-date">18 Junio 2025</div>
                     <div class="tournament__bracket-score">Esperando Ganador...</div>
                     <div class="tournament__bracket-participants">
-                        <button class="tournament__bracket-add-participants-btn" id="add-participants" value="${tournamentId}">
-                            Añadir Participantes
-                            <i class="fa-solid fa-circle-plus"></i>
-                        </button>
+                        <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">
+                            <span class="tournament__bracket-participant-alias">${match['participante1_alias']}</span>
+                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                        </div>
+                        <div class="vs">
+                        <p>vs</p>
+                        </div>
+                        <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">
+                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                            <span class="tournament__bracket-participant-alias">${match['participante2_alias']}</span>
+                        </div>
+                        
+                    </div>
+                </div>`
+            } else {
+                return `
+                <div class="tournament__bracket-match" data-id="${matchPosition}">
+                    <div class="tournament__bracket-date">18 Junio 2025</div>
+                    <div class="tournament__bracket-score">Esperando Ganador...</div>
+                    <div class="tournament__bracket-participants">
+                        <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
+                        <div class="vs">VS</div>
+                        <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">Esperando resultado...</div>
+                    </div>
+                </div>`
+            }
+        } else {
+            if (isFirstRound) {
+                return `
+                    <div class="tournament__bracket-match" data-id="${matchPosition}">
+                        <div class="tournament__bracket-date">18 Junio 2025</div>
+                        <div class="tournament__bracket-score">Esperando Ganador...</div>
+                        <div class="tournament__bracket-participants">
+                            <button class="tournament__bracket-add-participants-btn" id="add-participants" value="" data-match-position="${matchPosition}" data-round-id="${roundId}">
+                                Añadir Participantes
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </button>
+                        </div>
+                    </div>`
+            }
+            return `
+                <div class="tournament__bracket-match" data-id="${matchPosition}">
+                    <div class="tournament__bracket-date">18 Junio 2025</div>
+                    <div class="tournament__bracket-score">Esperando Ganador...</div>
+                    <div class="tournament__bracket-participants">
+                        <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
+                        <div class="vs">VS</div>
+                        <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">Esperando resultado...</div>
                     </div>
                 </div>`
         }
-        return `
-            <div class="tournament__bracket-match">
-                <div class="tournament__bracket-date">18 Junio 2025</div>
-                <div class="tournament__bracket-score">Esperando Ganador...</div>
-                <div class="tournament__bracket-participants">
-                    <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
-                    <div class="vs"></div>
-                    <div class="tournament__bracket-second-participant tournament__bracket-participant" id="">Esperando resultado...</div>
-                </div>
-            </div>`
     }
     
 
@@ -204,7 +239,7 @@ $(document).ready(function () {
      * @param {*} rounds 
      * @param {*} tournamentId 
      */
-    function generateBracketHtml(tournamentRounds, tournamentId) {
+    function generateBracketHtml(tournamentRounds, tournamentId, matchs = null) {
         const numParticipants = 8
         let html = ``
         // Generar las rondas
@@ -214,16 +249,20 @@ $(document).ready(function () {
         //             <h2 class="tournament__bracket-round-title">Numero ronda</h2>
         //          </div>`
         // html += `<h2 class="tournament__bracket-round-title">Numero ronda</h2>`
-        html += `<div class="tournament__bracket">`
+        html += `<div class="tournament__bracket" data-id="${tournamentId}">`
         tournamentRounds.forEach((round, index) => {
-            html += `<div class="tournament__bracket-round">
+            html += `<div class="tournament__bracket-round" data-id="${index + 1}">
                          <h2 class="tournament__bracket-round-title">${round.nombre}</h2>`
             
             // Generar los enfrentamientos de esta ronda
             const numMatches = calculateNumMatches(numParticipants,index)
 
             for (let j = 0; j < numMatches; j++) {
-                html += createMatchHtml(index===0, tournamentId)
+                if (matchs.length == 0) {
+                    html += createMatchHtml(index===0, tournamentId, j, index + 1)
+                } else {
+                    html += createMatchHtml(index===0, tournamentId, j, index + 1,matchs.length > 0, matchs[j])
+                }
             }
             html += `</div>`
         })
@@ -242,14 +281,19 @@ $(document).ready(function () {
         loadRenderedData('GET', url, {}, (data) => {
             const rounds = data.rounds_type || []
             // const t = data.tournament_id
-            generateBracketHtml(rounds, tournamentId)
+            const matches = data.matches
+            console.log(matches)
+            if (matches.length == 0) {
+                generateBracketHtml(rounds, tournamentId)
+            } else {
+                generateBracketHtml(rounds, tournamentId, matches)
+            }
         })
     }
 
     $('.tournaments__list-table').on('click', '.tournaments_list-table-button--manage-tournament', loadAndRenderTournamentBracket)
     // Participante
-    // <span class="tournament__bracket-participant-alias">TrydaleB</span>
-    // <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+    
 
     
     /**
@@ -269,9 +313,11 @@ $(document).ready(function () {
      * Función que muestra en un modal un formulario para elegir participantes para el enfrentamiento de un torneo específico
      */
     function loadAndDisplayParticipantsForm() {
-        let tournamentId = $(this).val()
-        console.log(tournamentId)
-        let participantsForm = `<form id="addParticipantForm" class="participants__form">
+        let tournamentId = $('.tournament__bracket').attr('data-id')
+        let matchPosition = $(this).attr('data-match-position')
+        let roundId = $(this).attr('data-round-id')
+        let participants = []
+        let participantsForm = `<form id="add-articipant-Form" class="participants__form">
                                     <ul class="participants__form-list">`
         loadRenderedData('GET', 'admin/tournament/participants',{tournamentId}, (data) => {
             let participants = data.participants
@@ -280,8 +326,20 @@ $(document).ready(function () {
             participantsForm += `   </ul>
                                 </form>`
             showModal('Selecciona participantes', participantsForm, () => {
-                //:checked controlo los checkbox que han sido seleccionados
-                console.log($('.participants__form-item-checkbox:checked').length)
+                // console.log($('.participants__form-item-checkbox:checked'))
+                //:checked controlo los checkbox que han sido seleccionados          
+                if ($('.participants__form-item-checkbox:checked').length > 2 || $('.participants__form-item-checkbox:checked').length == 0) {
+                    showModal('Elección participantes', 'Tienes que seleccionar 2 participantes')
+                } else {
+                    
+                    $('.participants__form-item-checkbox:checked').each(function (index) {
+                        // participants.push($(this).val())
+                        participants[index] = $(this).val()
+                        
+                    })
+                    // console.log(participants[1].id_usuario)
+                    submitParticipantForm(tournamentId, matchPosition, roundId, participants[0], participants[1])
+                }
             })
         }) 
     }
@@ -289,7 +347,12 @@ $(document).ready(function () {
     $('#tournaments').on('click', '#add-participants', loadAndDisplayParticipantsForm)
 
 
-    function submitParticipantForm() {
-    
+    function submitParticipantForm(tournamentId, matchPosition, roundId, firstParticipantId, secondParticipantId) {
+        
+        let url = `admin/tournament/bracket/${tournamentId}/add-participant`
+        loadRenderedData('POST', url, {matchPosition, roundId, firstParticipantId, secondParticipantId}, (data) => {
+            // closeModal()
+            showModal(data.title, data.message)
+        })
     }
 });
