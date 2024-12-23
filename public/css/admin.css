@@ -113,16 +113,12 @@ body {
   width: 100%;
   height: 100%;
   display: none;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
   z-index: 999; /* Asegúrate de que esté sobre otros elementos */
 }
 
 .modal__container {
-  width: 300px;
-  /* height: fit-content; */
+  width: fit-content; /*Para que se ajuste siempre al contenido que se muestra en el modal y no de problemas*/
   max-width: 500px;
   background: var(--white);
   border-radius: 20px;
@@ -378,4 +374,51 @@ body {
 }
 .tournaments__filter {
   position: fixed;
+}
+
+/**FORMULARIO DE VOTACION DE RONDAS **/
+.round-vote-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.round-vote-form__video-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.round-vote-form__criteria-item {
+  margin-bottom: 15px;
+}
+
+.round-vote-form__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.round-vote-form__input {
+  width: 100%;
+}
+
+.round-vote-form__submit-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.round-vote-form__submit-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.round-vote-form__submit-button:hover {
+  background-color: #0056b3;
 }

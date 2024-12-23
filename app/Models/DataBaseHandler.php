@@ -573,4 +573,15 @@ class DataBaseHandler extends Model
             return false;
         }
     }
+
+    /**
+     * 
+     * @return array
+     */
+    public function jls_get_tournament_scoring_criteria()
+    {
+        $builder = $this->db->table('criterios');
+        $result = $builder->get();
+        return $result->getResultArray();
+    }
 }

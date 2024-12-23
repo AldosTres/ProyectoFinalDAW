@@ -44,6 +44,7 @@
                     <li data-section="settings" class="sidebar__item" id="sidebar-settings">
                         <i class="fa-solid fa-gear"></i>
                         <a class="sidebar__link" href="">Configuración</a>
+                        <!-- <input type="range" name="" id="" max="10" step="0.5"> -->
                     </li>
                 </ul>
             </div>

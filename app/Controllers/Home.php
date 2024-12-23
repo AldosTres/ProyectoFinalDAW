@@ -369,12 +369,22 @@ class Home extends BaseController
         } else {
             $response = [
                 'status' => 'error',
-                'title' => 'Error enfrentamiento, id torneo=' . $tournament_id,
-                'message' => 'id torneo: ' . $tournament_id . 'id_u_1: ' . $first_participant_id . ' id_u_2: ' . $second_participant_id . ' id_ronda: ' . $round_type_id . ' posMatch: ' . $match_position
+                'title' => 'Error enfrentamiento',
+                'message' => 'Ha ocurrido un error al añadir el enfrentamiento'
             ];
         }
 
         // Responder con los datos en formato JSON
+        return json_encode($response);
+    }
+    public function get_scoring_criteria()
+    {
+        $jls_database = new DataBaseHandler();
+        $scoring_criteria = $jls_database->jls_get_tournament_scoring_criteria();
+        $response = [
+            'status' => 'success',
+            'scoring_criteria' => $scoring_criteria
+        ];
         return json_encode($response);
     }
 }

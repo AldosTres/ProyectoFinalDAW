@@ -335,34 +335,38 @@ $(document).ready(function () {
 
                 </ul>
             </form>`;
-    
-            // Mostrar modal con el formulario
-            showModal('Selecciona participantes', participantsForm, () => {
-                //Para que el boton confirmar solo cierre en caso de que participants no tenga ningun elemento
-                if (participants.length > 0) {
+            if (participants.length > 0) {
+                // Mostrar modal con el formulario
+                showModal('Selecciona participantes', participantsForm, () => {
+                    //Para que el boton confirmar solo cierre en caso de que participants no tenga ningun elemento
                     const selectedCheckboxes = $('.participants__form-item-checkbox:checked');
                     if (selectedCheckboxes.length !== 2) {
                         showModal('Elección de participantes', 'Tienes que seleccionar exactamente 2 participantes.');
-                        return;
                     }
-        
                     // Obtener los valores seleccionados
                     const selectedParticipants = [];
                     selectedCheckboxes.each(function () {
-                        selectedParticipants.push($(this).val());
-                    });
-        
+                        selectedParticipants.push($(this).val())
+                    })
                     // Enviar los participantes seleccionados
-                    submitParticipantForm(tournamentId, matchPosition, roundId, selectedParticipants[0], selectedParticipants[1]);
-                }
-            });
+                    submitParticipantForm(tournamentId, matchPosition, roundId, selectedParticipants[0], selectedParticipants[1])
+                })
+            } else {
+                showModal('Selecciona participantes', participantsForm)
+            }
         });
     }
     
-
     $('#tournaments').on('click', '#add-participants', loadAndDisplayParticipantsForm)
 
-
+    /**
+     * Función que añade enfrentamientos a un torneo específico
+     * @param {*} tournamentId 
+     * @param {*} matchPosition 
+     * @param {*} roundId 
+     * @param {*} firstParticipantId 
+     * @param {*} secondParticipantId 
+     */
     function submitParticipantForm(tournamentId, matchPosition, roundId, firstParticipantId, secondParticipantId) {
         
         let url = `admin/tournament/bracket/${tournamentId}/add-participant`
@@ -371,4 +375,69 @@ $(document).ready(function () {
             showModal(data.title, data.message)
         })
     }
-});
+
+    /**
+     * Función que a partir de un criterio, genera un template de un input:range para un formulario
+     * @param {*} criteria 
+     * @returns 
+     */
+    function generateRoundResultForm(criteria) {
+        return `
+                <div class="round-vote-form__criteria-item">
+                    <label class="round-vote-form__label" for="${criteria.nombre}">${criteria.nombre}:</label>
+                    <input 
+                        class="round-vote-form__input" 
+                        type="range" 
+                        id="${criteria.nombre}" 
+                        name="${criteria.nombre}" 
+                        min="1" 
+                        max="10" 
+                        step="0.5"  
+                        value="5">
+                </div>       
+                `
+    }
+
+    /**
+     * Función que muestra en un modal el formulario de votación sobre un bailarin
+     * @param {*} params 
+     */
+    function handleRoundResultForm(params) {
+        let criteriaFormStart = `
+                                <form class="round-vote-form">
+                                    <!-- Contenedor del iframe -->
+                                    <div class="round-vote-form__video-container">
+                                        <iframe 
+                                            class="round-vote-form__video" 
+                                            id="video-frame" 
+                                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                            width="352" 
+                                            height="198" 
+                                            frameborder="0" 
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <!-- Contenedor de los criterios -->
+                                    <div class="round-vote-form__criteria">
+                                `
+        loadRenderedData('GET', 'admin/tournament/scoring-criteria', {}, (data) => {
+            let rows = renderItems(data.scoring_criteria, generateRoundResultForm)
+            let criteriaForm = `
+                                    ${criteriaFormStart}
+                                        ${rows}
+                                    </div>
+                                </form>
+                                `
+            showModal('Calificación participante', criteriaForm, () => {})
+            $('#modal').on('input', '#ratoncita', function () {
+                $('#esto').html($('#ratoncita').val());
+            });
+        })
+    }
+
+    $('#tournaments').on('click', '.tournament__bracket-participant', handleRoundResultForm)
+
+    // $('#tournaments').on('click', '#ratoncita', () => {
+    //     console.log($('#ratoncita').val())
+    // })
+})

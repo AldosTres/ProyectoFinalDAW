@@ -19,6 +19,7 @@ $routes->get('admin/tournament/list', 'Home::get_tournaments');
 $routes->get('admin/tournament/get-data-for-edit', 'Home::get_tournament_for_edit');
 $routes->post('admin/tournament/update', 'Home::edit_tournament');
 $routes->get('admin/tournament/participants', 'Home::get_tournament_participants');
+$routes->get('admin/tournament/scoring-criteria', 'Home::get_scoring_criteria');
 /**
    tournaments/bracket/(:num): Define la URL que responderá a la solicitud, donde (:num) es un comodín que captura un número, representando el ID del torneo.
    TournamentsController::getBracket/$1: Especifica que el método getBracket del controlador TournamentsController manejará la solicitud. El $1 pasa el valor capturado en (:num) al método.
