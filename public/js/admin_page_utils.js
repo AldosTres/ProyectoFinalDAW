@@ -54,8 +54,13 @@ export function loadRenderedData(type, url, params = {}, succesFunction, isFormD
             }
         },
         error: function (xhr, status, error) {
-            showModal('Error', 'Ocurrió un problema al enviar la solicitud.');
-            console.error('Error:', status, error);
+            console.error('Detalles del error AJAX:', 
+                url,
+                status,
+                error,
+                xhr.responseText
+            )
+            showModal('Error', `Ocurrió un problema al enviar la solicitud: ${status}.`);
         }
     });
 }

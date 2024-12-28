@@ -387,4 +387,46 @@ class Home extends BaseController
         ];
         return json_encode($response);
     }
+
+    public function upload_participant_scores($tournament_id, $round_id, $participant_id)
+    {
+        $jls_database = new DataBaseHandler();
+        // Captura y decodifica el array de puntuaciones
+        $scores = $this->request->getPost('scores');
+        $decodedScores = json_decode($scores, true);
+        // Validar el array
+        if (!is_array($decodedScores) || empty($decodedScores)) {
+            return json_encode([
+                'status' => 'Error',
+                'title' => 'Puntuaciones no válidas o vacías.'
+            ]);
+        } else {
+            $result = $jls_database->jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $decodedScores);
+            if ($result['status'] === 'success') { // determinar ganador si es posible
+                $winnerResult = $jls_database->jls_determine_and_register_winner($tournament_id, $round_id);
+                if ($winnerResult['status'] === 'success') {
+                    // Crear o actualizar siguiente ronda
+                    $nextRoundResult = $jls_database->add_next_round($tournament_id, $round_id, $winnerResult['winner']);
+                    if ($nextRoundResult['status'] === 'success') {
+                        return json_encode([
+                            'status' => 'success',
+                            'title' => 'Puntuaciones y enfrentamiento',
+                            'message' => 'Se añadieron las puntuaciones y se generaron nuevo enfrentamientos'
+                        ]);
+                    }
+                }
+                return json_encode([
+                    'status' => 'success',
+                    'title' => 'Puntuaciones añadidas',
+                    'message' => 'Se añadieron las puntuaciones del participante pero ' . $winnerResult['message']
+                ]);
+            } else {
+                return json_encode([
+                    'status' => 'success',
+                    'title' => 'Puntuaciones',
+                    'message' => $result['message']
+                ]);
+            }
+        }
+    }
 }

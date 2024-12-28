@@ -558,7 +558,7 @@ class DataBaseHandler extends Model
         try {
             $builder = $this->db->table('rondas r');
             // $builder->select('r.id, u1.alias_usuario AS participante1_alias, u2.alias_usuario AS participante2_alias, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
-            $builder->select('r.id, i1.alias AS participante1_alias, i2.alias AS participante2_alias, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
+            $builder->select('r.id, i1.alias AS participante1_alias, i2.alias AS participante2_alias, i1.id AS participante1_id, i2.id AS participante2_id, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
             // sí o sí necesito hacer dos JOIN porque estás consultando la tabla inscripciones dos veces para
             // relacionarla con diferentes campos de la tabla rondas: id_participante1 y id_participante2. 
             $builder->join('inscripciones i1', 'r.id_participante1 = i1.id');
@@ -566,7 +566,7 @@ class DataBaseHandler extends Model
             // $builder->join('usuarios u1', 'i1.id_usuario = u1.id');
             // $builder->join('usuarios u2', 'i2.id_usuario = u2.id');
             $builder->where('r.id_torneo', $tournament_id);
-            $builder->orderBy('r.posicion_enfrentamiento', 'ASC');
+            $builder->orderBy('r.id_tipo_ronda', 'ASC');
             $result = $builder->get();
             return $result->getResultArray();
         } catch (\Throwable $th) {
@@ -575,13 +575,166 @@ class DataBaseHandler extends Model
     }
 
     /**
-     * 
+       Función que devuelve los criterios de puntuación de los torneos
      * @return array
      */
-    public function jls_get_tournament_scoring_criteria()
+    function jls_get_tournament_scoring_criteria()
     {
         $builder = $this->db->table('criterios');
         $result = $builder->get();
         return $result->getResultArray();
+    }
+
+    /**
+       Función que se encarga de subir puntuaciones y en caso de que haya puntuaciones para dos participantes
+       añade el resultado en la tabla rondas
+     * @param mixed $tournament_id
+     * @param mixed $round_id
+     * @param mixed $participant_id
+     * @param mixed $scores
+     * @throws \Exception
+     * @return array
+     */
+    public function jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $scores)
+    {
+        try {
+            // Iniciar transacción solo para insertar puntuaciones
+            $this->db->transStart();
+
+            foreach ($scores as $scoreData) {
+                $data = [
+                    'id_torneo' => $tournament_id,
+                    'id_ronda' => $round_id,
+                    'id_participante' => $participant_id,
+                    'id_criterio' => $scoreData['criterionId'],
+                    'puntuacion' => $scoreData['score'],
+                ];
+                $this->db->table('puntuaciones')->insert($data);
+            }
+
+            $this->db->transComplete();
+
+            if ($this->db->transStatus() === FALSE) {
+                throw new \Exception("Error al insertar puntuaciones");
+            }
+
+            return [
+                'status' => 'success',
+                'message' => 'Puntuaciones registradas exitosamente.',
+            ];
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return [
+                'status' => 'error',
+                'message' => 'Hubo un problema al registrar las puntuaciones.',
+            ];
+        }
+    }
+
+    /**
+       Función que determina y registra un ganador de un enfrentamiento
+     * @param mixed $tournament_id
+     * @param mixed $round_id
+     * @return array
+     */
+    public function jls_determine_and_register_winner($tournament_id, $round_id)
+    {
+        try {
+            // Verificar si ya hay puntuaciones de ambos participantes
+            $builder = $this->db->table('puntuaciones');
+            $builder->select('id_participante, SUM(puntuacion) as total');
+            $builder->where('id_ronda', $round_id);
+            $builder->where('id_torneo', $tournament_id);
+            $builder->groupBy('id_participante');
+            $query = $builder->get();
+            $results = $query->getResultArray();
+
+            if (count($results) === 2) {
+                $winner = ($results[0]['total'] > $results[1]['total']) ?
+                    $results[0]['id_participante'] :
+                    $results[1]['id_participante'];
+
+                // Actualizar el ganador en la tabla rondas
+                $this->db->table('rondas')
+                    ->set('resultado', $winner)
+                    ->where('id', $round_id)
+                    ->update();
+
+                return [
+                    'status' => 'success',
+                    'message' => 'Ganador registrado exitosamente.',
+                    'winner' => $winner,
+                ];
+            }
+            if (count($results) < 2) {
+                return [
+                    'status' => 'pending',
+                    'message' => 'No se ha podido determinar un ganador aún.',
+                ];
+            }
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return [
+                'status' => 'error',
+                'message' => 'Hubo un problema al determinar el ganador.',
+            ];
+        }
+    }
+
+    public function add_next_round($tournament_id, $round_id, $winner_id)
+    {
+        try {
+            // Obtener datos del enfrentamiento actual
+            $builder = $this->db->table('rondas');
+            $currentRound = $builder->select('posicion_enfrentamiento, id_tipo_ronda')
+                ->where('id', $round_id)
+                ->get()
+                ->getRowArray();
+
+            if (!$currentRound) {
+                throw new \Exception('Ronda no encontrada.');
+            }
+
+            // Calcular siguiente posición y tipo de ronda
+            $nextPosition = ceil($currentRound['posicion_enfrentamiento'] / 2);
+            $nextRoundType = $currentRound['id_tipo_ronda'] + 1; // Incrementa el tipo de ronda
+
+            // Verificar si ya existe el siguiente enfrentamiento
+            $builder = $this->db->table('rondas');
+            $existingRound = $builder->where([
+                'id_torneo' => $tournament_id,
+                'id_tipo_ronda' => $nextRoundType,
+                'posicion_enfrentamiento' => $nextPosition,
+            ])->get()->getRowArray();
+
+            if ($existingRound) {
+                // Actualizar participante2
+                $this->db->table('rondas')
+                    ->set('id_participante2', $winner_id)
+                    ->where('id', $existingRound['id'])
+                    ->update();
+            } else {
+                // Crear un nuevo enfrentamiento
+                $data = [
+                    'id_torneo' => $tournament_id,
+                    'id_participante1' => $winner_id,
+                    'id_participante2' => null,
+                    'id_tipo_ronda' => $nextRoundType,
+                    'posicion_enfrentamiento' => $nextPosition,
+                ];
+                $this->db->table('rondas')->insert($data);
+            }
+
+            return [
+                'status' => 'success',
+                'message' => 'Siguiente ronda creada o actualizada exitosamente.',
+            ];
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return [
+                'status' => 'error',
+                'message' => 'Error al crear la siguiente ronda: ' . $e->getMessage(),
+            ];
+        }
     }
 }
