@@ -9,6 +9,7 @@ class Home extends BaseController
     public function index(): string
     {
         $jls_database = new DatabaseHandler();
+
         $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
         $data['tournaments'] = $tournaments;
         $data['title'] = 'Jumpstyle League Series';
@@ -145,10 +146,11 @@ class Home extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function get_tournament_info_page(): string
+    public function get_tournament_info_page($jls_tournament_id): string
     {
         $jls_database = new DataBaseHandler();
-        $jls_tournament_id = $this->request->getPost('tournament_id');
+        // $jls_tournament_id = $this->request->getPost('tournament_id');
+        // $jls_tournament_id = $_GET['tournament_id'];
         $jls_participants = $jls_database->jls_get_tournament_participants($jls_tournament_id);
         $data['participants'] = $jls_participants;
         $data['title'] = 'Torneo';
@@ -163,12 +165,13 @@ class Home extends BaseController
     public function get_tournaments()
     {
         $jls_database = new DataBaseHandler();
-        $status = isset($_GET['status']) ? $_GET['status'] : 'all'; //Cuando no está seteado, por defecto es todos. Recibo del js.
-        $tournaments = $jls_database->jls_get_tournaments_by_filter($status);
+        $status = $_GET['status'] ?? null; //Cuando no está seteado, por defecto es todos. Recibo del js.
+        $name = $_GET['name'] ?? null;
+        $tournaments = $jls_database->jls_get_tournaments_by_filter($status, $name);
 
         $response = [
             'status' => 'success',
-            'tournaments' => $tournaments
+            'tournaments' => $tournaments,
         ];
 
         return json_encode($response);
@@ -232,6 +235,20 @@ class Home extends BaseController
         }
         return json_encode($response);
     }
+
+    public function change_tournament_status($tournament_id)
+    {
+        $jls_database = new DataBaseHandler();
+        $tournament_status = $this->request->getGet('tournamentStatus');
+        $result = $jls_database->jls_change_tournament_status($tournament_id, $tournament_status);
+        $response = [
+            'status' => 'success',
+            'title' => 'Cambio exitoso',
+            'message' => 'Se ha cambiado correctamente el estado del torneo'
+        ];
+        return json_encode($response);
+    }
+
     public function get_tournament_participants()
     {
         $jls_database = new DataBaseHandler();
@@ -252,7 +269,7 @@ class Home extends BaseController
         }
     }
 
-    public function get_users()
+    public function get_users($page, $items_per_page)
     {
         // alias, role, status, registrationStart, registrationEnd
         $jls_database = new DataBaseHandler();
@@ -261,11 +278,16 @@ class Home extends BaseController
         $status = $_GET['status'] ?? 'all';;
         $registration_start = $this->request->getGet('registrationStart') ?? null;
         $registration_end = $this->request->getGet('registrationEnd') ?? null;
-        $users = $jls_database->jls_get_users_by_filter($alias, $role, $status, $registration_start, $registration_end);
+
+        $offset = max(0, ($page - 1) * $items_per_page);
+
+        $users = $jls_database->jls_get_users_by_filter($alias, $role, $status, $registration_start, $registration_end, $items_per_page, $offset);
+        $total_users = $jls_database->jls_count_users_by_filter($alias, $role, $status, $registration_start, $registration_end);
 
         $response = [
             'status' => 'success',
-            'users' => $users
+            'users' => $users,
+            'total_pages' => $items_per_page > 0 ? ceil($total_users / $items_per_page) : 0
         ];
         return json_encode($response);
     }
@@ -338,7 +360,6 @@ class Home extends BaseController
         // Lógica para obtener el bracket del torneo con el ID dado
         $jls_database = new DataBaseHandler();
         $rounds_type = $jls_database->jls_get_rounds();
-        //revisar
         $created_rounds = $jls_database->jls_get_round_info($tournament_id);
 
         $response = [
@@ -404,7 +425,7 @@ class Home extends BaseController
             $result = $jls_database->jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $decodedScores);
             if ($result['status'] === 'success') { // determinar ganador si es posible
                 $winnerResult = $jls_database->jls_determine_and_register_winner($tournament_id, $round_id);
-                if ($winnerResult['status'] === 'success') {
+                if ($winnerResult['status'] === 'success' && $round_id != 3) {
                     // Crear o actualizar siguiente ronda
                     $nextRoundResult = $jls_database->add_next_round($tournament_id, $round_id, $winnerResult['winner']);
                     if ($nextRoundResult['status'] === 'success') {

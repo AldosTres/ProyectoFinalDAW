@@ -17,13 +17,19 @@ $(document).ready(function () {
                         <td class="users__list-table-item">${user.alias_usuario}</td>
                         <td class="users__list-table-item">${user.rol_nombre}</td>
                         <td class="users__list-table-item">
-                            <span class="users__list-status users__list-status--${isActive ? 'active' : 'inactive'}" data-id="${user.activo}">${isActive ? 'ACTIVO' : 'INACTIVO'}</span>
+                            <span class="users__list-status users__list-status--${isActive ? 'active' : 'inactive'}" data-id="${user.activo}">${isActive ? 'Activo' : 'Inactivo'}</span>
                         </td>
                         <td class="users__list-table-item">${user.fecha_registro}</td>
-                        <td class="users__list-table-item">${user.ultima_conexion}</td>
+                        <td class="users__list-table-item">${user.ultima_conexion ?? 'No disponible'}</td>
                         <td class="users__list-table-item users__list-table-item--actions">
-                            <button class="users__list-table-button users_list-table-button--change-rol" id="user-change-rol" data-id="${user.id}">Cambiar Rol</button>
-                            <button class="users__list-table-button users_list-table-button--${isActive ? 'desactivate' : 'activate'}" id="user-change-status" data-id="${user.id}">${isActive? 'DESACTIVAR' : 'ACTIVAR'}</button>
+                            <div class="tooltip-container">
+                                <button class="users__list-table-button list-table-button users_list-table-button--change-rol tooltip-container__button" data-id="${user.id}"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+                                <span class="tooltip-container__text">Cambiar rol</span>
+                            </div>
+                            <div class="tooltip-container">
+                                <button class="users__list-table-button list-table-button users_list-table-button--${isActive ? 'desactivate' : 'activate'} users_list-table-button--change-status" data-id="${user.id}">${isActive? '<i class="fa-solid fa-user-slash"></i>' : '<i class="fa-solid fa-user-check"></i>'}</button>
+                                <span class="tooltip-container__text">${isActive ? 'Desactivar usuario' : 'Activar usuario'}</span>
+                            </div>
                         </td>
                     </tr>`
     }
@@ -31,22 +37,46 @@ $(document).ready(function () {
      * Funcion que obtiene los valores del filtro, y dependiendo del filtro obtiene unos usuarios u otros,
      * En caso de que no exista filtro, muestro todos los usuarios seguidamente muestra estos torneos en #user-list
      */
-    function loadUsersByStatus() {
+    function loadUsersByStatus(page = 1) {
+        //Siempre voy a querer mostrar 10 usuarios por página
+        const itemsPerPage = 8
         //Obtención de los estados de cada filtro
         let alias = $('#user-alias-search').val()
         let role = $('#filter-role').val()
         let status = $('#filter-status').val()
         let registrationStart = $('#registration-start').val()
         let registrationEnd = $('#registration-end').val()
-        loadRenderedData('GET', 'admin/users/list', {alias, role, status, registrationStart, registrationEnd}, (data) => {
+    
+        let url = `admin/users/list/${page}/${itemsPerPage}`
+        loadRenderedData('GET', url, {alias, role, status, registrationStart, registrationEnd}, (data) => {
             let users = data.users
             let rows = renderItems(users, generateUserRowTemplate)
             $('#user-list').empty().append(rows)
+            // Genero la paginación
+            renderPagination(data.total_pages, page);
         })
     }
 
-    $('#sidebar-users').on('click', loadUsersByStatus)
-    $('#user-filter-button').on('click', loadUsersByStatus)
+    //Para no pasar nada a la función de primeras
+    $('#sidebar-users').on('click', () => loadUsersByStatus());
+    $('#user-filter-button').on('click', () => loadUsersByStatus());
+
+
+    function renderPagination(totalPages, currentPage) {
+        let paginationContainer = $('#pagination-container');
+        paginationContainer.empty();
+    
+        for (let i = 1; i <= totalPages; i++) {
+            paginationContainer.append(`
+                <button class="pagination__button ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+            `);
+        }
+    
+        $('.pagination__button').on('click', function () {
+            let page = parseInt($(this).attr('data-page'), 10); // Conversión
+            loadUsersByStatus(page)
+        });
+    }
 
     //
 
@@ -73,7 +103,7 @@ $(document).ready(function () {
      * Muestra un modal dinámico para cambiar el rol de un usuario
      */
     function handleRolForm() {
-        let userId = $('#user-change-rol').attr('data-id') //Id del usuario para tenerlo
+        let userId = $(this).attr('data-id') //Id del usuario para tenerlo
         //Contrucción del formulario
         let rolForm = `<form action="" class="users__form" id="user-rol-form">
                             <div class="userss__field">
@@ -95,10 +125,10 @@ $(document).ready(function () {
             })
         })                         
     }
-    $('#user-list').off('click', '#user-change-rol').on('click', '#user-change-rol', handleRolForm)
+    $('#user-list').off('click', '.users_list-table-button--change-rol').on('click', '.users_list-table-button--change-rol', handleRolForm)
 
-    function updateUserRol() {
-        let userId = $('#user-change-status').attr('data-id'); // Obtiene el ID del usuario
+    function updateUserStatus() {
+        let userId = $(this).attr('data-id'); // Obtiene el ID del usuario
         let userStatus = $('.users__list-status').attr('data-id');
         if (!userId || !userStatus) {
             showModal('Error', 'No se pudo obtener el ID o estado del usuario.')
@@ -108,6 +138,6 @@ $(document).ready(function () {
             })
         }
     }
-    $('#user-list').off('click', '#user-change-status').on('click', '#user-change-status', updateUserRol)
+    $('#user-list').off('click', '.users_list-table-button--change-status').on('click', '.users_list-table-button--change-status', updateUserStatus)
 
 });

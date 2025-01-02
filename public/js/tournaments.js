@@ -14,21 +14,35 @@ $(document).ready(function () {
      * @returns 
      */
     function generateTournamentRowTemplate (tournament) {
-            return `<tr class="tournaments__list-table-row">
-                        <td class="tournaments__list-table-item" id="tournament-id">${tournament.id}</td>
-                        <td class="tournaments__list-table-item">${tournament.nombre}</td>
-                        <td class="tournaments__list-table-item">${tournament.fecha_inicio}</td>
-                        <td class="tournaments__list-table-item">${tournament.fecha_fin}</td>
-                        <td class="tournaments__list-table-item">
-                            <span class="tournaments__list-status tournaments__list-status--active">${tournament.activo}</span>
-                        </td>
-                        <td class="tournaments__list-table-item tournaments__list-table-item--actions">
-                            <button class="tournaments__list-table-button tournaments_list-table-button--edit" data-id="${tournament.id}"><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button class="tournaments__list-table-button tournaments_list-table-button--delete"><i class="fa-regular fa-trash-can"></i></button>
-                            <button class="tournaments__list-table-button tournaments_list-table-button--show-participants" data-id="${tournament.id}"><i class="fa-regular fa-id-card"></i></button>
-                            <button class="tournaments__list-table-button tournaments_list-table-button--manage-tournament" data-id="${tournament.id}"><i class="fa-solid fa-gears"></i></button>
-                        </td>
-                    </tr>`
+        const isActive = tournament.activo == 1 ? true : false; // Verifica si el usuario está activo (1 para activo, 0 para inactivo) VALOR TINYINT
+        return `<tr class="tournaments__list-table-row">
+                    <td class="tournaments__list-table-item" id="tournament-id">${tournament.id}</td>
+                    <td class="tournaments__list-table-item">${tournament.nombre}</td>
+                    <td class="tournaments__list-table-item">${tournament.fecha_inicio}</td>
+                    <td class="tournaments__list-table-item">${tournament.fecha_fin}</td>
+                    <td class="tournaments__list-table-item">
+                        <span class="tournaments__list-status tournaments__list-status--active" status-id-data="${tournament.activo}">${isActive ? 'Activo' : 'Inactivo'}</span>
+                    </td>
+                    <td class="tournaments__list-table-item tournaments__list-table-item--actions">
+                        <div class="tooltip-container" data-id="${tournament.id}">
+                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--edit" data-id="${tournament.id}"><i class="fa-regular fa-pen-to-square"></i></button>
+                            <span class="tooltip-container__text">Editar torneo</span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--change-status" data-id="${tournament.id}"><i class="fa-regular fa-trash-can"></i></button>
+                            <span class="tooltip-container__text">${isActive ? 'Desactivar Torneo' : 'Activar torneo'}</span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--show-participants" data-id="${tournament.id}"><i class="fa-regular fa-id-card"></i></button>
+                            <span class="tooltip-container__text">Mostrar participantes</span>
+                        </div>
+
+                        <div class="tooltip-container">
+                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--manage-tournament" data-id="${tournament.id}"><i class="fa-solid fa-gears"></i></button>
+                            <span class="tooltip-container__text">Gestiornar torneo</span>
+                        </div>
+                    </td>
+                </tr>`
     }
 
     /**
@@ -37,7 +51,8 @@ $(document).ready(function () {
      */
     function loadTournamentsByStatus() {
         let status = $('#tournament-filter-status').val()
-        loadRenderedData('GET','admin/tournament/list', {status}, (data) => {
+        let name = $('#tournament-search').val()
+        loadRenderedData('GET','admin/tournament/list', {status, name}, (data) => {
             let tournaments = data.tournaments
             let rows = renderItems(tournaments, generateTournamentRowTemplate)
             $('#tournament-list').empty().append(rows)
@@ -55,26 +70,22 @@ $(document).ready(function () {
      * @returns 
      */
     function generateTournamentFormTemplate(tournament) {
-        return `<form method="post" class="tournaments__form" enctype="multipart/form-data" id="edit-tournament-form">
-                    <div class="tournaments__field form-group row">
-                        <label for="tournament-name" class="tournaments__field-label">Nombre del torneo:</label>
-                        <input type="text" name="edit-name" id="edit-tournament-name" class="tournaments__field-input form-control" value="${tournament.nombre}">
+        return `<form method="post" class="tournaments__form form" enctype="multipart/form-data" id="edit-tournament-form">
+                    <div class="tournaments__field form-group row form__field">
+                        <label for="tournament-name" class="tournaments__field-label form__field-label">Nombre del torneo:</label>
+                        <input type="text" name="edit-name" id="edit-tournament-name" class="tournaments__field-input form__field-input" value="${tournament.nombre}">
                     </div>
-                    <div class="tournaments__field">
-                        <label for="tournament-start-date" class="tournaments__field-label">Fecha de inicio:</label>
-                        <input type="date" name="edit-start-date" id="edit-tournament-start-date" class="tournaments__field-input" value="${tournament.fecha_inicio}">
+                    <div class="tournaments__field form__field">
+                        <label for="tournament-start-date" class="tournaments__field-label form__field-label">Fecha de inicio:</label>
+                        <input type="date" name="edit-start-date" id="edit-tournament-start-date" class="tournaments__field-input form__field-input" value="${tournament.fecha_inicio}">
                     </div>
-                    <div class="tournaments__field">
-                        <label for="tournament-end-date" class="tournaments__field-label">Fecha de finalización:</label>
-                        <input type="date" name="edit-end-date" id="edit-tournament-end-date" class="tournaments__field-input" value="${tournament.fecha_fin}">
+                    <div class="tournaments__field form__field">
+                        <label for="tournament-end-date" class="tournaments__field-label form__field-label">Fecha de finalización:</label>
+                        <input type="date" name="edit-end-date" id="edit-tournament-end-date" class="tournaments__field-input form__field-input" value="${tournament.fecha_fin}">
                     </div>
-                    <div class="tournaments__field">
-                        <label for="tournament-logo" class="tournaments__field-label">Logotipo del torneo:</label>
-                        <input type="file" name="edit-logo" id="edit-tournament-logo" class="tournaments__field-input tournaments__field-input--file" accept=".jpg" required>
-                    </div>
-                    <div class="tournaments__buttons">
-                        <button type="submit" class="tournaments__button form-tournament__button--submit">Crear</button>
-                        <button type="reset" class="tournaments__button form-tournament__button--reset">Borrar datos</button>
+                    <div class="tournaments__field form__field">
+                        <label for="tournament-logo" class="tournaments__field-label form__field-label">Logotipo del torneo:</label>
+                        <input type="file" name="edit-logo" id="edit-tournament-logo" class="tournaments__field-input form__field-input tournaments__field-input--file" accept=".jpg" required>
                     </div>
                     <input type="hidden" name="tournament-id" value="${tournament.id}">
                 </form>`
@@ -113,8 +124,23 @@ $(document).ready(function () {
      * aplicamos el evento .on() pero a un ancestro de estos existente ya en el DOM, de esta manera, cualquier boton añadido dinamicamente
      * se controla fácilmente
      */
-    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--edit', handelTournamentEdit)
+    $('.tournaments__list-table').on('click', '.tournaments__list-table-button--edit', handelTournamentEdit)
 
+
+    function updateTournamentStatus() {
+        let tournamentId = $(this).attr('data-id'); // Obtiene el ID del usuario
+        let tournamentStatus = $('.tournaments__list-status').attr('status-id-data');
+        console.log(tournamentStatus)
+        if (!tournamentId || !tournamentStatus) {
+            showModal('Error', 'No se pudo obtener el ID o estado del torneo.')
+        } else {
+            let url = `admin/tournament/change-status/${tournamentId}`
+            loadRenderedData('GET', url, {tournamentStatus}, (data) => {
+                showModal(data.title, data.message)
+            })
+        }
+    }
+    $('#tournament-list').off('click', '.tournaments__list-table-button--change-status').on('click', '.tournaments__list-table-button--change-status', updateTournamentStatus)
 
     /**
      * 
@@ -153,7 +179,7 @@ $(document).ready(function () {
             showModal('Participantes', participantsTable)
         })        
     }
-    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--show-participants', handleTournamentParticipants)
+    $('.tournaments__list-table').on('click', '.tournaments__list-table-button--show-participants', handleTournamentParticipants)
 
     /**
      * Función que calcula el número de enfrentamientos de un torneo dependiendo del numero de participantes y el índice de ronda
@@ -234,6 +260,7 @@ $(document).ready(function () {
     }
     
 
+
     /**
      * Función que genera un template de bracket de un torneo dinámico
      * @param {*} rounds 
@@ -285,7 +312,7 @@ $(document).ready(function () {
     }
     
 
-    $('.tournaments__list-table').on('click', '.tournaments_list-table-button--manage-tournament', loadAndRenderTournamentBracket)
+    $('.tournaments__list-table').on('click', '.tournaments__list-table-button--manage-tournament', loadAndRenderTournamentBracket)
     // Participante
     
 
@@ -473,6 +500,6 @@ $(document).ready(function () {
             } else {
                 showModal('Error', 'No se pudieron cargar los criterios de puntuación.');
             }
-        });
+        })
     }    
 })

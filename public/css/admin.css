@@ -3,6 +3,7 @@
   --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
+  --viridian-shadow: hsla(154, 15%, 35%, 0.6);
   --platinum: hsla(0, 0%, 87%, 1);
   --success: #04aa6d;
   --success-transition: #46a049;
@@ -16,77 +17,183 @@
   font-family: "Raleway", sans-serif;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* General layout */
 .admin {
-  width: 100%;
   display: flex;
-  height: 100vh;
 }
 
+/* Sidebar styles */
 .sidebar {
-  background-color: var(--viridian);
-  width: 15%;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
+  width: 280px;
+  background-color: var(--bs-dark);
+  color: white;
+  overflow-y: auto;
 }
 
-.sidebar__logo img {
-  width: 100%;
-  height: auto;
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .sidebar__content {
-  padding: 10px;
-}
-
-.sidebar__list {
   list-style: none;
-  margin: 0;
   padding: 0;
-  padding-left: 2%;
-  margin-top: 40%;
+  margin: 0;
 }
 
 .sidebar__item {
-  padding: 5%;
-  height: 50px;
-  font-size: 20px;
-  margin-top: 3%;
-  border-bottom: 2px solid rgb(74, 108, 93);
-  transition: background-color 0.3s, color 0.3s;
+  margin: 10px 0;
 }
 
-.sidebar__link {
-  color: var(--platinum);
-  text-decoration: none;
-  padding-left: 5%;
-  transition: color 0.3s;
+.sidebar__item .nav-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.sidebar__item i {
-  color: var(--platinum);
-  transition: color 0.3s;
+.sidebar__item .nav-link:hover,
+.sidebar__item .nav-link.active {
+  background-color: var(--viridian-shadow);
 }
 
-.sidebar__item:hover .sidebar__link,
-.sidebar__item:hover i {
-  color: var(--white);
-}
-
+/* Main content styles */
 .menu {
-  background-color: var(--platinum);
-  width: 85%;
-  height: max-content;
+  margin-left: 280px;
+  padding: 20px;
+  width: calc(100% - 280px);
+  overflow-x: auto;
+}
+
+.users__title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.users__description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Filter form */
+.users__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.users__field {
+  flex: 1 1 calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.users__field-label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.users__field-input,
+.users__select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Button styles */
+.users_button--filter {
+  padding: 10px 20px;
+  background-color: var(--viridian);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.users_button--filter:hover {
+  background-color: var(--viridian-shadow);
+}
+
+/* Table styles */
+.users__list {
+  overflow-x: auto;
+}
+
+.users__list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users__list-table-header {
+  background-color: var(--viridian-shadow);
+  color: white;
+}
+
+.users__list-table-row {
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.users__list-table-header-item,
+.users__list-table-body td {
   padding: 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button.active {
+  background-color: var(--viridian);
+  color: white;
+}
+
+.pagination-button:hover {
+  background-color: var(--viridian-shadow);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .menu {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .users__field {
+    flex: 1 1 100%;
+  }
 }
 
 .menu__section {
@@ -95,11 +202,85 @@ body {
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
-  height: max-content;
+  height: fit-content;
 }
 
 .menu__section--hidden {
   display: none;
+}
+
+/* Tooltip para botones */
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container .tooltip-container__text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 125%; /* Mueve el tooltip por encima del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.tooltip-container:hover .tooltip-container__text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Botón principal */
+.list-table-button {
+  background-color: var(--viridian); /* Azul claro */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón al pasar el cursor */
+.list-table-button:hover {
+  background-color: var(--viridian-shadow); /* Azul más oscuro */
+  transform: scale(1.05);
+}
+
+/* Iconos dentro del botón */
+.list-table-button i {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+/* Botón específico para activar */
+.list-table-button--activate {
+  background-color: #28a745; /* Verde */
+}
+
+.list-table-button--activate:hover {
+  background-color: #218838; /* Verde oscuro */
+}
+
+/* Botón específico para desactivar */
+.list-table-button--desactivate {
+  background-color: #dc3545; /* Rojo */
+}
+
+.list-table-button--desactivate:hover {
+  background-color: #c82333; /* Rojo oscuro */
 }
 
 /**LOQUEARRRRR*/
@@ -191,31 +372,119 @@ body {
   transition: color 0.4s;
 }
 
-/*TABLAS*/
+.filter-title {
+  padding-top: 1%;
+}
 
-/* Clase base para todas las tablas */
-/* Estilos generales para todas las tablas */
+/** Clase base para todas las tablas **/
+
+.table-header {
+  border-bottom: 4px solid black;
+}
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1rem;
-  text-align: left;
-  background-color: #f9f9f9;
+  text-align: center;
+}
+
+/** Clases para todos los formularios **/
+
+/* Formulario general */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 8px;
+  background-color: #f9f9f9;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.table th,
-.table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+/* Campos del formulario */
+.form__field {
+  flex: 1 1 150px; /* Ocupa al menos 150px pero se adapta */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5%;
 }
 
-.table th {
-  background-color: #f1f1f1;
-  font-weight: bold;
-  text-transform: uppercase;
+.form__field-label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form__field-input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form__field-input--file {
+  padding: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.form__field-input:focus {
+  border-color: var(--viridian);
+  box-shadow: 0 0 4px var(--viridian-shadow);
+  outline: none;
+}
+
+/* Botones del formulario */
+.form__buttons {
+  display: flex;
+  gap: 15px;
+  flex: 1 1 100%;
+  justify-content: flex-end;
+}
+
+.form__button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--viridian);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form__button:hover {
+  background-color: var(--viridian-shadow);
+  transform: translateY(-1px);
+}
+
+.form__button--reset {
+  background-color: #ccc;
+  color: #333;
+}
+
+.form__button--reset:hover {
+  background-color: #b3b3b3;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .form__field {
+    flex: 1 1 100%; /* Campos ocupan toda la fila en pantallas pequeñas */
+  }
+
+  .form__buttons {
+    justify-content: center;
+  }
+}
+
+/** Formulario creación de torneos **/
+
+/** Formulario filtrado usuarios **/
+
+/** Formulario edición torneo**/
+#edit-tournament-form {
+  background-color: rgb(211, 211, 211) !important;
 }
 
 /******************************TOURNAMENT BRACCKET *************************************************/
@@ -412,7 +681,9 @@ body {
   width: 10%;
   padding: 2%;
 }
-
+.adminjillo {
+  background-color: slategrey;
+}
 /* Estilo del track (la línea de fondo del slider) */
 input[type="range"] {
   -webkit-appearance: none; /* Elimina el estilo por defecto en navegadores webkit */

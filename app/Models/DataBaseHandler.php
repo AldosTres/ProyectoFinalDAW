@@ -156,13 +156,13 @@ class DataBaseHandler extends Model
     }
 
     /**
-       Función que obtiene los torneos dependiendo de un estado que se pasa por parámetro
+       Función que obtiene los torneos dependiendo de un estado y nombre que se pasa por parámetro
        Por defecto obtiene todos los torneos
      * @param mixed $status
+     * @param mixed $name
      * @return array
      */
-
-    function jls_get_tournaments_by_filter($status = null)
+    function jls_get_tournaments_by_filter($status = null, $name = null)
     {
         $builder = $this->db->table('torneos');
 
@@ -185,6 +185,10 @@ class DataBaseHandler extends Model
             default:
                 // Mostrar todos los torneos (no se aplican filtros adicionales).
                 break;
+        }
+
+        if ($name && $name != null) {
+            $builder->like('nombre', $name);
         }
 
         $query = $builder->get();
@@ -358,7 +362,6 @@ class DataBaseHandler extends Model
             return false;
         }
     }
-
     // 4. Estadísticas individuales
     // Además del número de torneos en los que ha participado un usuario, puedes agregar:
 
@@ -383,6 +386,26 @@ class DataBaseHandler extends Model
     // Registrar quién realizó cambios importantes como desactivar usuarios o cambiar roles. Esto puede ser útil para rastrear acciones en caso de errores o problemas administrativos.
 
     /**
+       Función que cambia el estado del torneo
+     * @param mixed $user_id
+     * @param mixed $activo
+     * @return bool
+     */
+    function jls_change_tournament_status($tournament_id, $status)
+    {
+        try {
+            $builder = $this->db->table('torneos');
+            $data = [
+                'activo' => !$status
+            ];
+            $builder->update($data, ['id' => $tournament_id]);
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    /**
      * 
        Función que permite obtener usuarios por filtros, en caso de que no haya filtros, obtiene todos
      * @param mixed $alias
@@ -392,7 +415,7 @@ class DataBaseHandler extends Model
      * @param mixed $registration_end
      * @return array
      */
-    function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
+    function jls_get_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null, $limit = 10, $offset = 0)
     {
         //Utilizo alias como u o r para evitar ambiguedades
         $builder = $this->db->table('usuarios u');
@@ -419,9 +442,46 @@ class DataBaseHandler extends Model
             $builder->where('fecha_registro <=', $registration_end);
         }
 
+        // Aplicar límite y desplazamiento
+        $builder->limit($limit, $offset);
+
         $result = $builder->get();
         return $result->getResultArray();
     }
+
+    /**
+       Función que devuelve el número de usuarios y, si es que hay, los que dependen de una serie de filtros
+     * @param mixed $alias
+     * @param mixed $role
+     * @param mixed $status
+     * @param mixed $registration_start
+     * @param mixed $registration_end
+     * @return int|string
+     */
+    function jls_count_users_by_filter($alias = null, $role = null, $status = null, $registration_start = null, $registration_end = null)
+    {
+        $builder = $this->db->table('usuarios u');
+        $builder->join('tipos_rol r', 'r.id = u.id_rol');
+
+        if ($alias && $alias != 'all') {
+            $builder->like('alias_usuario', $alias);
+        }
+        if ($role && $role != 'all') {
+            $builder->where('r.nombre', $role);
+        }
+        if ($status && $status != 'all') {
+            $builder->where('activo', $status);
+        }
+        if ($registration_start) {
+            $builder->where('fecha_registro >=', $registration_start);
+        }
+        if ($registration_end) {
+            $builder->where('fecha_registro <=', $registration_end);
+        }
+
+        return $builder->countAllResults();
+    }
+
 
     /**
      * 
@@ -665,13 +725,18 @@ class DataBaseHandler extends Model
                     'message' => 'Ganador registrado exitosamente.',
                     'winner' => $winner,
                 ];
-            }
-            if (count($results) < 2) {
+            } else {
                 return [
                     'status' => 'pending',
                     'message' => 'No se ha podido determinar un ganador aún.',
                 ];
             }
+            // if (count($results) < 2) {
+            //     return [
+            //         'status' => 'pending',
+            //         'message' => 'No se ha podido determinar un ganador aún.',
+            //     ];
+            // }
         } catch (\Exception $e) {
             log_message('error', $e->getMessage());
             return [
