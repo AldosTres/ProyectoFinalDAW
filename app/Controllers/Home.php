@@ -162,16 +162,22 @@ class Home extends BaseController
         return view('layouts/admin');
     }
 
-    public function get_tournaments()
+    public function get_tournaments($page, $items_per_page)
     {
         $jls_database = new DataBaseHandler();
         $status = $_GET['status'] ?? null; //Cuando no está seteado, por defecto es todos. Recibo del js.
         $name = $_GET['name'] ?? null;
-        $tournaments = $jls_database->jls_get_tournaments_by_filter($status, $name);
+
+        $offset = max(0, ($page - 1) * $items_per_page);
+
+        $tournaments = $jls_database->jls_get_tournaments_by_filter($status, $name, $items_per_page, $offset);
+        $total_tournaments = $jls_database->jls_count_tournaments_by_filter($status, $name);
 
         $response = [
             'status' => 'success',
             'tournaments' => $tournaments,
+            'total_pages' => $items_per_page > 0 ? ceil($total_tournaments / $items_per_page) : 0
+
         ];
 
         return json_encode($response);
@@ -224,7 +230,8 @@ class Home extends BaseController
             $response = [
                 'status' => 'success',
                 'title' => 'Torneo modificado',
-                'message' => 'El torneo ' . $name . ' se ha modificado correctamente'
+                'message' => 'El torneo ' . $name . ' se ha modificado correctamente',
+                'a' => $old_logo_path
             ];
         } else {
             $response = [
@@ -449,5 +456,136 @@ class Home extends BaseController
                 ]);
             }
         }
+    }
+
+    /**
+      Funciones del apartado de eventos
+     */
+
+    public function upload_event()
+    {
+        $jls_database = new DataBaseHandler();
+        $event_name = $this->request->getPost('event-name');
+        $event_description = $this->request->getPost('event-description');
+        $event_start_date = $this->request->getPost('event-start-date');
+        $event_end_date = $this->request->getPost('event-end-date');
+        $event_location = $this->request->getPost('event-location');
+        $event_image = $this->request->getFile('event-image');
+
+        // Generar un identificador único para la imagen del evento
+        $unique_id = uniqid("evento_", true);
+
+        // Verificar si el archivo es válido
+        if ($event_image->isValid() && !$event_image->hasMoved()) {
+            // Obtener la extensión del archivo
+            $file_extension = $event_image->getExtension();
+            // Mover el archivo al destino
+            $event_image->move(LOGO_EVENTS_PATH, $unique_id . '.' . $file_extension);
+            // return redirect()->to('admin')->with('success', 'Entra a crear la imagen');
+        }
+
+        // Llamar al método de la base de datos para guardar los datos
+        $result = $jls_database->jls_upload_new_event(
+            $event_name,
+            $event_description,
+            $event_start_date,
+            $event_end_date,
+            $event_location,
+            $unique_id
+        );
+
+        // Redirigir según el resultado
+        if ($result) {
+            return redirect()->to('admin')->with('success', 'El evento se ha creado correctamente');
+        } else {
+            return redirect()->to('admin')->with('error', 'No se ha podido crear el evento. Verifica si los datos introducidos son correctos');
+        }
+    }
+
+    public function get_events($page, $items_per_page)
+    {
+        // nombre, estado, fechaInicioStart, fechaFinEnd
+        $jls_database = new DataBaseHandler();
+        $event_name = $_GET['name'] ?? 'all';
+        $event_status = $_GET['status'] ?? 'all';
+        $event_start_date = $this->request->getGet('startDate') ?? null;
+        $event_end_date = $this->request->getGet('endDate') ?? null;
+
+        $offset = max(0, ($page - 1) * $items_per_page);
+
+        $events = $jls_database->jls_get_events_by_filter($event_name, $event_status, $event_start_date, $event_end_date, $items_per_page, $offset);
+        $total_events = $jls_database->jls_count_events_by_filter($event_name, $event_status, $event_start_date, $event_end_date);
+
+        $response = [
+            'status' => 'success',
+            'events' => $events,
+            'total_pages' => $items_per_page > 0 ? ceil($total_events / $items_per_page) : 0
+        ];
+        return json_encode($response);
+    }
+    public function get_event_details($event_id)
+    {
+        $jls_database = new DataBaseHandler();
+        $event = $jls_database->jls_get_event_details($event_id);
+        $response = [
+            'status' => 'success',
+            'title' => 'Detalles de evento',
+            'event' => $event,
+
+        ];
+        return json_encode($response);
+    }
+
+    public function edit_event($event_id)
+    {
+        $jls_database = new DataBaseHandler();
+        $event_name = $this->request->getPost('edit-event-name');
+        $event_description = $this->request->getPost('edit-event-description');
+        $event_start_date = $this->request->getPost('edit-event-start-date');
+        $event_end_date = $this->request->getPost('edit-event-end-date');
+        $event_location = $this->request->getPost('edit-event-location');
+        $event_image = $this->request->getFile('edit-event-image');
+
+        $old_event_image = $jls_database->jls_get_event_image_name($event_id);
+        //Identificador unico para el logotipo del torneo
+        $unique_id = uniqid("evento_", true);
+
+        // Verifico si el archivo es válido
+        if ($event_image->isValid() && !$event_image->hasMoved()) {
+            // Obtengo la extensión del archivo
+            $file_extension = $event_image->getExtension();
+            //Logotipo que tenía antes el torneo
+            $old_image_path = LOGO_EVENTS_PATH . $old_event_image . '.jpg';
+            // Muevo el archivo al destino
+            $event_image->move(LOGO_EVENTS_PATH, $unique_id . '.' . $file_extension);
+
+            // Verifico si el archivo existe y lo elimino
+            if (file_exists($old_image_path)) {
+                unlink($old_image_path);  // Elimino el archivo antiguo
+            }
+        }
+        $result = $jls_database->jls_update_event_data(
+            $event_id,
+            $event_name,
+            $event_description,
+            $event_start_date,
+            $event_end_date,
+            $event_location,
+            $unique_id
+        );
+        if ($result) {
+            $response = [
+                'status' => 'success',
+                'title' => 'Evento modificado',
+                'message' => 'El evento ' . $event_name . ' se ha modificado correctamente'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'Error de modificación',
+                'message' => 'Ha ocurrido un error al modificar el Evento'
+            ];
+        }
+        return json_encode($response);
     }
 }

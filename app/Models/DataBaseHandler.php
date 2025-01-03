@@ -162,7 +162,7 @@ class DataBaseHandler extends Model
      * @param mixed $name
      * @return array
      */
-    function jls_get_tournaments_by_filter($status = null, $name = null)
+    function jls_get_tournaments_by_filter($status = null, $name = null, $limit = 10, $offset = 0)
     {
         $builder = $this->db->table('torneos');
 
@@ -191,8 +191,47 @@ class DataBaseHandler extends Model
             $builder->like('nombre', $name);
         }
 
+        $builder->limit($limit, $offset);
+
         $query = $builder->get();
         return $query->getResultArray();
+    }
+
+    /**
+       Función que genera el numero total de torneos segun los filtros pasados
+     * @param mixed $status
+     * @param mixed $name
+     * @return int|string
+     */
+    function jls_count_tournaments_by_filter($status = null, $name = null)
+    {
+        $builder = $this->db->table('torneos');
+
+        switch ($status) {
+            case 'ongoing':
+                $builder->where('fecha_inicio <=', 'CURRENT_TIME', false)
+                    ->where('fecha_fin >=', 'CURRENT_TIME', false);
+                break;
+            case 'active':
+                $builder->where('activo', 1);
+                break;
+            case 'inactive':
+                $builder->where('activo', 0);
+                break;
+            case 'finished':
+                $builder->where('activo', 0)
+                    ->where('fecha_fin <', date('Y-m-d H:i:s'));
+                break;
+            default:
+                // Mostrar todos los torneos (no se aplican filtros adicionales).
+                break;
+        }
+
+        if ($name && $name != null) {
+            $builder->like('nombre', $name);
+        }
+
+        return $builder->countAllResults();
     }
 
     /**
@@ -655,7 +694,7 @@ class DataBaseHandler extends Model
      * @throws \Exception
      * @return array
      */
-    public function jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $scores)
+    function jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $scores)
     {
         try {
             // Iniciar transacción solo para insertar puntuaciones
@@ -697,7 +736,7 @@ class DataBaseHandler extends Model
      * @param mixed $round_id
      * @return array
      */
-    public function jls_determine_and_register_winner($tournament_id, $round_id)
+    function jls_determine_and_register_winner($tournament_id, $round_id)
     {
         try {
             // Verificar si ya hay puntuaciones de ambos participantes
@@ -746,7 +785,7 @@ class DataBaseHandler extends Model
         }
     }
 
-    public function add_next_round($tournament_id, $round_id, $winner_id)
+    function add_next_round($tournament_id, $round_id, $winner_id)
     {
         try {
             // Obtener datos del enfrentamiento actual
@@ -800,6 +839,169 @@ class DataBaseHandler extends Model
                 'status' => 'error',
                 'message' => 'Error al crear la siguiente ronda: ' . $e->getMessage(),
             ];
+        }
+    }
+
+    /*
+     * Apartado de eventos 
+     **/
+
+    function jls_upload_new_event($event_name, $event_description, $event_start_date, $event_end_date, $event_location, $event_logo)
+    {
+        //Comprobación inicial, para corroborar que todos los datos han sido rellenado
+        if (empty($event_name) || empty($event_start_date) || empty($event_end_date)) {
+            log_message('error', 'Faltan datos para crear el evento');
+            return false;
+        }
+        //Datos correspondientes al torneo
+        $data = [
+            'nombre' => $event_name,
+            'descripcion' => $event_description,
+            'fecha_inicio' => $event_start_date,
+            'fecha_fin' => $event_end_date,
+            'link_mapa' => $event_location,
+            'url_imagen' => $event_logo
+        ];
+        try {
+            //Inserto la linea
+            $this->db->table('eventos')->insert($data);
+
+            /**
+             * affectedRows() nos indicará si después de la inserción, se modificó algo en la tabla
+             * > 0, nos indicará que si hubo cambios, = 0 será que no hubo cambio y por ende, no se
+             * insertó
+             */
+            return $this->db->affectedRows() > 0; //Retorn true o false
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 
+     * @param mixed $event_name
+     * @param mixed $event_status
+     * @param mixed $event_start_date
+     * @param mixed $event_end_date
+     * @param mixed $limit
+     * @param mixed $offset
+     * @return array
+     */
+    function jls_get_events_by_filter($event_name = null, $event_status = null, $event_start_date = null, $event_end_date = null, $limit = 10, $offset = 0)
+    {
+        // Utilizo nombre como 'e' para evitar ambigüedades
+        $builder = $this->db->table('eventos e');
+        $builder->select('e.id, e.nombre, e.estado, e.fecha_inicio, e.fecha_fin, e.fecha_creación, e.url_imagen, e.link_mapa'); // Selecciono las columnas necesarias
+        // No es necesario hacer JOIN, ya que los eventos no parecen depender de otras tablas (según lo que has proporcionado)
+
+        // Filtros por nombre de evento
+        if ($event_name && $event_name != 'all') {
+            $builder->like('nombre', $event_name);
+        }
+        // Filtro por estado de evento
+        if ($event_status && $event_status != 'all') {
+            $builder->where('estado', $event_status);
+        }
+
+        // Filtro por fechas
+        if ($event_start_date) {
+            // Buscando eventos que empiezan en la fecha indicada o después
+            $builder->where('fecha_inicio >=', $event_start_date);
+        }
+        if ($event_end_date) {
+            // Buscando eventos que terminan en la fecha indicada o antes
+            $builder->where('fecha_fin <=', $event_end_date);
+        }
+
+        // Aplicar límite y desplazamiento
+        $builder->limit($limit, $offset);
+
+        $result = $builder->get();
+        return $result->getResultArray();
+    }
+
+    /**
+     * 
+     * @param mixed $event_name
+     * @param mixed $event_status
+     * @param mixed $event_start_date
+     * @param mixed $event_end_date
+     * @return int|string
+     */
+    function jls_count_events_by_filter($event_name = null, $event_status = null, $event_start_date = null, $event_end_date = null)
+    {
+        $builder = $this->db->table('eventos e');
+
+        // Filtros por nombre de evento
+        if ($event_name && $event_name != 'all') {
+            $builder->like('nombre', $event_name);
+        }
+        // Filtro por estado de evento
+        if ($event_status && $event_status != 'all') {
+            $builder->where('estado', $event_status);
+        }
+
+        // Filtro por fechas
+        if ($event_start_date) {
+            // Buscando eventos que empiezan en la fecha indicada o después
+            $builder->where('fecha_inicio >=', $event_start_date);
+        }
+        if ($event_end_date) {
+            // Buscando eventos que terminan en la fecha indicada o antes
+            $builder->where('fecha_fin <=', $event_end_date);
+        }
+
+        return $builder->countAllResults();
+    }
+
+    function jls_get_event_details($event_id)
+    {
+        try {
+            $builder = $this->db->table('eventos');
+            $builder->where('id', $event_id);
+            $result = $builder->get();
+            return $result->getRow();
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+       Función que obtiene la imagen de un evento
+     * @param mixed $event_id
+     * @return mixed
+     */
+    function jls_get_event_image_name($event_id)
+    {
+        try {
+            $builder = $this->db->table('eventos');
+            $builder->where('id', $event_id);
+            $result = $builder->get();
+            return $result->getRow()->url_imagen;
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
+    function jls_update_event_data($event_id, $event_name, $event_description, $event_start_date, $event_end_date, $event_location, $event_image)
+    {
+        try {
+            $builder = $this->db->table('eventos');
+            $data = [
+                'nombre' => $event_name,
+                'descripcion' => $event_description,
+                'fecha_inicio' => $event_start_date,
+                'fecha_fin' => $event_end_date,
+                'link_mapa' => $event_location,
+                'url_imagen' => $event_image
+            ];
+            $builder->update($data, ['id' => $event_id]);
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            log_message('error', $th->getMessage());
+            return false;
         }
     }
 }

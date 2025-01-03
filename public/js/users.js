@@ -1,5 +1,5 @@
 import { showModal, closeModal } from './modals.js'
-import { renderItems, loadRenderedData } from "./admin_page_utils.js"
+import { renderItems, loadRenderedData, renderPagination } from "./admin_page_utils.js"
 
 $(document).ready(function () {
 
@@ -44,8 +44,8 @@ $(document).ready(function () {
         let alias = $('#user-alias-search').val()
         let role = $('#filter-role').val()
         let status = $('#filter-status').val()
-        let registrationStart = $('#registration-start').val()
-        let registrationEnd = $('#registration-end').val()
+        let registrationStart = $('#user-registration-start').val()
+        let registrationEnd = $('#user-registration-end').val()
     
         let url = `admin/users/list/${page}/${itemsPerPage}`
         loadRenderedData('GET', url, {alias, role, status, registrationStart, registrationEnd}, (data) => {
@@ -53,32 +53,13 @@ $(document).ready(function () {
             let rows = renderItems(users, generateUserRowTemplate)
             $('#user-list').empty().append(rows)
             // Genero la paginación
-            renderPagination(data.total_pages, page);
+            renderPagination(data.total_pages, page, loadUsersByStatus, 'users');
         })
     }
 
     //Para no pasar nada a la función de primeras
     $('#sidebar-users').on('click', () => loadUsersByStatus());
     $('#user-filter-button').on('click', () => loadUsersByStatus());
-
-
-    function renderPagination(totalPages, currentPage) {
-        let paginationContainer = $('#pagination-container');
-        paginationContainer.empty();
-    
-        for (let i = 1; i <= totalPages; i++) {
-            paginationContainer.append(`
-                <button class="pagination__button ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
-            `);
-        }
-    
-        $('.pagination__button').on('click', function () {
-            let page = parseInt($(this).attr('data-page'), 10); // Conversión
-            loadUsersByStatus(page)
-        });
-    }
-
-    //
 
     function renderOptionRolTemplate(rol) {
         return `<option value="${rol.id}" class="users__select-option">${rol.nombre}</option>`

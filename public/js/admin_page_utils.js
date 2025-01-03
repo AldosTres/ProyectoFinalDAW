@@ -69,3 +69,26 @@ $(document).ready(function () {
     //Cargando a los elementos la funcion selectOption
     $('.sidebar__item').on('click', selectOption);
 });
+
+/**
+ * Función que genera paginación de una lista
+ * @param {*} totalPages //Numero total de páginas
+ * @param {*} currentPage //Página donde nos encontramos
+ * @param {*} chargeList //Funcion que genera el listado
+ * @param {*} name //Nombre de la seccion donde mostrar la paginación
+ */
+export function renderPagination(totalPages, currentPage, chargeList, name) {
+    let paginationContainer = $('.pagination-container-' + name);
+    paginationContainer.empty();
+
+    for (let i = 1; i <= totalPages; i++) {
+        paginationContainer.append(`
+            <button class="pagination__button ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+        `);
+    }
+
+    $('.pagination__button').on('click', function () {
+        let page = parseInt($(this).attr('data-page'), 10); // Conversión
+        chargeList(page)
+    });
+}

@@ -11,6 +11,7 @@
     <script src="<?= base_url() ?>js/modals.js" type="module"></script>
     <script src="<?= base_url() ?>js/tournaments.js" type="module"></script>
     <script src="<?= base_url() ?>js/users.js" type="module"></script>
+    <script src="<?= base_url() ?>js/events.js" type="module"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -125,10 +126,10 @@
                 -->
             </div>
             <div id="tournaments" class="tournaments menu__section menu__section--hidden">
-                <h2 class="tournaments__title">Torneos</h2>
-                <span class="tournament__description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
+                <h2 class="tournaments__title menu__section-title">Torneos</h2>
+                <span class="tournament__description menu__section-description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
                 <!-- cambiar titulo -->
-                <h5 class="tournaments__filter_title filter-title">Creación de torneo</h5>
+                <h5 class="tournaments__filter_title menu__section-subtitle">Creación de torneo</h5>
                 <form action="admin/tournament/upload" method="post" class="tournaments__form form" enctype="multipart/form-data">
                     <div class="tournaments__field form__field">
                         <label for="tournament-name" class="tournaments__field-label form__field-label">Nombre del torneo:</label>
@@ -144,7 +145,7 @@
                     </div>
                     <div class="tournaments__field form__field">
                         <label for="tournament-logo" class="tournaments__field-label form__field-label">Logotipo del torneo:</label>
-                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file form__field-input form__field-input--file" accept=".jpg" required>
+                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file form__field-input" accept=".jpg" required>
                     </div>
                     <div class="tournaments__buttons form__buttons">
                         <button type="submit" class="tournaments__button form-tournament__button--submit form__button">Crear</button>
@@ -156,7 +157,7 @@
                 <!-- Listado de torneos existentes -->
 
                 <div class="tournaments__list">
-                    <h5 class="tournaments__list-title filter-title">Listado de torneos</h5>
+                    <h5 class="tournaments__list-title menu__section-subtitle">Listado de torneos</h5>
                     <table class="tournaments__list-table table table-hover table-striped">
                         <thead class="tournaments__list-table-header table-header">
                             <!-- color: #dd5; -->
@@ -173,6 +174,7 @@
 
                         </tbody>
                     </table>
+                    <div id="pagination-container" class="pagination pagination-container-tournaments"></div>
                 </div>
 
                 <!-- Filtrado y búsqueda de torneos -->
@@ -199,9 +201,9 @@
                 Rondas: Define cuántas rondas habrá y los criterios de clasificación. -->
             </div>
             <div id="users" class="users menu__section menu__section--hidden">
-                <h2 class="users__title">Usuarios</h2>
-                <span class="users__description">En este apartado encontrarás todas las operaciones que puedes realizar con los usuarios: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
-                <h5 class="users__filter-title filter-title">Filtrar Usuarios</h5>
+                <h2 class="users__title menu__section-title">Usuarios</h2>
+                <span class="users__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los usuarios: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                <h5 class="users__filter-title menu__section-subtitle">Filtrar Usuarios</h5>
                 <div class="users__filter form">
                     <!-- Campo de búsqueda por alias -->
                     <div class="users__field form__field">
@@ -250,7 +252,7 @@
 
 
                 <div class="users__list">
-                    <h5 class="users__list-title">Listado de usuarios</h5>
+                    <h5 class="users__list-title menu__section-subtitle">Listado de usuarios</h5>
                     <table class="users__list-table table table-hover table-striped">
                         <thead class="users__list-table-header table-header">
                             <tr class="users__list-table-row">
@@ -266,41 +268,112 @@
                         <tbody class="users__list-table-body" id="user-list">
                         </tbody>
                     </table>
-                    <div id="pagination-container" class="pagination"></div>
+                    <div id="pagination-container" class="pagination pagination-container-users"></div>
                 </div>
             </div>
             <div id="events" class="menu__section menu__section--hidden">
-                <h2 class="users__title">Eventos</h2>
-                <span class="users__description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                <h2 class="users__title menu__section-title">Eventos</h2>
+                <span class="users__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                <h5 class="menu__section-subtitle">Creación de evento</h5>
+                <form action="admin/events/upload" method="post" class="events__form form" enctype="multipart/form-data">
+                    <div class="events__field form__field">
+                        <label for="event-name" class="events__field-label form__field-label">Nombre del evento:</label>
+                        <input type="text" name="event-name" id="event-name" class="events__field-input form__field-input" placeholder="Introduce el nombre del evento">
+                    </div>
+                    <div class="events__field form__field">
+                        <label for="event-description" class="events__field-label form__field-label">Descripción:</label>
+                        <textarea name="event-description" id="event-description" class="events__field-input form__field-input" placeholder="Añade una breve descripción del evento"></textarea>
+                    </div>
+                    <div class="events__field form__field">
+                        <label for="event-start-date" class="events__field-label form__field-label">Fecha de inicio:</label>
+                        <input type="date" name="event-start-date" id="event-start-date" class="events__field-input form__field-input">
+                    </div>
+                    <div class="events__field form__field">
+                        <label for="event-end-date" class="events__field-label form__field-label">Fecha de finalización:</label>
+                        <input type="date" name="event-end-date" id="event-end-date" class="events__field-input form__field-input">
+                    </div>
+                    <div class="events__field form__field">
+                        <label for="event-location" class="events__field-label form__field-label">Ubicación:</label>
+                        <input type="text" name="event-location" id="event-location" class="events__field-input form__field-input" placeholder="Ubicación del evento">
+                    </div>
+                    <div class="events__field form__field">
+                        <label for="event-logo" class="events__field-label form__field-label">Logotipo del evento:</label>
+                        <input type="file" name="event-image" id="event-image" class="events__field-input events__field-input--file form__field-input" accept=".jpg" required>
+                    </div>
+                    <div class="events__buttons form__buttons">
+                        <button type="submit" class="events__button form-event__button--submit form__button">Crear</button>
+                        <button type="reset" class="events__button form-event__button--reset form__button form__button--reset">Borrar datos</button>
+                    </div>
+                </form>
+                <div class="events__filter form">
+                    <!-- Campo de búsqueda por nombre de evento -->
+                    <div class="events__field form__field">
+                        <label class="events__field-label form__field-label" for="event-name-search">Nombre del evento:</label>
+                        <input type="text" class="events__field-input form__field-input" id="event-name-search" name="nombre" placeholder="Buscar evento por nombre...">
+                    </div>
+
+                    <!-- Selección por estado -->
+                    <div class="events__field form__field">
+                        <label class="events__field-label form__field-label" for="filter-status">Estado:</label>
+                        <select class="events__select form__field-select" id="event-filter-status" name="estado">
+                            <option class="events__select-option events__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por estado</option>
+                            <option class="events__select-option form__select-option" value="" selected>Mostrar todos</option>
+                            <option class="events__select-option form__select-option" value="Próximo">Próximo</option>
+                            <option class="events__select-option form__select-option" value="En curso">En curso</option>
+                            <option class="events__select-option form__select-option" value="Finalizado">Finalizado</option>
+                            <option class="events__select-option form__select-option" value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <!-- Fecha de inicio -->
+                    <div class="events__field form__field">
+                        <label class="events__field-label form__field-label" for="event-start-date">Fecha de inicio desde:</label>
+                        <input type="date" class="events__field-input form__field-input" id="event-filter-start-date" name="fecha_inicio_start">
+                    </div>
+
+                    <!-- Fecha de fin -->
+                    <div class="events__field form__field">
+                        <label class="events__field-label form__field-label" for="event-end-date">Fecha de fin hasta:</label>
+                        <input type="date" class="events__field-input form__field-input" id="event-filter-end-date" name="fecha_fin_end">
+                    </div>
+
+                    <!-- Botón de filtrado -->
+                    <button class="events_button events_button--filter form__button" id="event-filter-button" type="submit">Filtrar</button>
+                </div>
+
+                <h5 class="events__list-title menu__section-subtitle">Listado de usuarios</h5>
+                <div class="events__list">
+                    <table class="events__list-table table table-hover table-striped">
+                        <thead class="events__list-table-header table-header">
+                            <tr class="events__list-table-row">
+                                <th class="events__list-table-header-item">Id</th>
+                                <th class="events__list-table-header-item">Nombre</th>
+                                <th class="events__list-table-header-item">Descripción</th>
+                                <th class="events__list-table-header-item">Fecha Inicio</th>
+                                <th class="events__list-table-header-item">Estado</th>
+                                <th class="events__list-table-header-item">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="events__list-table-body" id="events-list">
+                        </tbody>
+                    </table>
+                    <div id="pagination-container" class="pagination pagination-container-events"></div>
+                </div>
+                <img src="<?= base_url() ?>/img/logos_eventos/.jpg" alt="">
 
             </div>
             <div id="judges" class="menu__section menu__section--hidden">
-                <div class="tournament__bracket">
-                    <div class="tournament__bracket-round">
-                        <h1 class="tournament__bracket-round-title">Semifinal</h1>
-                        <div class="tournament__bracket-match">
-                            <div class="tournament__bracket-date">18 Junio 2025</div>
-                            <div class="tournament__bracket-score"> SABEDRO WINS</div>
-                            <div class="tournament__bracket-participants">
-                                <div class="tournament__bracket-first-participant tournament__bracket-participant">
-                                    <span class="tournament__bracket-participant-alias">TrydaleB</span>
-                                    <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
-                                </div>
-                                <div class="vs"></div>
-                                <div class="tournament__bracket-second-participant tournament__bracket-participant">
-                                    <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
-                                    <span class="tournament__bracket-participant-alias">Daiser</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div id="settings" class="menu__section menu__section--hidden">
                 Contenido de Configuración
             </div>
         </div>
     </div>
+    <script>
+        const BASE_URL = "<?= base_url() ?>";
+    </script>
+
 </body>
 
 </html>

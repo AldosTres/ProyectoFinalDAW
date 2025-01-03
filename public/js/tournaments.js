@@ -1,5 +1,5 @@
 import { showModal, closeModal } from './modals.js'
-import { renderItems, loadRenderedData } from "./admin_page_utils.js"
+import { renderItems, loadRenderedData, renderPagination } from "./admin_page_utils.js"
 
 $(document).ready(function () {
     //Abriendo el modal en cuanto reciba un flashdata indicando que se ha creado un torneo
@@ -29,7 +29,7 @@ $(document).ready(function () {
                             <span class="tooltip-container__text">Editar torneo</span>
                         </div>
                         <div class="tooltip-container">
-                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--change-status" data-id="${tournament.id}"><i class="fa-regular fa-trash-can"></i></button>
+                            <button class="tournaments__list-table-button list-table-button tournaments__list-table-button--change-status" data-id="${tournament.id}">${isActive ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-check"></i>'}</button>
                             <span class="tooltip-container__text">${isActive ? 'Desactivar Torneo' : 'Activar torneo'}</span>
                         </div>
                         <div class="tooltip-container">
@@ -49,19 +49,25 @@ $(document).ready(function () {
      * Funcion que obtiene el valor del estado del filtro, y dependiendo del filtro obtiene unos torneos u otros,
      * En caso de que no exista filtro, muestra todos seguidamente muestra estos torneos en #tournament-list
      */
-    function loadTournamentsByStatus() {
+    function loadTournamentsByStatus(page = 1) {
+        const itemsPerPage = 8
         let status = $('#tournament-filter-status').val()
         let name = $('#tournament-search').val()
-        loadRenderedData('GET','admin/tournament/list', {status, name}, (data) => {
+        let url = `admin/tournament/list/${page}/${itemsPerPage}`
+        loadRenderedData('GET',url, {status, name}, (data) => {
             let tournaments = data.tournaments
             let rows = renderItems(tournaments, generateTournamentRowTemplate)
             $('#tournament-list').empty().append(rows)
+
+            // Genero la paginación
+            renderPagination(data.total_pages, page, loadTournamentsByStatus, 'tournaments');
+
         })
     }
 
     //Método JQuery parecido a AddEventListener, ya que al devolver un objeto JQuery, debo aplicar un método igual
-    $('#sidebar-tournaments').on('click', loadTournamentsByStatus)
-    $('#tournaments-filter-button').on('click', loadTournamentsByStatus)
+    $('#sidebar-tournaments').on('click', () => loadTournamentsByStatus())
+    $('#tournaments-filter-button').on('click', () => loadTournamentsByStatus())
 
 
     /**
@@ -71,7 +77,7 @@ $(document).ready(function () {
      */
     function generateTournamentFormTemplate(tournament) {
         return `<form method="post" class="tournaments__form form" enctype="multipart/form-data" id="edit-tournament-form">
-                    <div class="tournaments__field form-group row form__field">
+                    <div class="tournaments__field form__field">
                         <label for="tournament-name" class="tournaments__field-label form__field-label">Nombre del torneo:</label>
                         <input type="text" name="edit-name" id="edit-tournament-name" class="tournaments__field-input form__field-input" value="${tournament.nombre}">
                     </div>
@@ -127,6 +133,9 @@ $(document).ready(function () {
     $('.tournaments__list-table').on('click', '.tournaments__list-table-button--edit', handelTournamentEdit)
 
 
+    /**
+     * Función que permite actualizar el estado del torneo
+     */
     function updateTournamentStatus() {
         let tournamentId = $(this).attr('data-id'); // Obtiene el ID del usuario
         let tournamentStatus = $('.tournaments__list-status').attr('status-id-data');

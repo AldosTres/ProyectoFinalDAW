@@ -372,7 +372,7 @@
   transition: color 0.4s;
 }
 
-.filter-title {
+.menu__section-subtitle {
   padding-top: 1%;
 }
 
@@ -422,12 +422,6 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form__field-input--file {
-  padding: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
 .form__field-input:focus {
   border-color: var(--viridian);
   box-shadow: 0 0 4px var(--viridian-shadow);
@@ -439,7 +433,7 @@
   display: flex;
   gap: 15px;
   flex: 1 1 100%;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 }
 
 .form__button {
@@ -627,17 +621,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* .vs::before {
-  content: "VS";
-  color: var(--serie-black);
-} */
-
-/* Arreglar estilo */
-.tela {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .tournaments__menu-section {
   height: 100%;
 }
@@ -756,4 +739,47 @@ input[type="range"]::-ms-track {
   border-color: transparent; */
   border-width: 6px 0;
   /* color: transparent; */
+}
+
+/************************************************************ EVENTOS ********************************************************************/
+
+#event-details-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 300px;
+  width: 250px;
+}
+
+.event-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #5c4141;
+}
+
+.event-detail-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.event-detail-row--image {
+  align-items: center;
+}
+
+.event-detail-label {
+  font-weight: bold;
+  color: #444;
+  flex-basis: 30%;
+}
+
+.event-detail-value {
+  flex-basis: 65%;
+  text-align: left;
+  color: #555;
 }
