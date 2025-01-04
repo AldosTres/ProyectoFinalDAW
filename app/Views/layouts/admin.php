@@ -12,6 +12,7 @@
     <script src="<?= base_url() ?>js/tournaments.js" type="module"></script>
     <script src="<?= base_url() ?>js/users.js" type="module"></script>
     <script src="<?= base_url() ?>js/events.js" type="module"></script>
+    <script src="<?= base_url() ?>js/settings.js" type="module"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -30,38 +31,38 @@
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto sidebar__content">
-                <li class="nav-item sidebar__item" data-section="">
-                    <a href="#" class="nav-link active" aria-current="page">
+                <li class="nav-item sidebar__item" data-section="home" id="sidebar-home">
+                    <a href="#" id="link-home" class="nav-link text-white active">
                         <i class="fa-solid fa-house"></i>
                         Inicio
                     </a>
                 </li>
-                <li class="sidebar__item" data-section="tournaments" id="sidebar-tournaments">
-                    <a href="#" class="nav-link text-white">
+                <li class=" nav-item sidebar__item" data-section="tournaments" id="sidebar-tournaments">
+                    <a href="#" id="link-tournaments" class="nav-link text-white">
                         <i class="fa-solid fa-trophy"></i>
                         Torneos
                     </a>
                 </li>
                 <li class="sidebar__item" data-section="users" id="sidebar-users">
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" id="link-users" class="nav-link text-white">
                         <i class="fa-solid fa-user-group"></i>
                         Usuarios
                     </a>
                 </li>
                 <li class="sidebar__item" data-section="events" id="sidebar-events">
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" id="link-events" class="nav-link text-white">
                         <i class="fa-solid fa-calendar-days"></i>
                         Eventos
                     </a>
                 </li>
-                <li class="sidebar__item" data-section="judges" id="sidebar-judges">
+                <!-- <li class="sidebar__item" data-section="judges" id="sidebar-judges">
                     <a href="#" class="nav-link text-white">
                         <i class="fa-solid fa-gavel"></i>
                         Jueces
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar__item" data-section="settings" id="sidebar-settings">
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" id="link-settings" class="nav-link text-white">
                         <i class="fa-solid fa-gear"></i>
                         Configuración
                     </a>
@@ -125,6 +126,41 @@
                     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
                 -->
             </div>
+            <div id="home" class="home menu__section">
+                <h1 class="home__title">Bienvenido</h1>
+                <p class="home__description">Gestiona fácilmente tus torneos de baile, jueces y configuraciones desde esta plataforma.</p>
+
+                <div class="home__stats">
+                    <div class="home__stat">
+                        <span class="home__stat-number">5</span>
+                        <span class="home__stat-label">Torneos activos</span>
+                    </div>
+                    <div class="home__stat">
+                        <span class="home__stat-number">12</span>
+                        <span class="home__stat-label">Jueces registrados</span>
+                    </div>
+                    <div class="home__stat">
+                        <span class="home__stat-number">120</span>
+                        <span class="home__stat-label">Participantes totales</span>
+                    </div>
+                </div>
+
+                <div class="home__actions">
+                    <a href="/torneos" class="home__button">Gestionar Torneos</a>
+                    <a href="/jueces" class="home__button">Gestionar Usuarios</a>
+                    <a href="/configuracion" class="home__button">Configuración</a>
+                </div>
+
+                <div class="home__tasks">
+                    <h2 class="home__tasks-title">Tareas Recientes</h2>
+                    <ul class="home__tasks-list">
+                        <li class="home__tasks-item">Torneo "Summer Dance Battle" creado.</li>
+                        <li class="home__tasks-item">Criterio de calificación "Originalidad" añadido.</li>
+                        <li class="home__tasks-item">Juez "Carlos Pérez" registrado.</li>
+                    </ul>
+                </div>
+            </div>
+
             <div id="tournaments" class="tournaments menu__section menu__section--hidden">
                 <h2 class="tournaments__title menu__section-title">Torneos</h2>
                 <span class="tournament__description menu__section-description">En este apartado encontrarás todas la operaciones que puedes realizar con los torneos: visualizar el listado, crearlos, borrarlos y modificarlos.</span>
@@ -197,7 +233,6 @@
                 Agrega configuraciones opcionales al crear o gestionar torneos, como:
 
                 Capacidad máxima de participantes: Un límite que el sistema debe respetar.
-                Tipos de torneos: Individual, equipos, eliminación directa, etc.
                 Rondas: Define cuántas rondas habrá y los criterios de clasificación. -->
             </div>
             <div id="users" class="users menu__section menu__section--hidden">
@@ -271,9 +306,9 @@
                     <div id="pagination-container" class="pagination pagination-container-users"></div>
                 </div>
             </div>
-            <div id="events" class="menu__section menu__section--hidden">
-                <h2 class="users__title menu__section-title">Eventos</h2>
-                <span class="users__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+            <div id="events" class="events menu__section menu__section--hidden">
+                <h2 class="events__title menu__section-title">Eventos</h2>
+                <span class="events__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
                 <h5 class="menu__section-subtitle">Creación de evento</h5>
                 <form action="admin/events/upload" method="post" class="events__form form" enctype="multipart/form-data">
                     <div class="events__field form__field">
@@ -336,7 +371,17 @@
                         <label class="events__field-label form__field-label" for="event-end-date">Fecha de fin hasta:</label>
                         <input type="date" class="events__field-input form__field-input" id="event-filter-end-date" name="fecha_fin_end">
                     </div>
+                    <!-- Activo -->
+                    <div class="events__field form__field">
+                        <label class="events__field-label form__field-label" for="event-active">Activo</label>
+                        <input type="checkbox" name="event-filter-active" id="event-filter-active" class="events__field-input form__field-input" checked>
+                    </div>
 
+                    <!-- <label class="switch">
+                        Activo
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label> -->
                     <!-- Botón de filtrado -->
                     <button class="events_button events_button--filter form__button" id="event-filter-button" type="submit">Filtrar</button>
                 </div>
@@ -351,6 +396,7 @@
                                 <th class="events__list-table-header-item">Descripción</th>
                                 <th class="events__list-table-header-item">Fecha Inicio</th>
                                 <th class="events__list-table-header-item">Estado</th>
+                                <th class="events__list-table-header-item">Activo</th>
                                 <th class="events__list-table-header-item">Acciones</th>
                             </tr>
                         </thead>
@@ -359,19 +405,57 @@
                     </table>
                     <div id="pagination-container" class="pagination pagination-container-events"></div>
                 </div>
-                <img src="<?= base_url() ?>/img/logos_eventos/.jpg" alt="">
+            </div>
+            <div id="tournament-bracket" class="tournament-bracket menu__section menu__section--hidden">
 
             </div>
-            <div id="judges" class="menu__section menu__section--hidden">
+            <div id="settings" class="settings menu__section menu__section--hidden">
+                <h2 class="settings__title menu__section-title">Configuración</h2>
+                <span class="settings__description menu__section-description">
+                    En este apartado encontrarás todas las configuraciones del sistema: criterios de calificación, tipos de rondas, roles y más.
+                </span>
 
+                <!-- Criterios de Calificación -->
+                <div class="settings__section settings__criteria">
+                    <h5 class="settings__section-title settings__criteria-title">Criterios de Calificación</h5>
+                    <p class="settings__section-description settings__criteria-description">
+                        Visualiza, agrega o edita los criterios usados para calificar.
+                    </p>
+                    <button class="settings__button settings__criteria-add">Añadir Criterio</button>
+                    <ul class="settings__list settings__criteria-list">
+                        <!-- Aquí van los distintos criterios -->
+                    </ul>
+                </div>
+
+                <!-- Tipos de Rondas -->
+                <div class="settings__section settings__rounds">
+                    <h5 class="settings__section-title settings__rounds-title">Tipos de Rondas</h5>
+                    <p class="settings__section-description settings__rounds-description">
+                        Administra las diferentes rondas utilizadas en los torneos.
+                    </p>
+                    <button class="settings__button settings__rounds-add">Añadir Tipo de Ronda</button>
+                    <ul class="settings__list settings__rounds-list">
+                        <!-- Aquí van los distintos tipos de rondas -->
+                    </ul>
+                </div>
+
+                <!-- Roles -->
+                <div class="settings__section settings__roles">
+                    <h5 class="settings__section-title settings__roles-title">Roles</h5>
+                    <p class="settings__section-description settings__roles-description">
+                        Visualiza y gestiona los roles de los usuarios.
+                    </p>
+                    <button class="settings__button settings__roles-add">Añadir Rol</button>
+                    <ul class="settings__list settings__roles-list">
+                        <!-- Aquí van los distintos tipos de roles -->
+                    </ul>
+                </div>
             </div>
-            <div id="settings" class="menu__section menu__section--hidden">
-                Contenido de Configuración
-            </div>
+
         </div>
     </div>
     <script>
-        const BASE_URL = "<?= base_url() ?>";
+        const BASE_URL = "<?= base_url() ?>"; //Constante para poder usar desde el js la base_url()
     </script>
 
 </body>

@@ -2,14 +2,17 @@ import { showModal, closeModal } from './modals.js'
 import { renderItems, loadRenderedData, renderPagination } from "./admin_page_utils.js"
 $(document).ready(function () {
     function generateEventRowTemplate(event) {
-        
+        let isActive = event.activo == 1 ? true : false
         return `<tr class="events__list-table-row">
                     <td class="events__list-table-item" id="event-id">${event.id}</td>
                     <td class="events__list-table-item">${event.nombre}</td>
-                    <td class="events__list-table-item">${event.descripcion || 'Sin descripción'}</td>
+                    <td class="events__list-table-item">${event.descripcion ? (event.descripcion).substring(0,15) + '...' : 'Sin descripción'}</td>
                     <td class="events__list-table-item">${event.fecha_inicio}</td>
                     <td class="events__list-table-item">
                         <span class="events__list-status events__list-status--${event.estado.toLowerCase()}" data-id="${event.estado}">${event.estado}</span>
+                    </td>
+                    <td class="events__list-table-item">
+                        <span class="events__list-active-status events__list-status--${isActive ? 'active' : 'inactive'}" data-id="${event.activo}">${isActive ? 'Si' : 'No'}</span>
                     </td>
                     <td class="events__list-table-item events__list-table-item--actions">
                         <div class="tooltip-container">
@@ -21,15 +24,10 @@ $(document).ready(function () {
                             <span class="tooltip-container__text">Editar evento</span>
                         </div>
                         <div class="tooltip-container">
-                            <button class="events__list-table-button list-table-button events__list-table-button--delete tooltip-container__button" event-id-data="${event.id}"><i class="fa-solid fa-trash"></i></button>
-                            <span class="tooltip-container__text">Eliminar evento</span>
+                            <button class="events__list-table-button list-table-button events__list-table-button--toggle-active tooltip-container__button" event-id-data="${event.id}">${isActive ? '<i class="fa-solid fa-trash"></i>' : '<i class="fa-solid fa-arrow-rotate-left"></i>'}</button>
+                            <span class="tooltip-container__text">${isActive ? 'Eliminar evento' : 'Activar evento'}</span>
                         </div>
-                        <div class="tooltip-container">
-                            <button class="events__list-table-button list-table-button events__list-table-button--toggle-status tooltip-container__button" event-id-data="${event.id}">
-                                ${event.estado === 'Próximo' ? '<i class="fa-solid fa-check-circle"></i>' : '<i class="fa-solid fa-times-circle"></i>'}
-                            </button>
-                            <span class="tooltip-container__text">Marcar como ${event.estado === 'Próximo' ? 'Finalizado' : 'Próximo'}</span>
-                        </div>
+                        
                         <div class="tooltip-container">
                             <a href="${event.link_mapa}" target="_blank" class="tooltip-container__link">
                                 <button class="events__list-table-button list-table-button events__list-table-button--open-map tooltip-container__button" event-id-data="${event.id}">
@@ -48,6 +46,7 @@ $(document).ready(function () {
      * En caso de que no exista filtro, muestra todos los eventos seguidamente muestra estos eventos en #event-list
      */
     function loadEventsByStatus(page = 1) {
+        $('#events-list').empty()
         // Siempre voy a querer mostrar 8 eventos por página
         const itemsPerPage = 8
         // Obtención de los valores de cada filtro
@@ -55,10 +54,12 @@ $(document).ready(function () {
         let status = $('#event-filter-status').val()
         let startDate = $('#event-filter-start-date').val()
         let endDate = $('#event-filter-end-date').val()
-
+        let eventActive = $('#event-filter-active:checked').is(':checked') ? 1 : 0;
+        console.log(eventActive)
         let url = `admin/events/list/${page}/${itemsPerPage}`
-        loadRenderedData('GET', url, {name, status, startDate, endDate}, (data) => {
+        loadRenderedData('GET', url, {name, status, startDate, endDate, eventActive}, (data) => {
             let events = data.events
+            console.log(events)
             let rows = renderItems(events, generateEventRowTemplate)
             $('#events-list').empty().append(rows)
             // Genero la paginación
@@ -66,6 +67,36 @@ $(document).ready(function () {
             renderPagination(data.total_pages, page, this, 'events');
         })
     }
+
+    function generateGoogleMapsEmbed(link) {
+        if (!link) {
+            return '<span>No disponible</span>';
+        }
+    
+        let embedLink = '';
+    
+        // Si el enlace contiene '/maps/place', lo transformamos en un enlace embebido
+        if (link.includes('/maps/place')) {
+            embedLink = link.replace('https://www.google.com/maps/place', 'https://www.google.com/maps/embed/v1/place');
+            embedLink += '?key=YOUR_GOOGLE_MAPS_API_KEY';  // Reemplaza con tu API Key de Google
+        } else {
+            return `<span>Enlace no compatible para embebido.</span>`;
+        }
+    
+        // Retornar el iframe con la URL embebida
+        return `<iframe
+                    src="${embedLink}"
+                    width="400"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>`;
+    }
+    
+    
+    
 
     function generateEventDetailsTemplate(event){
         return `<div id="event-details-container">
@@ -79,20 +110,13 @@ $(document).ready(function () {
                     </div>
                     <div class="event-detail-row event-detail-row--image">
                         <strong class="event-detail-label">Imagen:</strong>
-                        <img src="${BASE_URL}/img/logos_eventos/${event.url_imagen}.jpg" alt="" width=100>
+                        <img src="${BASE_URL}img/logos_eventos/${event.url_imagen}.jpg" alt="" width=100>
 
                         <span class="event-detail-value" id="event-image"></span>
                     </div>
                     <div class="event-detail-row">
                         <strong class="event-detail-label">Lugar:</strong>
-                        <iframe
-                            src="${event.link_mapa}" 
-                            width="200" height="200" 
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                         </iframe>
+                        ${generateGoogleMapsEmbed(event.link_mapa)}
                     </div>
                     <div class="event-detail-row">
                         <strong class="event-detail-label">Descripción:</strong>
@@ -176,5 +200,26 @@ $(document).ready(function () {
     }
 
     $('#events-list').off('click', '.events__list-table-button--edit').on('click', '.events__list-table-button--edit', handleEventEditForm)
+
+    function toggleEventActiveStatus() {
+        let eventId = $(this).attr('event-id-data'); // Obtiene el ID del evento
+        let eventActiveStatus = $('.events__list-active-status').attr('data-id'); // Obtiene el estado "Activo" del evento
+        console.log(eventId)
+        console.log(eventActiveStatus)
+        if (!eventId || typeof eventActiveStatus === 'undefined') {
+            showModal('Error', 'No se pudo obtener el ID o estado activo del evento.');
+        } else {
+            let url = `admin/events/${eventId}/toggle-active`
+            loadRenderedData('GET', url, {eventActiveStatus }, (data) => {
+                showModal(data.title, data.message);
+            });
+        }
+    }
+
+
+    // Manejar clics en los botones de activación/desactivación para eventos
+    $('#events-list')
+    .off('click', '.events__list-table-button--toggle-active')
+    .on('click', '.events__list-table-button--toggle-active', toggleEventActiveStatus);
 
 });

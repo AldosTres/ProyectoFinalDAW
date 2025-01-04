@@ -3,6 +3,7 @@ import { showModal, closeModal } from "./modals.js";
  * Función que sirve para seleccionar una opción del menu admin y mostrar su contenido
  * @param {*} event 
  */
+
 function selectOption(event) {
     // Evitar que el enlace recargue la página
     event.preventDefault();
@@ -11,6 +12,9 @@ function selectOption(event) {
 
     // Recorremos todas las secciones para mostrar/ocultar según corresponda
     $('.menu__section').addClass('menu__section--hidden') // Oculta todas las secciones
+    $('.nav-link').removeClass('active') //Quito la clase active a todos los link del sidebar
+    
+    $('#link-' + sectionId).addClass('active') //Pongo la clase active a la sección escogida a mostrar
     $('#' + sectionId).removeClass('menu__section--hidden') // Muestra la sección correspondiente
 }
 

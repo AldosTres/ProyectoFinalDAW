@@ -261,7 +261,8 @@ class Home extends BaseController
         $jls_database = new DataBaseHandler();
         if (isset($_GET['tournamentId'])) {
             $tournament_id = $_GET['tournamentId'];
-            $participants = $jls_database->jls_get_tournament_participants($tournament_id, true);
+            $exists_bracket = $_GET['existsBracket'] ?? false;
+            $participants = $jls_database->jls_get_tournament_participants($tournament_id, $exists_bracket);
             $response = [
                 'status' => 'success',
                 'participants' => $participants
@@ -274,6 +275,26 @@ class Home extends BaseController
             ];
             return json_encode($response);
         }
+    }
+
+    public function change_participant_status($participant_id)
+    {
+        $jls_database = new DataBaseHandler();
+        if (isset($_GET['participantStatus']) && isset($participant_id)) {
+            $result = $jls_database->jls_change_participant_status($participant_id, $_GET['participantStatus']);
+            $response = [
+                'status' => 'error',
+                'title' => 'Modificación estado',
+                'message' => $result ? 'Se ha modificado el estado del participante' : 'Ha ocurrido un error al modificar el estado del participante'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'No se encontraron datos',
+                'message' => 'No se ha podido encontrar el id del participante ni su estado'
+            ];
+        }
+        return json_encode($response);
     }
 
     public function get_users($page, $items_per_page)
@@ -502,7 +523,7 @@ class Home extends BaseController
         }
     }
 
-    public function get_events($page, $items_per_page)
+    public function get_events_by_filter($page, $items_per_page)
     {
         // nombre, estado, fechaInicioStart, fechaFinEnd
         $jls_database = new DataBaseHandler();
@@ -510,11 +531,12 @@ class Home extends BaseController
         $event_status = $_GET['status'] ?? 'all';
         $event_start_date = $this->request->getGet('startDate') ?? null;
         $event_end_date = $this->request->getGet('endDate') ?? null;
+        $event_active = $this->request->getGet('eventActive') ?? null;
 
         $offset = max(0, ($page - 1) * $items_per_page);
 
-        $events = $jls_database->jls_get_events_by_filter($event_name, $event_status, $event_start_date, $event_end_date, $items_per_page, $offset);
-        $total_events = $jls_database->jls_count_events_by_filter($event_name, $event_status, $event_start_date, $event_end_date);
+        $events = $jls_database->jls_get_events_by_filter($event_name, $event_status, $event_active, $event_start_date, $event_end_date, $items_per_page, $offset);
+        $total_events = $jls_database->jls_count_events_by_filter($event_name, $event_status, $event_active, $event_start_date, $event_end_date);
 
         $response = [
             'status' => 'success',
@@ -586,6 +608,40 @@ class Home extends BaseController
                 'message' => 'Ha ocurrido un error al modificar el Evento'
             ];
         }
+        return json_encode($response);
+    }
+
+    public function change_event_active_status($event_id)
+    {
+        $jls_database = new DataBaseHandler();
+        if (isset($_GET['eventActiveStatus']) && isset($event_id)) {
+            $result = $jls_database->jls_change_event_active_status($event_id, $_GET['eventActiveStatus']);
+            $response = [
+                'status' => 'error',
+                'title' => 'Modificación estado Activo',
+                'message' => $result ? 'Se ha modificado el estado Activo del evento' : 'Ha ocurrido un error al modificar el estado activo'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'No se encontraron datos',
+                'message' => 'No se ha podido encontrar el id del evento ni el estado del activo'
+            ];
+        }
+        return json_encode($response);
+    }
+
+    /**
+     * * Apartado settings
+     */
+    public function get_round_types()
+    {
+        $jls_database = new DataBaseHandler();
+        $round_types = $jls_database->jls_get_rounds();
+        $response = [
+            'status' => 'success',
+            'round_types' => $round_types
+        ];
         return json_encode($response);
     }
 }

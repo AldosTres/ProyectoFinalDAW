@@ -361,6 +361,21 @@ class DataBaseHandler extends Model
         }
     }
 
+    function jls_change_participant_status($participant_id, $status)
+    {
+        try {
+            $builder = $this->db->table('inscripciones');
+            $data = [
+                'activo' => !$status
+            ];
+            $builder->update($data, ['id' => $participant_id]);
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            log_message('error', 'Error al cambiar el estado del participante: ' . $th->getMessage());
+            return false;
+        }
+    }
+
 
     /**
        Funcion que obtiene el logotipo de un torneo
@@ -888,11 +903,11 @@ class DataBaseHandler extends Model
      * @param mixed $offset
      * @return array
      */
-    function jls_get_events_by_filter($event_name = null, $event_status = null, $event_start_date = null, $event_end_date = null, $limit = 10, $offset = 0)
+    function jls_get_events_by_filter($event_name = null, $event_status = null, $event_active = null, $event_start_date = null, $event_end_date = null, $limit = 10, $offset = 0)
     {
         // Utilizo nombre como 'e' para evitar ambigüedades
         $builder = $this->db->table('eventos e');
-        $builder->select('e.id, e.nombre, e.estado, e.fecha_inicio, e.fecha_fin, e.fecha_creación, e.url_imagen, e.link_mapa'); // Selecciono las columnas necesarias
+        $builder->select('e.id, e.nombre, e.descripcion, e.estado, e.activo, e.fecha_inicio, e.fecha_fin, e.fecha_creación, e.url_imagen, e.link_mapa'); // Selecciono las columnas necesarias
         // No es necesario hacer JOIN, ya que los eventos no parecen depender de otras tablas (según lo que has proporcionado)
 
         // Filtros por nombre de evento
@@ -914,6 +929,11 @@ class DataBaseHandler extends Model
             $builder->where('fecha_fin <=', $event_end_date);
         }
 
+        //Filtro por estado activo
+        if ($event_active != null) {
+            $builder->where('activo', $event_active);
+        }
+
         // Aplicar límite y desplazamiento
         $builder->limit($limit, $offset);
 
@@ -929,7 +949,7 @@ class DataBaseHandler extends Model
      * @param mixed $event_end_date
      * @return int|string
      */
-    function jls_count_events_by_filter($event_name = null, $event_status = null, $event_start_date = null, $event_end_date = null)
+    function jls_count_events_by_filter($event_name = null, $event_status = null, $event_active = null, $event_start_date = null, $event_end_date = null)
     {
         $builder = $this->db->table('eventos e');
 
@@ -940,6 +960,11 @@ class DataBaseHandler extends Model
         // Filtro por estado de evento
         if ($event_status && $event_status != 'all') {
             $builder->where('estado', $event_status);
+        }
+
+        //Filtro por estado activo
+        if ($event_active) {
+            $builder->where('activo', $event_active);
         }
 
         // Filtro por fechas
@@ -996,6 +1021,21 @@ class DataBaseHandler extends Model
                 'fecha_fin' => $event_end_date,
                 'link_mapa' => $event_location,
                 'url_imagen' => $event_image
+            ];
+            $builder->update($data, ['id' => $event_id]);
+            return $this->db->affectedRows() > 0;
+        } catch (\Throwable $th) {
+            log_message('error', $th->getMessage());
+            return false;
+        }
+    }
+
+    function jls_change_event_active_status($event_id, $active)
+    {
+        try {
+            $builder = $this->db->table('eventos');
+            $data = [
+                'activo' => !$active
             ];
             $builder->update($data, ['id' => $event_id]);
             return $this->db->affectedRows() > 0;

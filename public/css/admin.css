@@ -22,6 +22,10 @@
   display: flex;
 }
 
+.active {
+  background-color: var(--poppy) !important;
+}
+
 /* Sidebar styles */
 .sidebar {
   position: fixed;
@@ -31,7 +35,7 @@
   width: 280px;
   background-color: var(--bs-dark);
   color: white;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .sidebar__logo {
@@ -63,6 +67,102 @@
 .sidebar__item .nav-link:hover,
 .sidebar__item .nav-link.active {
   background-color: var(--viridian-shadow);
+}
+
+/************************************************************ HOME *********************************************************/
+
+/* Estilo general de la pantalla de inicio */
+.home {
+  padding: 20px;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.home__title {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.home__description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Estadísticas */
+.home__stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home__stat {
+  text-align: center;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.home__stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.home__stat-label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Botones de acción */
+.home__actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.home__button {
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.home__button:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de tareas */
+.home__tasks {
+  margin-top: 30px;
+}
+
+.home__tasks-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.home__tasks-list {
+  list-style: none;
+  padding: 0;
+}
+
+.home__tasks-item {
+  font-size: 14px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 /* Main content styles */
@@ -782,4 +882,183 @@ input[type="range"]::-ms-track {
   flex-basis: 65%;
   text-align: left;
   color: #555;
+}
+
+/********************************************checkbox toggle switch***********************************************/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--viridian);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--viridian-shadow);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/************************************************************************* CONFIGURACION *********************************************************************/
+
+/* Contenedor principal */
+.settings {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.settings__title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.settings__description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Secciones */
+.settings__section {
+  margin-bottom: 30px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.settings__section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.settings__section-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Botones */
+.settings__button {
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 12px;
+  color: #fff;
+  background-color: var(--viridian);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.settings__button:hover {
+  background-color: var(--viridian-shadow);
+}
+
+/* Listas */
+.settings__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settings__list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.settings__list-item:hover {
+  background-color: #f1f1f1;
+}
+
+.settings__criteria-name,
+.settings__rounds-name,
+.settings__roles-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 768px) {
+  .settings {
+    padding: 10px;
+  }
+
+  .settings__title {
+    font-size: 20px;
+  }
+
+  .settings__section-title {
+    font-size: 16px;
+  }
+
+  .settings__button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }

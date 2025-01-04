@@ -139,7 +139,6 @@ $(document).ready(function () {
     function updateTournamentStatus() {
         let tournamentId = $(this).attr('data-id'); // Obtiene el ID del usuario
         let tournamentStatus = $('.tournaments__list-status').attr('status-id-data');
-        console.log(tournamentStatus)
         if (!tournamentId || !tournamentStatus) {
             showModal('Error', 'No se pudo obtener el ID o estado del torneo.')
         } else {
@@ -157,20 +156,23 @@ $(document).ready(function () {
      * @returns 
      */
     function generateParticipantRowTemplate(participant) {
+        let isActive = participant.activo == 1 ? true : false
         return `<tr class="participants__list-table-row">
                     <td class="participants__list-table-item">${participant.id}</td>
                     <td class="participants__list-table-item">${participant.alias}</td>
                     <td class="participants__list-table-item participants__list-table-item--actions">
-                        <button class="participants__list-table-button participants__list-table-button--ban" data-id="1">Banear usuario</button>
-                        <button class="participants__list-table-button participants__list-table-button--delete" data-id="1">Eliminar</button>
+                        <div class="tooltip-container">
+                            <button class="participants__list-table-button list-table-button participants__list-table-button--change-status" data-id="${participant.id}" status-data-id="${participant.activo}">${isActive ? '<i class="fa-solid fa-user-slash"></i>' : '<i class="fa-solid fa-user-check"></i>'}</button>
+                            <span class="tooltip-container__text">${isActive ? 'Banear usuario' : 'Restablecer usuario'}</span>
+                        </div>  
                     </td>
                 </tr>`
     }
 
     function handleTournamentParticipants() {
         let tournamentId = $(this).attr('data-id')
-        let participantsTable = `<table class="participants__list-table">
-                                    <thead class="participants__list-table-header">
+        let participantsTable = `<table class="participants__list-table table table-hover table-striped" id="participants-table">
+                                    <thead class="participants__list-table-header table-header">
                                         <tr class="participants__list-table-row">
                                             <th class="participants__list-table-header-item">Id Inscripción</th>
                                             <th class="participants__list-table-header-item">Alias</th>
@@ -185,10 +187,28 @@ $(document).ready(function () {
             participantsTable += rows
             participantsTable += `      </tbody>
                                 </table>`
-            showModal('Participantes', participantsTable)
+            showModal('Participantes', participants.length > 0 ? participantsTable : 'No hay usuarios inscritos')
         })        
     }
     $('.tournaments__list-table').on('click', '.tournaments__list-table-button--show-participants', handleTournamentParticipants)
+
+
+    function updateParticipantStatus (){
+        let participantId = $(this).attr('data-id')
+        let participantStatus = $(this).attr('status-data-id')
+        console.log('hola')
+        if (!participantId || !participantStatus) {
+            showModal('Error', 'No se pudo obtener el ID o estado del participante.')
+        } else {
+            let url = `admin/tournament/participants/${participantId}/change-status`
+            loadRenderedData('GET', url, {participantStatus}, (data) => {
+                showModal(data.title, data.message)
+            })
+        }
+    }
+
+    $('#participants-table').on('click', '.participants__list-table-button--change-status', updateParticipantStatus)
+
 
     /**
      * Función que calcula el número de enfrentamientos de un torneo dependiendo del numero de participantes y el índice de ronda
@@ -300,15 +320,16 @@ $(document).ready(function () {
             html += `</div>`
         })
         html += `</div>`
-        $("#tournaments").html(html)
+        $("#tournament-bracket").removeClass('menu__section--hidden')
+        $("#tournament-bracket").html(html)
     }
     /**
      * Función que busca información en el servidor para pasar información necesaria a generateBracketHtml
      * @param {*} tournament
      */
     function loadAndRenderTournamentBracket() {
-        $('#tournaments').empty();
-    
+        // $('#tournament-bracket').empty();
+        $('#tournaments').addClass('menu__section--hidden')
         const tournamentId = $(this).attr('data-id');
         const url = `admin/tournament/bracket/${tournamentId}`;
     
@@ -346,12 +367,13 @@ $(document).ready(function () {
         const tournamentId = $('.tournament__bracket').attr('data-id');
         const matchPosition = $(this).attr('match-position-data');
         const roundTypeId = $(this).attr('round-type-id-data');
-        
+        const existsBracket = true
+
         const participantsFormStart = `
             <form id="add-participant-form" class="participants__form">
                 <ul class="participants__form-list">`;
     
-        loadRenderedData('GET', 'admin/tournament/participants', { tournamentId }, (data) => {
+        loadRenderedData('GET', 'admin/tournament/participants', { tournamentId, existsBracket}, (data) => {
             // Verificar si los participantes existen y no son nulos
             const participants = data.participants || [];
             const rows = participants.length > 0 

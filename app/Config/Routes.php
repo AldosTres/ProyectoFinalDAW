@@ -21,6 +21,7 @@ $routes->get('admin/tournament/get-data-for-edit', 'Home::get_tournament_for_edi
 $routes->post('admin/tournament/update', 'Home::edit_tournament');
 $routes->get('admin/tournament/change-status/(:num)', 'Home::change_tournament_status/$1');
 $routes->get('admin/tournament/participants', 'Home::get_tournament_participants');
+$routes->get('admin/tournament/participants/(:num)/change-status', 'Home::change_participant_status/$1');
 $routes->get('admin/tournament/scoring-criteria', 'Home::get_scoring_criteria');
 $routes->post('admin/tournament/(:num)/round/(:num)/participant/(:num)/scores', 'Home::upload_participant_scores/$1/$2/$3');
 /**
@@ -35,11 +36,9 @@ $routes->post('admin/users/change-rol', 'Home::change_user_rol');
 $routes->get('admin/users/change-status', 'Home::change_user_status');
 
 $routes->post('admin/events/upload', 'Home::upload_event');
-$routes->get('admin/events/list/(:num)/(:num)', 'Home::get_events/$1/$2');
+$routes->get('admin/events/list/(:num)/(:num)', 'Home::get_events_by_filter/$1/$2');
 $routes->get('admin/events/(:num)/details', 'Home::get_event_details/$1');
 $routes->post('admin/events/(:num)/update', 'Home::edit_event/$1');
+$routes->get('admin/events/(:num)/toggle-active', 'Home::change_event_active_status/$1');
 
-
-
-
-// $routes->get('admin/dashboard', 'Home::admin');
+$routes->get('admin/settings/round-types', 'Home::get_round_types');
