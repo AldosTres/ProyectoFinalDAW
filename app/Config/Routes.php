@@ -9,11 +9,26 @@ $routes->get('/', 'Home::index');
 $routes->get('index', 'Home::index');
 $routes->get('login', 'Home::get_login_page');
 $routes->post('login/check', 'Home::check_login');
+$routes->get('logout', 'Home::logout');
+
 $routes->get('register', 'Home::get_register_user_page');
 $routes->post('user/register', 'Home::register_user');
-// $routes->post('tournament', 'Home::get_tournament_info_page');
+
+/**
+ * *Seccion sobre nosotros
+ */
+
+$routes->get('about-us', 'Home::get_about_us_page');
+
 $routes->get('tournament/(:num)', 'Home::get_tournament_info_page/$1');
 $routes->post('tournament/add-participant', 'Home::add_new_participant');
+
+$routes->get('login-admin', 'Home::get_login_admin_page');
+$routes->post('login-admin/check', 'Home::check_admin_login');
+$routes->get('logout-admin', 'Home::admin_logout');
+
+
+// check_admin_login
 $routes->get('admin', 'Home::admin');
 $routes->post('admin/tournament/upload', 'Home::upload_tournament');
 $routes->get('admin/tournament/list/(:num)/(:num)', 'Home::get_tournaments/$1/$2');

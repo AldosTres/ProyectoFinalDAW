@@ -26,6 +26,17 @@ class Home extends BaseController
         return view('layouts/login');
     }
 
+    public function get_login_admin_page(): string
+    {
+        return view('layouts/login_admin');
+    }
+
+    public function get_about_us_page(): string
+    {
+        $data['title'] = 'JLS | Sobre nosotros';
+        return view('layouts/about_us', $data);
+    }
+
     public function get_register_user_page(): string
     {
         return view('layouts/registry');
@@ -51,10 +62,19 @@ class Home extends BaseController
         }
         // return view('layouts/login');
     }
-    public function logout(): string
+    public function logout()
     {
+        session()->destroy();
         $data['title'] = 'Jumpstyle League Series';
-        return view('layouts/index');
+        return redirect()->to(base_url('index'));
+
+        // return view('layouts/index', $data);
+    }
+
+    public function admin_logout()
+    {
+        session()->destroy();
+        return redirect()->to(base_url('login-admin'));
     }
 
     public function check_login(): string
@@ -63,12 +83,10 @@ class Home extends BaseController
         $user = $this->request->getPost('jls_username');
         $password = $this->request->getPost('jls_user_password');
         $result = $jls_database->jls_check_user($user, $password);
+
         if ($result == 0) {
             //No se ha encontrado al usuario
-            // session()->setFlashdata('login_error', 'El nombre de usuario o contraseña son incorrectos');
             $data['login_error'] = 'El nombre de usuario o contraseña son incorrectos';
-            // return view('layouts/login');
-            // return redirect()->to('/get_login_page');
             return view('layouts/login', $data);
         } else {
             //Devolviendo los datos correspondientes al user
@@ -81,6 +99,37 @@ class Home extends BaseController
             session()->set('user_id', $result);
 
             return view('layouts/userIndex', $data);
+        }
+    }
+
+    public function check_admin_login()
+    {
+        $jls_database = new DataBaseHandler();
+        $user = $this->request->getPost('jls_username');
+        $password = $this->request->getPost('jls_user_password');
+        $result = $jls_database->jls_check_user($user, $password);
+        if ($result == 0) {
+
+            // return view('layouts/login_admin', $data);
+            session()->setFlashdata('user_not_found_error', 'El nombre de usuario o contraseña son incorrectos');
+            return redirect()->to(base_url('login-admin'));
+        } else {
+            $user_data = $jls_database->jls_get_user_data($result);
+            $rol = $jls_database->jls_get_rol_by_id($user_data->id_rol);
+            $rol_name = $rol->nombre;
+            if ($rol_name == 'usuario') {
+                // $data['login_error'] = 'No tienes permiso para iniciar sesión';
+                session()->setFlashdata('user_not_found_error', 'No tienes permiso para acceder');
+
+                // return view('layouts/login_admin', $data);
+                return redirect()->to(base_url('login-admin'));
+            } else {
+                $jls_database->jls_update_last_connection($result);
+                session()->set('admin_name', $user_data->alias_usuario);
+                session()->set('admin_id', $result);
+                session()->set('rol_name', $rol_name);
+                return redirect()->to(base_url('admin'));
+            }
         }
     }
 
@@ -157,10 +206,15 @@ class Home extends BaseController
         return view("layouts/tournament_info", $data);
     }
 
-    public function admin(): string
+    public function admin()
     {
+        if (!session()->get('admin_name') || !session()->get('admin_id')) {
+            return redirect()->to(base_url('login-admin'));
+        }
+
         return view('layouts/admin');
     }
+
 
     public function get_tournaments($page, $items_per_page)
     {

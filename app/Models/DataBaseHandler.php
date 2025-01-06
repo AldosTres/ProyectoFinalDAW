@@ -106,6 +106,15 @@ class DataBaseHandler extends Model
         return $row;
     }
 
+    public function jls_get_rol_by_id($rol_id)
+    {
+        $builder = $this->db->table('tipos_rol');
+        $builder->where('id', $rol_id);
+        // $builder->select('nombre');
+        $result = $builder->get();
+        return $result->getRow();
+    }
+
     /**
        Función que devuelve toda la información de un torneo específico
      * @param string $tournament_id

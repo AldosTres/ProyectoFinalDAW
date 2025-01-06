@@ -1,9 +1,9 @@
-<?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
+<?php include_once TEMPLATES_VIEWS_PATH . 'html_header.php' ?>
 
 <body>
 
     <!-- Insercion del navbar -->
-    <?php include_once TEMPLATES_VIEWS_PATH . 'navbar_header.php' ?>
+    <?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
     <!-- Insercion del sidebar -->
     <?php include_once TEMPLATES_VIEWS_PATH . 'sidebar.php' ?>
 

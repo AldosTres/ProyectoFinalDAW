@@ -1,5 +1,5 @@
 :root {
-  --eerie-black: hsla(0, 2%, 11%, 1);
+  --serie-black: hsla(0, 2%, 11%, 1);
   --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
@@ -9,11 +9,28 @@
 * {
   font-family: "Raleway", sans-serif;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Asegura que el body ocupe toda la altura */
+}
+
+.header {
+  position: fixed; /* Fija el header en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  background: transparent; /* Fondo transparente */
+  padding: 15px 20px; /* Ajusta el padding según sea necesario */
+  border-bottom: none; /* Elimina cualquier borde inferior */
+  box-shadow: none; /* Elimina sombras */
+}
+
 /** ESTILOS PARA EL FOOTER **/
 
-.rrss-icon {
-  color: white;
-}
 .main-footer {
   background-color: var(--viridian);
   color: white;
@@ -21,29 +38,43 @@
 .main-footer a {
   color: rgb(206, 206, 206) !important;
 }
-.main-footer p {
-  color: white;
+
+.nav-link {
+  color: white !important;
+}
+.text-body-secondary {
+  color: rgb(206, 206, 206) !important;
+}
+.main-footer i {
+  color: white !important;
 }
 .dropdown {
   visibility: hidden;
   margin: -50%;
 }
-
-@media (max-width: 768px) {
-  .footer__container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer__container-element-second {
-    margin: 20px 0;
-  }
-
-  .footer__container-social-media {
-    margin-top: 10px;
-  }
+.footer__social-media-item {
+  color: white;
+  font-size: 30px;
+  padding: 3%;
 }
 
+.main-footer p {
+  color: white;
+}
+
+/******************************* HEADER **********************************************/
+.heaer__Link-item {
+  transition: border-bottom 1s !important;
+}
+.header__link-item:hover {
+  border-bottom: 1px solid white !important;
+}
+
+.btn--sign-up {
+  background-color: var(--poppy) !important;
+  color: white !important;
+  border-color: var(--poppy) !important;
+}
 /******************************* CORRESPONDIENTE A LOS MENSAJES DE ALERTA*********************************/
 /* Estilo para el mensaje de error */
 .alert-message {

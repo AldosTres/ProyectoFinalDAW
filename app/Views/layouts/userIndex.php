@@ -1,8 +1,8 @@
-<?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
+<?php include_once TEMPLATES_VIEWS_PATH . 'html_header.php' ?>
 
 <body>
     <!-- Insercion del navbar -->
-    <?php include_once TEMPLATES_VIEWS_PATH . 'navbar_header.php' ?>
+    <?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
     <!-- Insercion del sidebar -->
     <?php include_once TEMPLATES_VIEWS_PATH . 'sidebar.php' ?>
     <!-- Insercion página entera -->
@@ -10,7 +10,9 @@
         <div class="section aboutme" data-anchor="aboutme">
             <div class="aboutme__capa-vacia">
                 <h1 style="color:white">DESCUBRE EL PODER DEL JUMPSTYLE</h1>
-                <button class="aboutme__find-btn">Descubrir</button>
+                <a href="https://www.youtube.com/watch?v=omiErsv8pLg" target="_blank">
+                    <button class="aboutme__find-btn">Descubrir</button>
+                </a>
             </div>
             <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="nav-brand__background-video">
                 <source src="<?= base_url() ?>video/sN.mp4" type="video/mp4">
@@ -29,43 +31,44 @@
             </div>
         </div>
 
-        <h2 class="available-tournaments__title">Torneos Disponibles</h2>
         <div class="available-tournaments">
+            <h2 class="available-tournaments__title">Torneos Disponibles</h2>
+            <div class="available-tournaments__container">
+                <?php
+                foreach ($tournaments as $key => $tournament) {
+                    if ($key < 6) {
+                ?>
+                        <!-- /* From Uiverse.io by Yaya12085 */ -->
+                        <div class="card">
+                            <div class="image">
+                                <img src="<?= base_url() ?>/img/logos_torneos/<?= $tournament['logo_path'] ?>.jpg" alt="" class="tournament-image">
+                            </div>
+                            <div class="content">
+                                <a href="#">
+                                    <span class="title">
+                                        <?= $tournament['nombre'] ?>
+                                    </span>
+                                </a>
 
-            <?php
-            foreach ($tournaments as $key => $tournament) {
-            ?>
-                <!-- /* From Uiverse.io by Yaya12085 */ -->
-                <div class="card">
-                    <div class="image">
-                        <img src="<?= base_url() ?>/img/logos_torneos/<?= $tournament['logo_path'] ?>.jpg" alt="" class="tournament-image">
-                    </div>
-                    <div class="content">
-                        <a href="#">
-                            <span class="title">
-                                <?= $tournament['nombre'] ?>
-                            </span>
-                        </a>
+                                <p class="desc">
+                                    <?php echo $tournament['descripcion'] == 'undefined' ? 'Este torneo forma parte de nuestra comunidad de baile. Únete a la competición y demuestra tus habilidades en un ambiente lleno de pasión y energía. ¡Te esperamos para vivir una experiencia única!' : $tournament['descripcion'] ?>
+                                </p>
 
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                            dolores, possimus pariatur animi temporibus nesciunt praesentium
-                        </p>
-
-                        <a class="action" href="<?= base_url('tournament') ?>/<?= $tournament['id'] ?>">
-                            Descubrir
-                            <span aria-hidden="true">
-                                →
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            <?php
-            }
-
-
-            ?>
+                                <a class="action" href="<?= base_url('tournament') ?>/<?= $tournament['id'] ?>">
+                                    Descubrir
+                                    <span aria-hidden="true">
+                                        →
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+            </div>
         </div>
+
         <!-- CONTENIDO DE PROXIMOS EVENTOS -->
         <div class="upcoming-events">
             <h2 class="upcoming-events__title">Próximos Eventos</h2>

@@ -25,7 +25,7 @@
 <body>
     <div class="admin">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none sidebar__logo">
+            <a href="admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none sidebar__logo">
                 <img src="<?= base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="" width="40">
                 <span class="fs-4">JLS</span>
             </a>
@@ -43,45 +43,45 @@
                         Torneos
                     </a>
                 </li>
-                <li class="sidebar__item" data-section="users" id="sidebar-users">
-                    <a href="#" id="link-users" class="nav-link text-white">
-                        <i class="fa-solid fa-user-group"></i>
-                        Usuarios
-                    </a>
-                </li>
-                <li class="sidebar__item" data-section="events" id="sidebar-events">
-                    <a href="#" id="link-events" class="nav-link text-white">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        Eventos
-                    </a>
-                </li>
-                <!-- <li class="sidebar__item" data-section="judges" id="sidebar-judges">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fa-solid fa-gavel"></i>
-                        Jueces
-                    </a>
-                </li> -->
-                <li class="sidebar__item" data-section="settings" id="sidebar-settings">
-                    <a href="#" id="link-settings" class="nav-link text-white">
-                        <i class="fa-solid fa-gear"></i>
-                        Configuración
-                    </a>
-                </li>
+                <?php
+                if (session()->get('rol_name') == 'admin') {
+                ?>
+                    <li class="sidebar__item" data-section="users" id="sidebar-users">
+                        <a href="#" id="link-users" class="nav-link text-white">
+                            <i class="fa-solid fa-user-group"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="sidebar__item" data-section="events" id="sidebar-events">
+                        <a href="#" id="link-events" class="nav-link text-white">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Eventos
+                        </a>
+                    </li>
+                    <li class="sidebar__item" data-section="settings" id="sidebar-settings">
+                        <a href="#" id="link-settings" class="nav-link text-white">
+                            <i class="fa-solid fa-gear"></i>
+                            Configuración
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>admin</strong>
+                    <strong><?= session()->get('admin_name') ?></strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                    <!-- <li>
                         <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </li> -->
+                    <li><a class="dropdown-item" href="<?= base_url() ?>logout-admin">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -235,223 +235,228 @@
                 Capacidad máxima de participantes: Un límite que el sistema debe respetar.
                 Rondas: Define cuántas rondas habrá y los criterios de clasificación. -->
             </div>
-            <div id="users" class="users menu__section menu__section--hidden">
-                <h2 class="users__title menu__section-title">Usuarios</h2>
-                <span class="users__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los usuarios: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
-                <h5 class="users__filter-title menu__section-subtitle">Filtrar Usuarios</h5>
-                <div class="users__filter form">
-                    <!-- Campo de búsqueda por alias -->
-                    <div class="users__field form__field">
-                        <label class="users__field-label form__field-label" for="user-alias-search">Alias:</label>
-                        <input type="text" class="users__field-input form__field-input" id="user-alias-search" name="alias" placeholder="Buscar usuario por alias...">
-                    </div>
+            <div id="tournament-bracket" class="tournament-bracket menu__section menu__section--hidden">
 
-                    <!-- Selección por rol -->
-                    <!-- revisar roles -->
-                    <div class="users__field form__field">
-                        <label class="users__field-label form__field-label" for="filter-role">Rol:</label>
-                        <select class="users__select form__field-select" id="user-filter-role" name="role">
-                            <option class="users__select-option users__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por rol</option>
-                            <option class="users__select-option form__select-option" value="all" selected>Mostrar todos</option>
-                            <option class="users__select-option form__select-option" value="admin">Administrador</option>
-                            <option class="users__select-option form__select-option" value="judge">Juez</option>
-                            <option class="users__select-option form__select-option" value="participant">Participante</option>
-                        </select>
-                    </div>
-
-                    <!-- Selección por estado -->
-                    <div class="users__field form__field">
-                        <label class="users__field-label form__field-label" for="user-filter-status">Estado:</label>
-                        <select class="users__select form__field-select" id="filter-status" name="status">
-                            <option class="users__select-option users__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por estado</option>
-                            <option class="users__select-option form__select-option" value="all" selected>Mostrar todos</option>
-                            <option class="users__select-option form__select-option" value="active">Activo</option>
-                            <option class="users__select-option form__select-option" value="inactive">Inactivo</option>
-                        </select>
-                    </div>
-
-                    <!-- Fechas de registro -->
-                    <div class="users__field form__field">
-                        <label class="users__field-label form__field-label" for="registration-start">Registro desde:</label>
-                        <input type="date" class="users__field-input form__field-input" id="user-registration-start" name="registration_start">
-                    </div>
-                    <div class="users__field form__field">
-                        <label class="users__field-label form__field-label" for="registration-end">Registro hasta:</label>
-                        <input type="date" class="users__field-input form__field-input" id="user-registration-end" name="registration_end">
-                    </div>
-
-                    <!-- Botón de filtrado -->
-                    <button class="users_button users_button--filter form__button" id="user-filter-button" type="submit">Filtrar</button>
-                </div>
-
-
-
-                <div class="users__list">
-                    <h5 class="users__list-title menu__section-subtitle">Listado de usuarios</h5>
-                    <table class="users__list-table table table-hover table-striped">
-                        <thead class="users__list-table-header table-header">
-                            <tr class="users__list-table-row">
-                                <th class="users__list-table-header-item">Id</th>
-                                <th class="users__list-table-header-item">Alias</th>
-                                <th class="users__list-table-header-item">Rol</th>
-                                <th class="users__list-table-header-item">Estado</th>
-                                <th class="users__list-table-header-item">Fecha de Registro</th>
-                                <th class="users__list-table-header-item">Última Conexión</th>
-                                <th class="users__list-table-header-item">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="users__list-table-body" id="user-list">
-                        </tbody>
-                    </table>
-                    <div id="pagination-container" class="pagination pagination-container-users"></div>
-                </div>
             </div>
-            <div id="events" class="events menu__section menu__section--hidden">
-                <h2 class="events__title menu__section-title">Eventos</h2>
-                <span class="events__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
-                <h5 class="menu__section-subtitle">Creación de evento</h5>
-                <form action="admin/events/upload" method="post" class="events__form form" enctype="multipart/form-data">
-                    <div class="events__field form__field">
-                        <label for="event-name" class="events__field-label form__field-label">Nombre del evento:</label>
-                        <input type="text" name="event-name" id="event-name" class="events__field-input form__field-input" placeholder="Introduce el nombre del evento">
-                    </div>
-                    <div class="events__field form__field">
-                        <label for="event-description" class="events__field-label form__field-label">Descripción:</label>
-                        <textarea name="event-description" id="event-description" class="events__field-input form__field-input" placeholder="Añade una breve descripción del evento"></textarea>
-                    </div>
-                    <div class="events__field form__field">
-                        <label for="event-start-date" class="events__field-label form__field-label">Fecha de inicio:</label>
-                        <input type="date" name="event-start-date" id="event-start-date" class="events__field-input form__field-input">
-                    </div>
-                    <div class="events__field form__field">
-                        <label for="event-end-date" class="events__field-label form__field-label">Fecha de finalización:</label>
-                        <input type="date" name="event-end-date" id="event-end-date" class="events__field-input form__field-input">
-                    </div>
-                    <div class="events__field form__field">
-                        <label for="event-location" class="events__field-label form__field-label">Ubicación:</label>
-                        <input type="text" name="event-location" id="event-location" class="events__field-input form__field-input" placeholder="Ubicación del evento">
-                    </div>
-                    <div class="events__field form__field">
-                        <label for="event-logo" class="events__field-label form__field-label">Logotipo del evento:</label>
-                        <input type="file" name="event-image" id="event-image" class="events__field-input events__field-input--file form__field-input" accept=".jpg" required>
-                    </div>
-                    <div class="events__buttons form__buttons">
-                        <button type="submit" class="events__button form-event__button--submit form__button">Crear</button>
-                        <button type="reset" class="events__button form-event__button--reset form__button form__button--reset">Borrar datos</button>
-                    </div>
-                </form>
-                <div class="events__filter form">
-                    <!-- Campo de búsqueda por nombre de evento -->
-                    <div class="events__field form__field">
-                        <label class="events__field-label form__field-label" for="event-name-search">Nombre del evento:</label>
-                        <input type="text" class="events__field-input form__field-input" id="event-name-search" name="nombre" placeholder="Buscar evento por nombre...">
+            <?php
+            if (session()->get('rol_name') == 'admin') {
+            ?>
+                <div id="users" class="users menu__section menu__section--hidden">
+                    <h2 class="users__title menu__section-title">Usuarios</h2>
+                    <span class="users__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los usuarios: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                    <h5 class="users__filter-title menu__section-subtitle">Filtrar Usuarios</h5>
+                    <div class="users__filter form">
+                        <!-- Campo de búsqueda por alias -->
+                        <div class="users__field form__field">
+                            <label class="users__field-label form__field-label" for="user-alias-search">Alias:</label>
+                            <input type="text" class="users__field-input form__field-input" id="user-alias-search" name="alias" placeholder="Buscar usuario por alias...">
+                        </div>
+
+                        <!-- Selección por rol -->
+                        <!-- revisar roles -->
+                        <div class="users__field form__field">
+                            <label class="users__field-label form__field-label" for="filter-role">Rol:</label>
+                            <select class="users__select form__field-select" id="user-filter-role" name="role">
+                                <option class="users__select-option users__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por rol</option>
+                                <option class="users__select-option form__select-option" value="all" selected>Mostrar todos</option>
+                                <option class="users__select-option form__select-option" value="admin">Administrador</option>
+                                <option class="users__select-option form__select-option" value="judge">Juez</option>
+                                <option class="users__select-option form__select-option" value="participant">Participante</option>
+                            </select>
+                        </div>
+
+                        <!-- Selección por estado -->
+                        <div class="users__field form__field">
+                            <label class="users__field-label form__field-label" for="user-filter-status">Estado:</label>
+                            <select class="users__select form__field-select" id="filter-status" name="status">
+                                <option class="users__select-option users__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por estado</option>
+                                <option class="users__select-option form__select-option" value="all" selected>Mostrar todos</option>
+                                <option class="users__select-option form__select-option" value="active">Activo</option>
+                                <option class="users__select-option form__select-option" value="inactive">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <!-- Fechas de registro -->
+                        <div class="users__field form__field">
+                            <label class="users__field-label form__field-label" for="registration-start">Registro desde:</label>
+                            <input type="date" class="users__field-input form__field-input" id="user-registration-start" name="registration_start">
+                        </div>
+                        <div class="users__field form__field">
+                            <label class="users__field-label form__field-label" for="registration-end">Registro hasta:</label>
+                            <input type="date" class="users__field-input form__field-input" id="user-registration-end" name="registration_end">
+                        </div>
+
+                        <!-- Botón de filtrado -->
+                        <button class="users_button users_button--filter form__button" id="user-filter-button" type="submit">Filtrar</button>
                     </div>
 
-                    <!-- Selección por estado -->
-                    <div class="events__field form__field">
-                        <label class="events__field-label form__field-label" for="filter-status">Estado:</label>
-                        <select class="events__select form__field-select" id="event-filter-status" name="estado">
-                            <option class="events__select-option events__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por estado</option>
-                            <option class="events__select-option form__select-option" value="" selected>Mostrar todos</option>
-                            <option class="events__select-option form__select-option" value="Próximo">Próximo</option>
-                            <option class="events__select-option form__select-option" value="En curso">En curso</option>
-                            <option class="events__select-option form__select-option" value="Finalizado">Finalizado</option>
-                            <option class="events__select-option form__select-option" value="Cancelado">Cancelado</option>
-                        </select>
-                    </div>
 
-                    <!-- Fecha de inicio -->
-                    <div class="events__field form__field">
-                        <label class="events__field-label form__field-label" for="event-start-date">Fecha de inicio desde:</label>
-                        <input type="date" class="events__field-input form__field-input" id="event-filter-start-date" name="fecha_inicio_start">
-                    </div>
 
-                    <!-- Fecha de fin -->
-                    <div class="events__field form__field">
-                        <label class="events__field-label form__field-label" for="event-end-date">Fecha de fin hasta:</label>
-                        <input type="date" class="events__field-input form__field-input" id="event-filter-end-date" name="fecha_fin_end">
+                    <div class="users__list">
+                        <h5 class="users__list-title menu__section-subtitle">Listado de usuarios</h5>
+                        <table class="users__list-table table table-hover table-striped">
+                            <thead class="users__list-table-header table-header">
+                                <tr class="users__list-table-row">
+                                    <th class="users__list-table-header-item">Id</th>
+                                    <th class="users__list-table-header-item">Alias</th>
+                                    <th class="users__list-table-header-item">Rol</th>
+                                    <th class="users__list-table-header-item">Estado</th>
+                                    <th class="users__list-table-header-item">Fecha de Registro</th>
+                                    <th class="users__list-table-header-item">Última Conexión</th>
+                                    <th class="users__list-table-header-item">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="users__list-table-body" id="user-list">
+                            </tbody>
+                        </table>
+                        <div id="pagination-container" class="pagination pagination-container-users"></div>
                     </div>
-                    <!-- Activo -->
-                    <div class="events__field form__field">
-                        <label class="events__field-label form__field-label" for="event-active">Activo</label>
-                        <input type="checkbox" name="event-filter-active" id="event-filter-active" class="events__field-input form__field-input" checked>
-                    </div>
+                </div>
+                <div id="events" class="events menu__section menu__section--hidden">
+                    <h2 class="events__title menu__section-title">Eventos</h2>
+                    <span class="events__description menu__section-description">En este apartado encontrarás todas las operaciones que puedes realizar con los eventos: visualizar el listado, crearlos, desactivarlos y modificarlos.</span>
+                    <h5 class="menu__section-subtitle">Creación de evento</h5>
+                    <form action="admin/events/upload" method="post" class="events__form form" enctype="multipart/form-data">
+                        <div class="events__field form__field">
+                            <label for="event-name" class="events__field-label form__field-label">Nombre del evento:</label>
+                            <input type="text" name="event-name" id="event-name" class="events__field-input form__field-input" placeholder="Introduce el nombre del evento">
+                        </div>
+                        <div class="events__field form__field">
+                            <label for="event-description" class="events__field-label form__field-label">Descripción:</label>
+                            <textarea name="event-description" id="event-description" class="events__field-input form__field-input" placeholder="Añade una breve descripción del evento"></textarea>
+                        </div>
+                        <div class="events__field form__field">
+                            <label for="event-start-date" class="events__field-label form__field-label">Fecha de inicio:</label>
+                            <input type="date" name="event-start-date" id="event-start-date" class="events__field-input form__field-input">
+                        </div>
+                        <div class="events__field form__field">
+                            <label for="event-end-date" class="events__field-label form__field-label">Fecha de finalización:</label>
+                            <input type="date" name="event-end-date" id="event-end-date" class="events__field-input form__field-input">
+                        </div>
+                        <div class="events__field form__field">
+                            <label for="event-location" class="events__field-label form__field-label">Ubicación:</label>
+                            <input type="text" name="event-location" id="event-location" class="events__field-input form__field-input" placeholder="Ubicación del evento">
+                        </div>
+                        <div class="events__field form__field">
+                            <label for="event-logo" class="events__field-label form__field-label">Logotipo del evento:</label>
+                            <input type="file" name="event-image" id="event-image" class="events__field-input events__field-input--file form__field-input" accept=".jpg" required>
+                        </div>
+                        <div class="events__buttons form__buttons">
+                            <button type="submit" class="events__button form-event__button--submit form__button">Crear</button>
+                            <button type="reset" class="events__button form-event__button--reset form__button form__button--reset">Borrar datos</button>
+                        </div>
+                    </form>
+                    <div class="events__filter form">
+                        <!-- Campo de búsqueda por nombre de evento -->
+                        <div class="events__field form__field">
+                            <label class="events__field-label form__field-label" for="event-name-search">Nombre del evento:</label>
+                            <input type="text" class="events__field-input form__field-input" id="event-name-search" name="nombre" placeholder="Buscar evento por nombre...">
+                        </div>
 
-                    <!-- <label class="switch">
+                        <!-- Selección por estado -->
+                        <div class="events__field form__field">
+                            <label class="events__field-label form__field-label" for="filter-status">Estado:</label>
+                            <select class="events__select form__field-select" id="event-filter-status" name="estado">
+                                <option class="events__select-option events__select-option--hidden form__select-option--hidden" value="" hidden>Filtrar por estado</option>
+                                <option class="events__select-option form__select-option" value="" selected>Mostrar todos</option>
+                                <option class="events__select-option form__select-option" value="Próximo">Próximo</option>
+                                <option class="events__select-option form__select-option" value="En curso">En curso</option>
+                                <option class="events__select-option form__select-option" value="Finalizado">Finalizado</option>
+                                <option class="events__select-option form__select-option" value="Cancelado">Cancelado</option>
+                            </select>
+                        </div>
+
+                        <!-- Fecha de inicio -->
+                        <div class="events__field form__field">
+                            <label class="events__field-label form__field-label" for="event-start-date">Fecha de inicio desde:</label>
+                            <input type="date" class="events__field-input form__field-input" id="event-filter-start-date" name="fecha_inicio_start">
+                        </div>
+
+                        <!-- Fecha de fin -->
+                        <div class="events__field form__field">
+                            <label class="events__field-label form__field-label" for="event-end-date">Fecha de fin hasta:</label>
+                            <input type="date" class="events__field-input form__field-input" id="event-filter-end-date" name="fecha_fin_end">
+                        </div>
+                        <!-- Activo -->
+                        <div class="events__field form__field">
+                            <label class="events__field-label form__field-label" for="event-active">Activo</label>
+                            <input type="checkbox" name="event-filter-active" id="event-filter-active" class="events__field-input form__field-input" checked>
+                        </div>
+
+                        <!-- <label class="switch">
                         Activo
                         <input type="checkbox">
                         <span class="slider round"></span>
                     </label> -->
-                    <!-- Botón de filtrado -->
-                    <button class="events_button events_button--filter form__button" id="event-filter-button" type="submit">Filtrar</button>
+                        <!-- Botón de filtrado -->
+                        <button class="events_button events_button--filter form__button" id="event-filter-button" type="submit">Filtrar</button>
+                    </div>
+
+                    <h5 class="events__list-title menu__section-subtitle">Listado de usuarios</h5>
+                    <div class="events__list">
+                        <table class="events__list-table table table-hover table-striped">
+                            <thead class="events__list-table-header table-header">
+                                <tr class="events__list-table-row">
+                                    <th class="events__list-table-header-item">Id</th>
+                                    <th class="events__list-table-header-item">Nombre</th>
+                                    <th class="events__list-table-header-item">Descripción</th>
+                                    <th class="events__list-table-header-item">Fecha Inicio</th>
+                                    <th class="events__list-table-header-item">Estado</th>
+                                    <th class="events__list-table-header-item">Activo</th>
+                                    <th class="events__list-table-header-item">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="events__list-table-body" id="events-list">
+                            </tbody>
+                        </table>
+                        <div id="pagination-container" class="pagination pagination-container-events"></div>
+                    </div>
                 </div>
+                <div id="settings" class="settings menu__section menu__section--hidden">
+                    <h2 class="settings__title menu__section-title">Configuración</h2>
+                    <span class="settings__description menu__section-description">
+                        En este apartado encontrarás todas las configuraciones del sistema: criterios de calificación, tipos de rondas, roles y más.
+                    </span>
 
-                <h5 class="events__list-title menu__section-subtitle">Listado de usuarios</h5>
-                <div class="events__list">
-                    <table class="events__list-table table table-hover table-striped">
-                        <thead class="events__list-table-header table-header">
-                            <tr class="events__list-table-row">
-                                <th class="events__list-table-header-item">Id</th>
-                                <th class="events__list-table-header-item">Nombre</th>
-                                <th class="events__list-table-header-item">Descripción</th>
-                                <th class="events__list-table-header-item">Fecha Inicio</th>
-                                <th class="events__list-table-header-item">Estado</th>
-                                <th class="events__list-table-header-item">Activo</th>
-                                <th class="events__list-table-header-item">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="events__list-table-body" id="events-list">
-                        </tbody>
-                    </table>
-                    <div id="pagination-container" class="pagination pagination-container-events"></div>
+                    <!-- Criterios de Calificación -->
+                    <div class="settings__section settings__criteria">
+                        <h5 class="settings__section-title settings__criteria-title">Criterios de Calificación</h5>
+                        <p class="settings__section-description settings__criteria-description">
+                            Visualiza, agrega o edita los criterios usados para calificar.
+                        </p>
+                        <button class="settings__button settings__criteria-add">Añadir Criterio</button>
+                        <ul class="settings__list settings__criteria-list">
+                            <!-- Aquí van los distintos criterios -->
+                        </ul>
+                    </div>
+
+                    <!-- Tipos de Rondas -->
+                    <div class="settings__section settings__rounds">
+                        <h5 class="settings__section-title settings__rounds-title">Tipos de Rondas</h5>
+                        <p class="settings__section-description settings__rounds-description">
+                            Administra las diferentes rondas utilizadas en los torneos.
+                        </p>
+                        <button class="settings__button settings__rounds-add">Añadir Tipo de Ronda</button>
+                        <ul class="settings__list settings__rounds-list">
+                            <!-- Aquí van los distintos tipos de rondas -->
+                        </ul>
+                    </div>
+
+                    <!-- Roles -->
+                    <div class="settings__section settings__roles">
+                        <h5 class="settings__section-title settings__roles-title">Roles</h5>
+                        <p class="settings__section-description settings__roles-description">
+                            Visualiza y gestiona los roles de los usuarios.
+                        </p>
+                        <button class="settings__button settings__roles-add">Añadir Rol</button>
+                        <ul class="settings__list settings__roles-list">
+                            <!-- Aquí van los distintos tipos de roles -->
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div id="tournament-bracket" class="tournament-bracket menu__section menu__section--hidden">
-
-            </div>
-            <div id="settings" class="settings menu__section menu__section--hidden">
-                <h2 class="settings__title menu__section-title">Configuración</h2>
-                <span class="settings__description menu__section-description">
-                    En este apartado encontrarás todas las configuraciones del sistema: criterios de calificación, tipos de rondas, roles y más.
-                </span>
-
-                <!-- Criterios de Calificación -->
-                <div class="settings__section settings__criteria">
-                    <h5 class="settings__section-title settings__criteria-title">Criterios de Calificación</h5>
-                    <p class="settings__section-description settings__criteria-description">
-                        Visualiza, agrega o edita los criterios usados para calificar.
-                    </p>
-                    <button class="settings__button settings__criteria-add">Añadir Criterio</button>
-                    <ul class="settings__list settings__criteria-list">
-                        <!-- Aquí van los distintos criterios -->
-                    </ul>
-                </div>
-
-                <!-- Tipos de Rondas -->
-                <div class="settings__section settings__rounds">
-                    <h5 class="settings__section-title settings__rounds-title">Tipos de Rondas</h5>
-                    <p class="settings__section-description settings__rounds-description">
-                        Administra las diferentes rondas utilizadas en los torneos.
-                    </p>
-                    <button class="settings__button settings__rounds-add">Añadir Tipo de Ronda</button>
-                    <ul class="settings__list settings__rounds-list">
-                        <!-- Aquí van los distintos tipos de rondas -->
-                    </ul>
-                </div>
-
-                <!-- Roles -->
-                <div class="settings__section settings__roles">
-                    <h5 class="settings__section-title settings__roles-title">Roles</h5>
-                    <p class="settings__section-description settings__roles-description">
-                        Visualiza y gestiona los roles de los usuarios.
-                    </p>
-                    <button class="settings__button settings__roles-add">Añadir Rol</button>
-                    <ul class="settings__list settings__roles-list">
-                        <!-- Aquí van los distintos tipos de roles -->
-                    </ul>
-                </div>
-            </div>
-
+            <?php
+            }
+            ?>
         </div>
     </div>
     <script>
