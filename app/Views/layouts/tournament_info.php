@@ -65,7 +65,9 @@
         <!-- Clasificación -->
         <div class="tournament-page__ranking">
             <h3 class="tournament-page__ranking-title">Clasificación del Torneo</h3>
-            <!-- Clasificación pendiente -->
+            <div id="tournament-bracket" class="tournament-bracket">
+
+            </div>
         </div>
     </div>
 </body>

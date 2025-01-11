@@ -49,7 +49,7 @@
                                 Este torneo forma parte de nuestra comunidad de baile. Únete a la competición y demuestra tus habilidades en un ambiente lleno de pasión y energía. ¡Te esperamos para vivir una experiencia única!
                             </p>
 
-                            <a class="available-tournaments__action action-button" href="<?= base_url('tournament') ?>/<?= $tournament['id'] ?>">
+                            <a class="available-tournaments__action action-button" data-id="<?= $tournament['id'] ?>" href="<?= base_url('tournament') ?>/<?= $tournament['id'] ?>">
                                 Descubrir
                                 <span aria-hidden="true" class="available-tournaments__arrow">
                                     →

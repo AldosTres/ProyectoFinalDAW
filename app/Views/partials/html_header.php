@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>css/user_profile.css">
 
-    <script src="<?= base_url() ?>js/index.js"></script>
+    <script type="module" src="<?= base_url() ?>js/index.js"></script>
+
     <title><?= $title ?></title>
 </head>

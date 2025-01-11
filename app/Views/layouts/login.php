@@ -13,12 +13,15 @@
 
 <body>
     <div class="image-presentation">
-        <img src="<?= base_url() ?>img/login_1.png" alt="" class="image-presentation__img-element img1">
-        <img src="<?= base_url() ?>img/login_2.png" alt="" class="image-presentation__img-element img2">
-        <img src="<?= base_url() ?>img/login_3.png" alt="" class="image-presentation__img-element img3">
-        <img src="<?= base_url() ?>img/login_4.png" alt="" class="image-presentation__img-element img4">
-        <img src="<?= base_url() ?>img/login_5.png" alt="" class="image-presentation__img-element img5">
+        <img src="<?= base_url() ?>img/login_1.png" alt="Imagen 1" class="img img1">
+        <img src="<?= base_url() ?>img/login_2.png" alt="Imagen 2" class="img img2">
+        <img src="<?= base_url() ?>img/login_3.png" alt="Imagen 3" class="img img3">
+        <img src="<?= base_url() ?>img/login_4.png" alt="Imagen 4" class="img img4">
+        <img src="<?= base_url() ?>img/login_5.png" alt="Imagen 5" class="img img5">
     </div>
+
+
+
 
     <form action="login/check" class="form-login" method="post">
         <div class="form-login__mark">

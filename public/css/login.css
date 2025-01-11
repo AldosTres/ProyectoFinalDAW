@@ -132,6 +132,71 @@ body {
 
 .image-presentation {
   position: relative;
+  width: 100%; /* Ancho del contenedor principal */
+  height: 40vh; /* Altura ajustable */
+  display: grid; /* Usamos grid para posicionar las imágenes */
+  grid-template-areas:
+    "img1 img2 img3 img4"
+    "img1 img2 img3 img5";
+  grid-template-columns: repeat(4, 1fr); /* Columnas iguales */
+  grid-template-rows: repeat(2, 1fr); /* Filas iguales */
+}
+
+/* Estilo general para las imágenes */
+
+.image-presentation {
+  position: relative;
+  width: 38%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.img {
+  position: absolute;
+  top: 0;
+  height: 100%; /* Mantén el alto del contenedor */
+  width: auto; /* Proporción natural */
+  opacity: 0.5; /* Transparencia inicial */
+  z-index: 1; /* Orden por defecto */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Suavizado */
+}
+
+.img:hover {
+  opacity: 1; /* Resalta la imagen */
+}
+
+/* Posiciones específicas */
+.img1 {
+  left: 0; /* Alineada al borde izquierdo */
+  z-index: 2;
+}
+
+.img2 {
+  left: 0; /* Desplazada un cuarto del ancho */
+  z-index: 3;
+}
+
+.img3 {
+  left: 25%; /* Alineada en el centro horizontal */
+  z-index: 4;
+}
+
+.img4 {
+  left: 50%; /* Desplazada tres cuartos del ancho */
+  z-index: 5;
+}
+
+.img5 {
+  left: 75%; /* Alineada al borde derecho */
+  z-index: 6;
+}
+
+/* .image-presentation {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -173,4 +238,4 @@ body {
 
 .image-presentation__img-element:hover {
   filter: sepia(0);
-}
+} */

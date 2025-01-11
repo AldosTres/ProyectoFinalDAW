@@ -56,11 +56,11 @@
                 <form action="<?= base_url() ?>profile/update" method="POST" class="profile-page__form">
                     <div class="profile-page__form-group mb-3">
                         <label for="username" class="profile-page__form-label">Nombre de Usuario:</label>
-                        <input type="text" id="new_username" name="new_username" value="<?= $user_name ?>" class="profile-page__form-input form-control">
+                        <input type="text" id="new-username" name="new-username" value="<?= $user_name ?>" class="profile-page__form-input form-control">
                     </div>
                     <div class="profile-page__form-group mb-3">
-                        <label for="alias" class="profile-page__form-label">alias</label>
-                        <input type="text" id="new_alias" name="new_alias" value="<?= $user_alias ?>" class="profile-page__form-input form-control">
+                        <label for="alias" class="profile-page__form-label">Alias</label>
+                        <input type="text" id="new-alias" name="new-alias" value="<?= $user_alias ?>" class="profile-page__form-input form-control">
                     </div>
                     <div class="profile-page__form-group mb-3">
                         <label for="password" class="profile-page__form-label">Nueva Contraseña:</label>
@@ -73,9 +73,9 @@
             <div class="col-md-6 profile-page__stats">
                 <h3 class="profile-page__section-title">Estadísticas</h3>
                 <ul class="profile-page__stats-list list-group">
-                    <li class="profile-page__stats-item list-group-item">Torneos en los que ha participado: <span id="tournaments-count">[Número]</span></li>
-                    <li class="profile-page__stats-item list-group-item">Videos subidos: <span id="videos-count">[Número]</span></li>
-                    <li class="profile-page__stats-item list-group-item">Clasificación promedio: <span id="average-ranking">[Clasificación]</span></li>
+                    <li class="profile-page__stats-item list-group-item">Torneos en los que ha participado: <span id="tournaments-count">No disponible</span></li>
+                    <li class="profile-page__stats-item list-group-item">Videos subidos: <span id="videos-count">No disponible</span></li>
+                    <li class="profile-page__stats-item list-group-item">Clasificación promedio: <span id="average-ranking">No disponible</span></li>
                 </ul>
             </div>
         </div>
