@@ -1,7 +1,7 @@
 /* general styles */
 
 :root {
-  --eerie-black: hsla(0, 2%, 11%, 1);
+  --serie-black: hsla(0, 2%, 11%, 1);
   --red-jls: hsla(0, 67%, 53%, 1);
   --red-jls-opacity: hsla(0, 67%, 53%, 0.8);
   --white: hsla(0, 0%, 100%, 1);
@@ -10,69 +10,24 @@
   --font: Helvetica;
 }
 
-body {
-  margin: 0;
-  /* min-height: 90vh; */
-  width: 100%;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none !important;
-}
-
 p {
   font-size: 20px;
   color: #484848;
 }
 
-.section {
-  text-align: center;
-}
+/******************************* Estilos generales *******************************/
 
-.skillbar {
-  cursor: pointer;
-}
-
-.hide {
-  display: none;
-}
-
-.display {
-  display: block;
-}
-
-/* flash alert styles */
-
-.flash-container {
-  width: 100%;
-  position: fixed;
-  z-index: 700;
-  padding-top: 20px;
+.index-title {
+  width: 50%;
+  margin: auto;
   font-weight: bold;
+  color: var(--viridian);
+  font-size: 30px;
 }
 
-.alert {
-  text-align: center !important;
-  width: 500px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  color: #211809 !important;
-}
+/******************************* Video presentación *******************************/
 
-/* nav header links */
-
-.nav-brand {
-  position: fixed;
-  left: 0;
-  z-index: 300;
-  top: 0;
-}
-
-.nav-brand__background-video {
+.about-me__background-video {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -80,127 +35,15 @@ p {
   top: 0;
   margin: 0;
 }
-source {
-  top: 0;
-}
 
-#fp-nav ul li .fp-tooltip {
-  color: #5f5f5f !important;
-}
-
-/* main header section */
-.available-tournaments {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* flex-wrap: wrap; */
-  gap: 20px;
-  margin: 5%;
-  padding: 5%;
-}
-
-.available-tournaments__title {
-  width: 20%;
-}
-.available-tournaments__container {
-  width: 80%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-/* From Uiverse.io by Yaya12085 */
-.card {
-  max-width: 300px;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  border: 1px solid transparent;
-  gap: 20px;
-}
-
-.card a {
-  text-decoration: none;
-}
-
-.content {
-  padding: 1.1rem;
-}
-
-.image {
-  object-fit: cover; /** Contenido dimensionado para rellenar por completo su cuadro de imagen*/
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  background-color: var(--viridian);
-  width: 300px;
-}
-
-.title {
-  color: #111827;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-}
-
-.desc {
-  margin-top: 0.5rem;
-  color: #6b7280;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.action {
-  display: inline-flex;
-  margin-top: 1rem;
-  color: #ffffff;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 500;
-  align-items: center;
-  gap: 0.25rem;
-  background-color: var(--poppy);
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.action span {
-  transition: 0.3s ease;
-}
-
-.action:hover span {
-  transform: translateX(4px);
-}
-
-.tournament-image {
-  width: 100%;
-}
-
-/* .footer {
-  background-color: #3b8f8f;
-} */
-
-.sn-container {
-  width: 100% !important;
-}
-
-/*
-* *TEXTO JUMPSTYLE POR ENCIMA DEL HEADER
-*/
+/******************************* Texto por encima del video *******************************/
 
 #fullpage {
   position: relative; /* Asegura que los elementos internos posicionados relativamente se ajusten dentro de él */
 }
 
-.aboutme__capa-vacia {
+.about-me__empty-layer {
   position: absolute; /* Posiciona este elemento de forma absoluta dentro de su contenedor relativo */
-  /* Lo posiciona en la mitad superior del contenedor padre */
-  /* top: 40%; */
-  /*Lo posiciona en el centro horizontal del contenedor padre*/
-  /* left: 40%; */
-  /* Centra el elemento en el medio de su contenedor */
-  /* transform: translate(-50%, -50%); */
   z-index: 2; /* Asegura que este elemento esté por encima del vídeo */
   text-align: center; /* Centra el texto dentro del contenedor */
   color: white; /* Color del texto */
@@ -209,34 +52,29 @@ source {
   padding: 25%;
 }
 
-.nav-brand__background-video {
+.about-me__background-video {
   position: relative; /* Asegura que el vídeo sea un elemento de referencia para el posicionamiento absoluto */
   z-index: 1; /* Asegura que el vídeo esté detrás del elemento .aboutme__capa-vacia */
   opacity: 0.5;
 }
 
-.aboutme {
+.about-me {
   height: max-content;
   width: 100%;
-  background-color: var(--eerie-black);
+  background-color: var(--serie-black);
+  display: flex;
+  justify-content: center;
 }
 
-.aboutme p {
+.about-me p {
   color: white;
   font-weight: 100;
   font-size: 17.4px;
 }
 
-.fullpage__background-image {
-  width: auto;
-  height: 600px;
-}
+/******************************* Botón descubrir *******************************/
 
-/*
- * * BOTON DESCUBRIR
- */
-
-.aboutme__find-btn {
+.about-me__button--find {
   font-size: 17px;
   background: transparent;
   border: none;
@@ -248,27 +86,12 @@ source {
   cursor: pointer;
 }
 
-/* .aboutme__find-btn::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0;
-  background-color: var(--red-jls);
-  transition: 0.5s ease;
-} */
-
-.aboutme__find-btn:hover {
+.about-me__button--find:hover {
   color: white;
   transition-delay: 0.5s;
 }
 
-.aboutme__find-btn:hover::before {
-  width: 100%;
-}
-
-.aboutme__find-btn::after {
+.about-me__button--find::after {
   content: "";
   position: absolute;
   left: 0;
@@ -280,64 +103,19 @@ source {
   z-index: -1;
 }
 
-.aboutme__find-btn:hover::after {
+.about-me__button--find:hover::after {
   height: 100%;
   transition-delay: 0.4s;
   color: white;
 }
 
-@media (min-width: 100px) and (max-width: 500px) {
-  .fa-bars {
-    display: block !important;
-  }
-
-  .header-links {
-    display: none;
-  }
-}
-
-/* mobile styles */
-
 @media (min-width: 100px) and (max-width: 400px) {
-  .content {
-    max-width: 300px;
-  }
-
   .aboutme h1 {
     font-size: 28px;
   }
 }
 
-/*****************************************************SECCION TORNEOS************************************************************/
-
-.available-tournament {
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.available-tournaments__title {
-  margin-top: 0;
-  text-align: center;
-}
-.available-tournaments__tournament-element {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-.available-tournaments__tournament-info {
-  margin-bottom: 10px;
-}
-
-/**************************************************SECCION SOBRE NOSOTROS******************************************************/
+/******************************* Sección sobre nosotros *******************************/
 
 .about-us {
   margin-top: 3%;
@@ -359,12 +137,6 @@ source {
   align-items: center;
 }
 
-.about-us__img-origin-jumpers {
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-}
-
 .about-us__text-container {
   width: 50%;
   display: flex;
@@ -373,105 +145,151 @@ source {
   text-align: justify;
 }
 
-.about-us__title-label-container {
-  margin-bottom: 10px;
-}
-
 .about-us__info-text-container {
   margin-bottom: 20px;
 }
 
-.about-us__title-label-container {
+.about-us__label--title {
   font-weight: bold;
   color: var(--viridian);
   font-size: 30px;
+  margin-bottom: 10px;
 }
-.about-us__title-container {
+.about-us__title {
   font-weight: bolder;
   font-size: 40px;
 }
-.about-us__info-text-container {
+.about-us__info-text {
   font-size: 17px;
 }
 
-/***********************************CONTENIDO PROXIMOS EVENTOS**************************************************/
-/* 
-.upcoming-events {
-  margin-top: 50px;
-}
+/******************************* Sección torneos *******************************/
 
-.upcoming-events__title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.event {
+.available-tournaments {
   display: flex;
-  margin-bottom: 30px;
-}
-
-.event__image {
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-  margin-right: 20px;
-}
-
-.event__info {
-  flex: 1;
-}
-
-.event__title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.event__date,
-.event__location {
-  margin-bottom: 5px;
-}
-
-.event__description {
-  font-size: 14px;
-} */
-
-.available-tournaments__tournament-info {
-  display: flex;
-  height: 100px;
-  width: 30%;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 20px;
+  margin: 5%;
+  padding: 5%;
+  text-align: center;
 }
-.available-tournaments__tournament-img img {
+
+.available-tournaments__container {
+  margin-top: 2rem;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: last baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* From Uiverse.io by Yaya12085 */
+.available-tournaments__card {
+  max-width: 300px;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid transparent;
+  gap: 20px;
+  align-self: center;
+}
+
+.available-tournaments__link {
+  text-decoration: none;
+}
+
+.available-tournaments__content {
+  padding: 1.1rem;
+}
+
+.available-tournaments__image-container {
+  /** Imagen que se encuentre dentro se ajuste al contenedor */
+  object-fit: cover; /** Contenido dimensionado para rellenar por completo su cuadro de imagen*/
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-color: var(--viridian);
+  width: 300px;
+}
+
+.available-tournaments__tournament-image {
+  width: 100%;
+}
+
+.available-tournaments__sub-title {
+  color: #111827;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.available-tournaments__description {
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.action-button {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--poppy);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/**Para el boton descubir de los torneos */
+
+.available-tournaments__action span {
+  transition: 0.3s ease;
+}
+
+.available-tournaments__action:hover span {
+  transform: translateX(4px);
+}
+
+/******************************* Sección eventos *******************************/
+
+.available-events {
+  max-width: 100%;
+  text-align: center;
+}
+.available-events__item {
+  max-width: 350px;
+  margin: 2rem;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+}
+.available-events__item-image-container {
+  object-fit: cover; /** Contenido dimensionado para rellenar por completo su cuadro de imagen*/
+  max-width: 150px;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background-color: var(--viridian);
+}
+.available-events__item-image-container img {
   height: auto;
   width: 100%;
 }
-.available-tournaments__tournament-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: rgba(146, 132, 132, 0.2);
-  padding: 3%;
-  display: flex;
-  align-items: center;
-}
-.available-tournaments__tournament-desc {
-  width: 60%;
+
+.available-events__item-container {
+  gap: 10px;
+  padding: 1rem;
 }
 
-.available-tournaments__title {
-  font-weight: bold;
-  color: var(--viridian);
-  font-size: 30px;
-}
+/******************************* Sección Spotify *******************************/
 
-/* LISTA SPOTIFY */
-
-/* Contenedor principal */
 .music-recommendation {
   text-align: center;
-  max-width: 600px;
+  max-width: 100%;
   margin: 40px auto;
   padding: 20px;
   background-color: var(--platinum);
@@ -479,10 +297,9 @@ source {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Título y descripción */
 .music-recommendation__title {
   font-size: 24px;
-  color: var(--eerie-black);
+  color: var(--serie-black);
   margin-bottom: 10px;
 }
 
@@ -492,41 +309,18 @@ source {
   margin-bottom: 20px;
 }
 
-/* Tarjeta de la playlist */
+/** playlist */
 .music-recommendation__card {
+  display: flex;
+  width: 50%;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
-/* Acciones de la playlist */
-.music-recommendation__actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.music-recommendation__button {
-  padding: 10px 15px;
-  color: var(--white);
-  background-color: var(--poppy);
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.music-recommendation__button:hover {
-  background-color: #b22222;
-}
-
-.music-recommendation__button--share {
-  background-color: var(--viridian);
-}
-
-.music-recommendation__button--share:hover {
-  background-color: #3b8f8f;
+@media (min-width: 100px) and (max-width: 400px) {
+  .music-recommendation__card {
+    max-width: 600px;
+  }
 }

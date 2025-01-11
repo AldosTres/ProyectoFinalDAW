@@ -1,0 +1,49 @@
+:root {
+  --serie-black: hsla(0, 2%, 11%, 1);
+  --poppy: hsla(0, 67%, 53%, 1);
+  --poppy-hover: hsla(
+    0,
+    67%,
+    58%,
+    1
+  ); /* Color ligeramente más claro para el hover */
+  --white: hsla(0, 0%, 100%, 1);
+  --viridian: hsla(154, 15%, 49%, 1);
+  --viridian-shadow: hsla(154, 15%, 35%, 0.6);
+  --platinum: hsla(0, 0%, 87%, 1);
+  --success: #04aa6d;
+  --success-transition: #46a049;
+  --danger: #f44336;
+  /* rgb(255, 114, 109) */
+  --danger-transition: #da190b;
+  /* rgb(255, 73, 66) */
+}
+.profile-page {
+  margin-top: 7rem;
+}
+.profile-page__avatar-container {
+  object-fit: contain;
+}
+
+.profile-page__avatar-container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.profile-page__video-preview iframe {
+  width: 100%;
+  height: auto;
+}
+.profile-page__avatar-button .profile-page__video-delete {
+  background-color: var(--poppy) !important;
+  border-color: var(--poppy) !important;
+}
+.profile-page__avatar-button:hover {
+  background-color: var(--poppy-hover) !important;
+}
+
+.profile-page__form-submit {
+  background-color: var(--viridian);
+  border-color: var(--viridian);
+}

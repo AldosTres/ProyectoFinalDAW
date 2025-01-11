@@ -1,6 +1,12 @@
 :root {
   --serie-black: hsla(0, 2%, 11%, 1);
   --poppy: hsla(0, 67%, 53%, 1);
+  --poppy-hover: hsla(
+    0,
+    67%,
+    58%,
+    1
+  ); /* Color ligeramente más claro para el hover */
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
   --viridian-shadow: hsla(154, 15%, 35%, 0.6);
@@ -111,7 +117,7 @@
 .home__stat-number {
   font-size: 24px;
   font-weight: bold;
-  color: #007bff;
+  color: var(--poppy);
 }
 
 .home__stat-label {
@@ -132,7 +138,7 @@
   font-size: 14px;
   padding: 10px 20px;
   color: #fff;
-  background-color: #007bff;
+  background-color: var(--poppy);
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -140,7 +146,7 @@
 }
 
 .home__button:hover {
-  background-color: #0056b3;
+  background-color: var(--poppy-hover);
 }
 
 /* Lista de tareas */
@@ -737,7 +743,10 @@
   border-radius: 8px;
   background-color: #f9f9f9;
 }
-
+.round-vote-form iframe {
+  width: 352px;
+  height: 198px;
+}
 .round-vote-form__video-container {
   text-align: center;
   margin-bottom: 20px;

@@ -16,9 +16,9 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,400,600' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"> -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+
     <title>Administracion | JLS</title>
 </head>
 
@@ -26,7 +26,7 @@
     <div class="admin">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar" style="width: 280px;">
             <a href="admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none sidebar__logo">
-                <img src="<?= base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="" width="40">
+                <img src="<?= base_url() ?>img/logoTipo_JLS.png" alt="" width="40">
                 <span class="fs-4">JLS</span>
             </a>
             <hr>
@@ -71,16 +71,10 @@
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <img src="<?= base_url() ?>img/perfil_usuarios/<?= session()->get('admin_image') ?>" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong><?= session()->get('admin_name') ?></strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li> -->
-                    <!-- <li>
-                        <hr class="dropdown-divider">
-                    </li> -->
                     <li><a class="dropdown-item" href="<?= base_url() ?>logout-admin">Cerrar sesión</a></li>
                 </ul>
             </div>
@@ -132,15 +126,15 @@
 
                 <div class="home__stats">
                     <div class="home__stat">
-                        <span class="home__stat-number">5</span>
+                        <span class="home__stat-number"><?= $total_active_tournaments ?></span>
                         <span class="home__stat-label">Torneos activos</span>
                     </div>
                     <div class="home__stat">
-                        <span class="home__stat-number">12</span>
+                        <span class="home__stat-number"><?= $total_active_judges ?></span>
                         <span class="home__stat-label">Jueces registrados</span>
                     </div>
                     <div class="home__stat">
-                        <span class="home__stat-number">120</span>
+                        <span class="home__stat-number"><?= $total_active_participants ?></span>
                         <span class="home__stat-label">Participantes totales</span>
                     </div>
                 </div>
@@ -181,7 +175,7 @@
                     </div>
                     <div class="tournaments__field form__field">
                         <label for="tournament-logo" class="tournaments__field-label form__field-label">Logotipo del torneo:</label>
-                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file form__field-input" accept=".jpg" required>
+                        <input type="file" name="logo" id="tournament-logo" class="tournaments__field-input tournaments__field-input--file form__field-input form-control " accept=".jpg" required>
                     </div>
                     <div class="tournaments__buttons form__buttons">
                         <button type="submit" class="tournaments__button form-tournament__button--submit form__button">Crear</button>
@@ -319,19 +313,19 @@
                     <form action="admin/events/upload" method="post" class="events__form form" enctype="multipart/form-data">
                         <div class="events__field form__field">
                             <label for="event-name" class="events__field-label form__field-label">Nombre del evento:</label>
-                            <input type="text" name="event-name" id="event-name" class="events__field-input form__field-input" placeholder="Introduce el nombre del evento">
+                            <input type="text" name="event-name" id="event-name" class="events__field-input form__field-input form-control" placeholder="Introduce el nombre del evento">
                         </div>
                         <div class="events__field form__field">
                             <label for="event-description" class="events__field-label form__field-label">Descripción:</label>
-                            <textarea name="event-description" id="event-description" class="events__field-input form__field-input" placeholder="Añade una breve descripción del evento"></textarea>
+                            <textarea name="event-description" id="event-description" class="events__field-input form__field-input form-control " placeholder="Añade una breve descripción del evento"></textarea>
                         </div>
                         <div class="events__field form__field">
                             <label for="event-start-date" class="events__field-label form__field-label">Fecha de inicio:</label>
-                            <input type="date" name="event-start-date" id="event-start-date" class="events__field-input form__field-input">
+                            <input type="date" name="event-start-date" id="event-start-date" class="events__field-input form__field-input form-control">
                         </div>
                         <div class="events__field form__field">
                             <label for="event-end-date" class="events__field-label form__field-label">Fecha de finalización:</label>
-                            <input type="date" name="event-end-date" id="event-end-date" class="events__field-input form__field-input">
+                            <input type="date" name="event-end-date" id="event-end-date" class="events__field-input form__field-input form-control">
                         </div>
                         <div class="events__field form__field">
                             <label for="event-location" class="events__field-label form__field-label">Ubicación:</label>
@@ -339,7 +333,7 @@
                         </div>
                         <div class="events__field form__field">
                             <label for="event-logo" class="events__field-label form__field-label">Logotipo del evento:</label>
-                            <input type="file" name="event-image" id="event-image" class="events__field-input events__field-input--file form__field-input" accept=".jpg" required>
+                            <input type="file" name="event-image" id="event-image" class="events__field-input events__field-input--file form__field-input form-control" accept=".jpg" required>
                         </div>
                         <div class="events__buttons form__buttons">
                             <button type="submit" class="events__button form-event__button--submit form__button">Crear</button>

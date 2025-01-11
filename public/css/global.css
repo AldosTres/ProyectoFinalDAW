@@ -1,13 +1,36 @@
+/******************************* Paleta de colores para toda la web *******************************/
 :root {
   --serie-black: hsla(0, 2%, 11%, 1);
   --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
   --platinum: hsla(0, 0%, 87%, 1);
-  /* azul mariono */
 }
+
+/******************************* Tipografía para toda la web *******************************/
+
 * {
   font-family: "Raleway", sans-serif;
+}
+
+/******************************* Estilos generales *******************************/
+h1,
+h2,
+p,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 html,
@@ -28,8 +51,11 @@ body {
   border-bottom: none; /* Elimina cualquier borde inferior */
   box-shadow: none; /* Elimina sombras */
 }
+.header__user-name {
+  padding-right: 1%;
+}
 
-/** ESTILOS PARA EL FOOTER **/
+/******************************* ESTILOS PARA EL FOOTER *******************************/
 
 .main-footer {
   background-color: var(--viridian);
@@ -62,7 +88,11 @@ body {
   color: white;
 }
 
-/******************************* HEADER **********************************************/
+.sub-footer {
+  width: 100% !important;
+}
+
+/******************************* HEADER *******************************/
 .heaer__Link-item {
   transition: border-bottom 1s !important;
 }
@@ -75,7 +105,7 @@ body {
   color: white !important;
   border-color: var(--poppy) !important;
 }
-/******************************* CORRESPONDIENTE A LOS MENSAJES DE ALERTA*********************************/
+/******************************* CORRESPONDIENTE A LOS MENSAJES DE ALERTA *******************************/
 /* Estilo para el mensaje de error */
 .alert-message {
   color: var(--poppy);

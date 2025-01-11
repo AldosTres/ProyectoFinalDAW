@@ -11,7 +11,7 @@
 
 <body>
     <form action="<?= base_url() ?>login-admin/check" class="form" method="post">
-        <img src="<?= base_url() ?>img/logoTipoLeagueSeries-removebg-preview.png" alt="Logotipo JLS" width="150">
+        <img src="<?= base_url() ?>img/logoTipo_JLS.png" alt="Logotipo JLS" width="100">
         <p>Administración JLS</p>
         <div class="group">
             <input required="true" class="main-input" type="text" id="jls_username" name="jls_username">

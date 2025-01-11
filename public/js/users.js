@@ -2,14 +2,6 @@ import { showModal, closeModal } from './modals.js'
 import { renderItems, loadRenderedData, renderPagination } from "./admin_page_utils.js"
 
 $(document).ready(function () {
-
-    //                              <th class="users__list-table-header-item">ID</th>
-    //                             <th class="users__list-table-header-item">Alias</th>
-    //                             <th class="users__list-table-header-item">Rol</th>
-    //                             <th class="users__list-table-header-item">Estado</th>
-    //                             <th class="users__list-table-header-item">Fecha de Registro</th>
-    //                             <th class="users__list-table-header-item">Última Conexión</th>
-    //                             <th class="users__list-table-header-item">Acciones</th>
     function generateUserRowTemplate(user) {
         const isActive = user.activo == 1 ? true : false; // Verifica si el usuario está activo (1 para activo, 0 para inactivo) VALOR TINYINT
         return `<tr class="users__list-table-row">

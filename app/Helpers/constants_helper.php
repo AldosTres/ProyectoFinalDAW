@@ -8,3 +8,6 @@ if (!defined('LOGO_TOURNAMENTS_PATH')) {
 if (!defined('LOGO_EVENTS_PATH')) {
     define('LOGO_EVENTS_PATH', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoDaw/public/img/logos_eventos/');
 }
+if (!defined('PROFILE_PICTURES_PATH')) {
+    define('PROFILE_PICTURES_PATH', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoDaw/public/img/perfil_usuarios/');
+}

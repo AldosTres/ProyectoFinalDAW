@@ -1,0 +1,977 @@
+INFO - 2025-01-10 01:19:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 01:19:13 --> ErrorException: Undefined array key "descripcion"
+in APPPATH\Views\partials\index_content.php on line 49.
+ 1 APPPATH\Views\partials\index_content.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php', 49)
+ 2 APPPATH\Views\layouts\index.php(8): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/index', [], true)
+ 6 APPPATH\Controllers\Home.php(37): view('layouts/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 01:19:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 01:19:38 --> ErrorException: Undefined array key "descripcion"
+in APPPATH\Views\partials\index_content.php on line 49.
+ 1 APPPATH\Views\partials\index_content.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php', 49)
+ 2 APPPATH\Views\layouts\index.php(8): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/index', [], true)
+ 6 APPPATH\Controllers\Home.php(37): view('layouts/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 01:19:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 01:19:41 --> ErrorException: Undefined array key "descripcion"
+in APPPATH\Views\partials\index_content.php on line 49.
+ 1 APPPATH\Views\partials\index_content.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php', 49)
+ 2 APPPATH\Views\layouts\index.php(8): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/index', [], true)
+ 6 APPPATH\Controllers\Home.php(37): view('layouts/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 01:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 01:19:47 --> ErrorException: Undefined array key "descripcion"
+in APPPATH\Views\partials\index_content.php on line 49.
+ 1 APPPATH\Views\partials\index_content.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php', 49)
+ 2 APPPATH\Views\layouts\index.php(8): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/index', [], true)
+ 6 APPPATH\Controllers\Home.php(37): view('layouts/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 01:19:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 01:19:49 --> ErrorException: Undefined array key "descripcion"
+in APPPATH\Views\partials\index_content.php on line 49.
+ 1 APPPATH\Views\partials\index_content.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php', 49)
+ 2 APPPATH\Views\layouts\index.php(8): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\index_content.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\index.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/index', [], true)
+ 6 APPPATH\Controllers\Home.php(37): view('layouts/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 01:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:20:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:27:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:38:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:39:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:39:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:40:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:41:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:42:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:43:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:43:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:43:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:44:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:45:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:47:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:48:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:49:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:49:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:49:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:49:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:49:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:57:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:58:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 01:58:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:22:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:23:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:23:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 02:23:05 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 02:25:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:27:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:27:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 02:27:03 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 02:27:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 02:27:05 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 02:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:30:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 02:30:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:08:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:25:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:26:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:26:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:26:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:27:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:27:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:28:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:28:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:36:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:36:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:39:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:39:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:40:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:40:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:40:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:40:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:41:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:41:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:41:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 20:42:04 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/JlsAdmin215/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/JlsAdmin215/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 20:42:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:43:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:43:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:49:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 20:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:01:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:02:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:29:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:29:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:30:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:32:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:35:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:35:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:35:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:35:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:35:41 --> ErrorException: Undefined variable $profile_picture
+in APPPATH\Views\partials\header.php on line 21.
+ 1 APPPATH\Views\partials\header.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $profile_picture', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\header.php', 21)
+ 2 APPPATH\Views\layouts\tournament_info.php(5): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\header.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\tournament_info.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/tournament_info', [], true)
+ 6 APPPATH\Controllers\Home.php(285): view('layouts/tournament_info', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournament_info_page('25')
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:35:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:35:56 --> ErrorException: Undefined variable $profile_picture
+in APPPATH\Views\partials\header.php on line 21.
+ 1 APPPATH\Views\partials\header.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $profile_picture', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\header.php', 21)
+ 2 APPPATH\Views\layouts\tournament_info.php(5): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\header.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\tournament_info.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/tournament_info', [], true)
+ 6 APPPATH\Controllers\Home.php(285): view('layouts/tournament_info', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournament_info_page('21')
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:39:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:40:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:40:03 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:40:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:40:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:40:26 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:41:47 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:44:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:44:07 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:44:30 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:44:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:44:36 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:44:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:44:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:44:49 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:46:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:49:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:49:33 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2025-01-10 21:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:49:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:49:55 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2025-01-10 21:51:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:51:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:51:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:51:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:51:18 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2025-01-10 21:51:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:51:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:51:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:51:38 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2025-01-10 21:56:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:56:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:56:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 21:56:26 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 21:56:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:56:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:56:34 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2025-01-10 21:57:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 21:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 21:57:52 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`jumpstyle_league_db`.`inscripciones`, CONSTRAINT `inscripcion_torneo` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(352): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(261): App\models\DataBaseHandler->jls_add_new_participant('Prueba_Aldo2', '', '11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->add_new_participant()
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+DEBUG - 2025-01-10 21:57:52 --> Redirigiendo al torneo con ID: 
+INFO - 2025-01-10 22:10:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:12:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:12:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:13:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 22:13:00 --> Redirigiendo al torneo con ID: 21
+INFO - 2025-01-10 22:13:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:16:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:16:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:16:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:17:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:22:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:23:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:23:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:30:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:30:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:30:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:31:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:31:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:31:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:31:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:34:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 22:36:19 --> ErrorException: Undefined variable $title
+in APPPATH\Views\partials\html_header.php on line 35.
+ 1 APPPATH\Views\partials\html_header.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\html_header.php', 35)
+ 2 APPPATH\Views\layouts\tournament_info.php(1): include_once('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\partials\\html_header.php')
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ProyectoDaw\\app\\Views\\layouts\\tournament_info.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('layouts/tournament_info', [], true)
+ 6 APPPATH\Controllers\Home.php(285): view('layouts/tournament_info', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\Home->get_tournament_info_page('2')
+ 8 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 22:36:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:37:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:38:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:38:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:38:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:41:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:41:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:42:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:43:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:43:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:43:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:43:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 22:44:02 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/je/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/je/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 22:44:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:44:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:44:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:44:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:52:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:52:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:56:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:56:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 22:57:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 22:57:23 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 22:59:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 22:59:14 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "[Ruta del video]"
+in SYSTEMPATH\Router\Router.php on line 704.
+ 1 SYSTEMPATH\Router\Router.php(195): CodeIgniter\Router\Router->checkDisallowedChars('profile/ratonex/[Ruta del video]')
+ 2 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle('profile/ratonex/[Ruta del video]')
+ 3 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2025-01-10 23:03:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:04:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:27:40 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:27:40 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:29:33 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:29:33 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:29:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:31:59 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:31:59 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:33:09 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:33:09 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:33:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:33:25 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:33:25 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:33:35 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:33:35 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:33:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:33:52 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:33:52 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:37:10 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:37:10 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:37:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:37:31 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:37:31 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:37:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:39:49 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:39:49 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:39:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:42:03 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:42:03 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:42:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:43:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:43:36 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:43:36 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:43:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:47:15 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:47:15 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:47:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:47:19 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:47:19 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:47:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:47:20 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1196): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:47:20 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:47:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:53:35 --> mysqli_sql_exception: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1163): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(73): App\models\DataBaseHandler->getUserRoundsMissingVideo('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:53:35 --> Error al obtener rondas con videos faltantes: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list'
+ERROR - 2025-01-10 23:53:35 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1202): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:53:35 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:57:30 --> mysqli_sql_exception: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1165): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(73): App\models\DataBaseHandler->getUserRoundsMissingVideo('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:57:30 --> Error al obtener rondas con videos faltantes: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list'
+ERROR - 2025-01-10 23:57:30 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1205): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:57:30 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:57:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:57:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:57:39 --> mysqli_sql_exception: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1165): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(73): App\models\DataBaseHandler->getUserRoundsMissingVideo('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:57:39 --> Error al obtener rondas con videos faltantes: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list'
+ERROR - 2025-01-10 23:57:39 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1205): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:57:39 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:59:08 --> mysqli_sql_exception: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1162): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(73): App\models\DataBaseHandler->getUserRoundsMissingVideo('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:59:08 --> Error al obtener rondas con videos faltantes: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list'
+ERROR - 2025-01-10 23:59:08 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1202): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:59:08 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:59:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:59:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:59:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-10 23:59:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 23:59:21 --> mysqli_sql_exception: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list' in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1162): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(73): App\models\DataBaseHandler->getUserRoundsMissingVideo('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:59:21 --> Error al obtener rondas con videos faltantes: Unknown column 'CASE WHEN i1.id_usuario = 11 THEN 1 WHEN i2.id_usuario = 11 THEN 2 ELSE NULL END' in 'field list'
+ERROR - 2025-01-10 23:59:21 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1 in C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ProyectoDaw\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `r`.`id`...', 0)
+#1 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `r`.`id`...')
+#2 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `r`.`id`...')
+#3 C:\xampp\htdocs\ProyectoDaw\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `r`.`id`...', Array, false)
+#4 C:\xampp\htdocs\ProyectoDaw\app\Models\DataBaseHandler.php(1202): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ProyectoDaw\app\Controllers\Home.php(74): App\models\DataBaseHandler->getUserUploadedVideos('11')
+#6 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(943): App\Controllers\Home->get_user_profile_page('ratonex', '11')
+#7 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ProyectoDaw\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ProyectoDaw\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2025-01-10 23:59:21 --> Error al obtener videos del usuario: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_usuario = :userId THEN r`.`url_video_participante2 END` AS `user_video`
+...' at line 1
+INFO - 2025-01-10 23:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

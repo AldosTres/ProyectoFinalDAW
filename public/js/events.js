@@ -1,6 +1,13 @@
 import { showModal, closeModal } from './modals.js'
 import { renderItems, loadRenderedData, renderPagination } from "./admin_page_utils.js"
 $(document).ready(function () {
+
+    /**
+     * Función que genera un template de fila de tabla para una lista de eventos
+     * @param {*} event 
+     * @returns 
+     */
+
     function generateEventRowTemplate(event) {
         let isActive = event.activo == 1 ? true : false
         return `<tr class="events__list-table-row">
@@ -95,8 +102,11 @@ $(document).ready(function () {
                 </iframe>`;
     }
     
-    
-    
+    /**
+     * Función que genera un template para mostrar los detalles del evento
+     * @param {*} event 
+     * @returns 
+     */
 
     function generateEventDetailsTemplate(event){
         return `<div id="event-details-container">
@@ -138,7 +148,6 @@ $(document).ready(function () {
         })
     }
 
-    // $('#events-list').off('click', )
     $('#events-list').off('click', '.events__list-table-button--view-details').on('click', '.events__list-table-button--view-details', handleEventDetails)
 
     function generateEventEditFormTemplate(event) {
@@ -201,6 +210,9 @@ $(document).ready(function () {
 
     $('#events-list').off('click', '.events__list-table-button--edit').on('click', '.events__list-table-button--edit', handleEventEditForm)
 
+    /**
+     * Funció que se encarga de cambiar el estado del evento activo o no activo
+     */
     function toggleEventActiveStatus() {
         let eventId = $(this).attr('event-id-data'); // Obtiene el ID del evento
         let eventActiveStatus = $('.events__list-active-status').attr('data-id'); // Obtiene el estado "Activo" del evento

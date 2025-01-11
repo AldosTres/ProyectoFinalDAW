@@ -3,6 +3,11 @@
 namespace App\Controllers;
 
 use App\models\DataBaseHandler;
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\Session\Handlers\DatabaseHandler as HandlersDatabaseHandler;
+use DateTime;
+use IntlDateFormatter;
+use DateTimeZone;
 
 class Home extends BaseController
 {
@@ -11,11 +16,24 @@ class Home extends BaseController
         $jls_database = new DatabaseHandler();
 
         $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
-        $data['tournaments'] = $tournaments;
-        $data['title'] = 'Jumpstyle League Series';
+        $events = $jls_database->jls_get_events_by_filter(null, null, 1);
         if (session()->get('user_id')) {
+            $user_data = $jls_database->jls_get_user_data(session()->get('user_id'));
+            $data = [
+                'tournaments' => $tournaments,
+                'events' => $events,
+                'title' => 'Jumpstyle League Series',
+                'user_alias' => $user_data->alias_usuario,
+                'user_name' => $user_data->nombre_usuario,
+                'profile_picture' => $user_data->foto_perfil
+            ];
             return view('layouts/userIndex', $data);
         } else {
+            $data = [
+                'tournaments' => $tournaments,
+                'events' => $events,
+                'title' => 'Jumpstyle League Series'
+            ];
             return view('layouts/index', $data);
         }
     }
@@ -33,9 +51,113 @@ class Home extends BaseController
 
     public function get_about_us_page(): string
     {
-        $data['title'] = 'JLS | Sobre nosotros';
+        $jls_database = new DataBaseHandler();
+        if (session()->get('user_id')) {
+            $user_data = $jls_database->jls_get_user_data(session()->get('user_id'));
+            $data = [
+                'title' => 'JLS | Sobre nosotros',
+                'user_alias' => $user_data->alias_usuario,
+                'user_name' => $user_data->nombre_usuario,
+                'profile_picture' => $user_data->foto_perfil
+            ];
+        } else {
+            $data['title'] = 'JLS | Sobre nosotros';
+        }
         return view('layouts/about_us', $data);
     }
+
+    public function get_user_profile_page($user_name, $user_id): string
+    {
+        $jls_database = new DatabaseHandler();
+        $user_data = $jls_database->jls_get_user_data($user_id);
+        //video aqui
+        $roundsSV = $jls_database->jls_get_user_rounds_without_video($user_id);
+        $roundsCV = $jls_database->getUserUploadedVideos($user_id);
+        // Formateo de fecha
+        // Crear un objeto DateTime con la fecha de la base de datos
+        $fecha = new DateTime($user_data->fecha_registro);
+
+        // Permite formatear la fecha y hora según la localización.
+        $formatter = new IntlDateFormatter(
+            // El formato IntlDateFormatter::LONG usa nombres de meses completos y IntlDateFormatter::SHORT muestra horas en formato breve (sin segundos).
+            'es_ES', // Idioma y región (español de España)
+            IntlDateFormatter::LONG, // Formato para la fecha
+            IntlDateFormatter::SHORT // Formato para la hora
+        );
+        $data = [
+            'title' => 'JLS | Perfil',
+            'user_alias' => $user_data->alias_usuario,
+            'user_name' => $user_data->nombre_usuario,
+            'registration_date' => $formatter->format($fecha),
+            'profile_picture' => $user_data->foto_perfil,
+            'sin_subir' => $roundsSV,
+            'subidos' => $roundsCV
+        ];
+        return view('layouts/user_profile', $data);
+    }
+
+    public function update_user_img_profile($user_id)
+    {
+        $jls_database = new DatabaseHandler();
+
+        $user_profile_picture = $this->request->getFile('profile-picture');
+
+        //Identificador unico para el logotipo del torneo
+        $unique_id = uniqid("usuario_", true);
+
+        $old_profile_picture = $jls_database->jls_get_user_profile_picture($user_id);
+
+        // Verifico si el archivo es válido
+        if ($user_profile_picture->isValid() && !$user_profile_picture->hasMoved()) {
+            // Obtengo la extensión del archivo
+            $file_extension = $user_profile_picture->getExtension();
+            // Muevo el archivo al destino
+            $user_profile_picture->move(PROFILE_PICTURES_PATH, $unique_id . '.' . $file_extension);
+        }
+
+        // Verifico si el archivo existe y lo elimino
+        if (file_exists($old_profile_picture)) {
+            unlink($old_profile_picture);  // Elimino el archivo antiguo
+        }
+
+        $result = $jls_database->jls_update_user_img_profile($user_id, $unique_id . '.' . $file_extension);
+        session()->setFlashdata('profile_picture_error', 'El nombre de usuario o contraseña son incorrectos');
+        session()->set('jumper_image_profile', $unique_id . '.' . $file_extension);
+        return redirect()->to(base_url('profile/' . session()->get('jumper_user_name') . '/' . $user_id));
+    }
+
+    public function update_user_profile()
+    {
+        $jls_database = new DataBaseHandler();
+
+        try {
+            // Capturar datos enviados desde el formulario o la solicitud
+            $user_id = session()->get('user_id'); // Suponiendo que el ID del usuario está almacenado en la sesión
+            $new_username = $this->request->getPost('new-username');
+            $new_alias = $this->request->getPost('new-alias');
+            $new_password = $this->request->getPost('new-password');
+
+            // Validar que el usuario esté autenticado
+            if (!$user_id) {
+                return $this->generate_response('error', '', 'No se ha encontrado el ID del usuario. Por favor, inicie sesión de nuevo.');
+            }
+
+            // Llamar a la función del modelo para actualizar los datos
+            $result = $jls_database->jls_update_user_profile($user_id, $new_username, $new_alias, $new_password);
+
+            // Responder según el resultado
+            if ($result['status'] == 'success') {
+
+                return redirect()->to(base_url('profile/' . session()->get('jumper_user_name') . '/' . $user_id))->with('succes', $result['message']);
+            } else {
+                return redirect()->back()->with('error', $result['message']);
+            }
+        } catch (\Throwable $th) {
+            log_message('error', 'Error al actualizar el perfil del usuario: ' . $th->getMessage());
+            return $this->generate_response('error', '', 'Ocurrió un error inesperado al actualizar el perfil.');
+        }
+    }
+
 
     public function get_register_user_page(): string
     {
@@ -60,15 +182,12 @@ class Home extends BaseController
         } else {
             return redirect()->to('register')->with('error', 'El nombre de usuario o alias ya se encuentra en uso.');
         }
-        // return view('layouts/login');
     }
     public function logout()
     {
         session()->destroy();
         $data['title'] = 'Jumpstyle League Series';
         return redirect()->to(base_url('index'));
-
-        // return view('layouts/index', $data);
     }
 
     public function admin_logout()
@@ -77,7 +196,7 @@ class Home extends BaseController
         return redirect()->to(base_url('login-admin'));
     }
 
-    public function check_login(): string
+    public function check_login(): RedirectResponse | string
     {
         $jls_database = new DataBaseHandler();
         $user = $this->request->getPost('jls_username');
@@ -86,17 +205,25 @@ class Home extends BaseController
 
         if ($result == 0) {
             //No se ha encontrado al usuario
-            $data['login_error'] = 'El nombre de usuario o contraseña son incorrectos';
-            return view('layouts/login', $data);
+            session()->setFlashdata('user_not_found_error', 'El nombre de usuario o contraseña son incorrectos');
+            return redirect()->to(base_url('login'));
         } else {
             //Devolviendo los datos correspondientes al user
             $user_data = $jls_database->jls_get_user_data($result);
             $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
-            $data['tournaments'] = $tournaments;
-            $data['title'] = 'Jumpstyle League Series';
+            $events = $jls_database->jls_get_events_by_filter(null, null, 1);
+            $data = [
+                'tournaments' => $tournaments,
+                'events' => $events,
+                'title' => 'Jumpstyle League Series',
+                'user_alias' => $user_data->alias_usuario,
+                'user_name' => $user_data->nombre_usuario,
+                'profile_picture' => $user_data->foto_perfil
+            ];
             $jls_database->jls_update_last_connection($result);
             session()->set('jumper_user_name', $user_data->nombre_usuario);
             session()->set('user_id', $result);
+            session()->set('jumper_image_profile', $user_data->foto_perfil);
 
             return view('layouts/userIndex', $data);
         }
@@ -109,8 +236,6 @@ class Home extends BaseController
         $password = $this->request->getPost('jls_user_password');
         $result = $jls_database->jls_check_user($user, $password);
         if ($result == 0) {
-
-            // return view('layouts/login_admin', $data);
             session()->setFlashdata('user_not_found_error', 'El nombre de usuario o contraseña son incorrectos');
             return redirect()->to(base_url('login-admin'));
         } else {
@@ -118,14 +243,12 @@ class Home extends BaseController
             $rol = $jls_database->jls_get_rol_by_id($user_data->id_rol);
             $rol_name = $rol->nombre;
             if ($rol_name == 'usuario') {
-                // $data['login_error'] = 'No tienes permiso para iniciar sesión';
                 session()->setFlashdata('user_not_found_error', 'No tienes permiso para acceder');
-
-                // return view('layouts/login_admin', $data);
                 return redirect()->to(base_url('login-admin'));
             } else {
                 $jls_database->jls_update_last_connection($result);
                 session()->set('admin_name', $user_data->alias_usuario);
+                session()->set('admin_image', $user_data->foto_perfil);
                 session()->set('admin_id', $result);
                 session()->set('rol_name', $rol_name);
                 return redirect()->to(base_url('admin'));
@@ -153,16 +276,6 @@ class Home extends BaseController
             $tournament_logo->move(LOGO_TOURNAMENTS_PATH, $unique_id . '.' . $file_extension);
         }
 
-
-        //Obtengo la extension de la imagen para permitir que se suba imágenes con diferentes extensiones convirtiéndolo a minúsculas
-        // $file_extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
-
-        //Creo la ruta que se almacenará en BBDD y en la carpeta de imágenes
-        // $logo_path = LOGO_TOURNAMENTS_PATH . $unique_id . '.' . $file_extension;
-
-        // Guarda la foto en la carpeta de imágenes
-        // move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
-
         $result = $jls_database->jls_upload_new_tournament($tournament_name, $tournament_init_date, $tournament_end_date, $unique_id);
         if ($result) {
             return redirect()->to('admin')->with('success', 'El torneo se ha creado correctamente');
@@ -174,19 +287,18 @@ class Home extends BaseController
 
     public function add_new_participant()
     {
-        // MEJORAR
-        // ENVIAR A LA PAGINA DEL TORNEO POR GET
-
         $jls_database = new DataBaseHandler();
         $jls_name = $this->request->getPost('jls-jumper-name');
         $jls_tournament_id = $this->request->getPost('jls-tournament-id');
         if (session()->get("user_id")) {
-            $result = $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
-            $tournaments = $jls_database->jls_get_tournaments_by_filter();
-            $data['tournaments'] = $tournaments;
-            $data['title'] = 'Jumpstyle League Series';
-            return view('layouts/userIndex', $data);
-            // return redirect()->to('tournament');
+            $participants = $jls_database->jls_count_participants(['id_torneo' => $jls_tournament_id]);
+            if ($participants >= 8) {
+                session()->setFlashdata("participant_added", "No podemos inscribirte al torneo, se ha alcanzado el número máximo de participantes");
+            } else {
+                $result = $jls_database->jls_add_new_participant($jls_name, $jls_tournament_id, session()->get("user_id"));
+                session()->setFlashdata("participant_added", "Te has inscrito en el torneo correctamente");
+            }
+            return redirect()->to(base_url('tournament/' . $jls_tournament_id));
         } else {
             //Lo que hacemos es establecer un mensaje de un solo uso que se elimina después de ser utilizado, uso correcto en este caso
             session()->setFlashdata("user_not_found_error", "Tiene que iniciar sesión para poder inscribirse");
@@ -198,11 +310,14 @@ class Home extends BaseController
     public function get_tournament_info_page($jls_tournament_id): string
     {
         $jls_database = new DataBaseHandler();
-        // $jls_tournament_id = $this->request->getPost('tournament_id');
-        // $jls_tournament_id = $_GET['tournament_id'];
+        $tournament = $jls_database->jls_get_tournament_info($jls_tournament_id);
         $jls_participants = $jls_database->jls_get_tournament_participants($jls_tournament_id);
-        $data['participants'] = $jls_participants;
-        $data['title'] = 'Torneo';
+        $data = [
+            'participants' => $jls_participants,
+            'title' => $tournament->nombre,
+            'tournament' => $tournament,
+            'tournament_id' => $jls_tournament_id
+        ];
         return view("layouts/tournament_info", $data);
     }
 
@@ -211,8 +326,19 @@ class Home extends BaseController
         if (!session()->get('admin_name') || !session()->get('admin_id')) {
             return redirect()->to(base_url('login-admin'));
         }
-
-        return view('layouts/admin');
+        $jls_database = new DataBaseHandler();
+        //Torneos activos conteo
+        $total_active_tournaments = $jls_database->jls_count_tournaments_by_filter('active');
+        //Jueces activos conteo
+        $total_active_judges = $jls_database->jls_count_users_by_filter(null, 'juez');
+        //Participantes activos totales
+        $total_active_participants = $jls_database->jls_count_participants();
+        $data = [
+            'total_active_tournaments' => $total_active_tournaments,
+            'total_active_judges' => $total_active_judges,
+            'total_active_participants' => $total_active_participants
+        ];
+        return view('layouts/admin', $data);
     }
 
 
@@ -460,7 +586,7 @@ class Home extends BaseController
         // matchPosition, roundId, firstParticipantId, secondParticipantId
         $first_participant_id = $this->request->getPost('firstParticipantId');
         $second_participant_id = $this->request->getPost('secondParticipantId');
-        $round_type_id = $this->request->getPost('roundId');
+        $round_type_id = $this->request->getPost('roundTypeId');
         $match_position = $this->request->getPost('matchPosition');
         $result = $jls_database->jls_add_new_tournament_match($tournament_id, $first_participant_id, $second_participant_id, $round_type_id, $match_position);
         if ($result) {
@@ -494,44 +620,77 @@ class Home extends BaseController
     public function upload_participant_scores($tournament_id, $round_id, $participant_id)
     {
         $jls_database = new DataBaseHandler();
-        // Captura y decodifica el array de puntuaciones
+
+        // Captura y valida el array de puntuaciones
         $scores = $this->request->getPost('scores');
         $decodedScores = json_decode($scores, true);
-        // Validar el array
+
         if (!is_array($decodedScores) || empty($decodedScores)) {
-            return json_encode([
-                'status' => 'Error',
-                'title' => 'Puntuaciones no válidas o vacías.'
-            ]);
-        } else {
-            $result = $jls_database->jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $decodedScores);
-            if ($result['status'] === 'success') { // determinar ganador si es posible
-                $winnerResult = $jls_database->jls_determine_and_register_winner($tournament_id, $round_id);
-                if ($winnerResult['status'] === 'success' && $round_id != 3) {
-                    // Crear o actualizar siguiente ronda
-                    $nextRoundResult = $jls_database->add_next_round($tournament_id, $round_id, $winnerResult['winner']);
-                    if ($nextRoundResult['status'] === 'success') {
-                        return json_encode([
-                            'status' => 'success',
-                            'title' => 'Puntuaciones y enfrentamiento',
-                            'message' => 'Se añadieron las puntuaciones y se generaron nuevo enfrentamientos'
-                        ]);
-                    }
-                }
-                return json_encode([
-                    'status' => 'success',
-                    'title' => 'Puntuaciones añadidas',
-                    'message' => 'Se añadieron las puntuaciones del participante pero ' . $winnerResult['message']
-                ]);
-            } else {
-                return json_encode([
-                    'status' => 'success',
-                    'title' => 'Puntuaciones',
-                    'message' => $result['message']
-                ]);
-            }
+            return $this->generate_response('error', 'Puntuaciones no válidas', 'Las puntuaciones enviadas son inválidas o están vacías.');
         }
+
+        // Subir las puntuaciones
+        $result = $jls_database->jls_upload_participant_scores($tournament_id, $round_id, $participant_id, $decodedScores);
+
+        if ($result['status'] !== 'success') {
+            return $this->generate_response('error', 'Error en puntuaciones', $result['message']);
+        }
+
+        // Determinar el ganador
+        $winnerResult = $jls_database->jls_determine_and_register_winner($tournament_id, $round_id);
+
+        if ($winnerResult['status'] === 'retry') {
+            return $this->generate_response('warning', 'Empate detectado', $winnerResult['message']);
+        }
+
+        if ($winnerResult['status'] !== 'success') {
+            return $this->generate_response('error', 'Puntuaciones y enfretamiento', 'Se ha subido la puntuación pero' . $winnerResult['message']);
+        }
+
+        // Si no es la última ronda, generar la siguiente
+        if ($round_id != 3) {
+            $nextRoundResult = $jls_database->jls_add_next_round($tournament_id, $round_id, $winnerResult['winner']);
+
+            if ($nextRoundResult['status'] === 'success') {
+                return $this->generate_response(
+                    'success',
+                    'Puntuaciones y enfrentamiento',
+                    'Se añadieron las puntuaciones y se generaron nuevos enfrentamientos.'
+                );
+            }
+
+            return $this->generate_response(
+                'success',
+                'Puntuaciones añadidas',
+                'Se añadieron las puntuaciones pero hubo un problema al generar los nuevos enfrentamientos.'
+            );
+        }
+
+        // Si es la última ronda, solo retornar éxito
+        return $this->generate_response(
+            'success',
+            'Puntuaciones añadidas',
+            'Se añadieron las puntuaciones del participante.'
+        );
     }
+
+    /**
+     * Genera una respuesta JSON estándar.
+     *
+     * @param string $status
+     * @param string $title
+     * @param string $message
+     * @return string JSON con la respuesta.
+     */
+    private function generate_response($status, $title, $message)
+    {
+        return json_encode([
+            'status' => $status,
+            'title' => $title,
+            'message' => $message,
+        ]);
+    }
+
 
     /**
       Funciones del apartado de eventos
@@ -696,6 +855,66 @@ class Home extends BaseController
             'status' => 'success',
             'round_types' => $round_types
         ];
+        return json_encode($response);
+    }
+
+    public function upload_user_video()
+    {
+        $jlsDatabase = new DataBaseHandler();
+        $roundId = $this->request->getPost('round_id');
+        $participantRole = $this->request->getPost('participant_role'); // Rol (1 o 2)
+        $videoUrl = $this->request->getPost('video_url');
+        $tournamentId = $this->request->getPost('tournament_id');
+        $user_id = $this->request->getPost('user_id');
+
+        //Opcional en todo caso
+        if (!session()->get('user_id')) {
+            return redirect()->to('login')->with('error', 'Debe iniciar sesión para subir un video.');
+        }
+
+        // Opcional: Validar que la ronda pertenece al torneo
+        $roundInfo = $jlsDatabase->fetchRecord('rondas', ['id' => $roundId]);
+        if ($roundInfo && $roundInfo->id_torneo != $tournamentId) {
+            return redirect()->back()->with('error', 'La ronda no pertenece al torneo indicado.');
+        }
+
+        $result = $jlsDatabase->jls_upload_user_video($roundId, $participantRole, $videoUrl);
+
+        if ($result['status'] === 'success') {
+            return redirect()->to(base_url('profile/' . session()->get('jumper_user_name') . '/' . $user_id))->with('success', $result['message']);
+        } else {
+            return redirect()->back()->with('error', $result['message']);
+        }
+    }
+
+
+
+
+    //
+    public function show_round_video($round_id, $participant_id)
+    {
+        $jls_database = new DataBaseHandler();
+
+        // Obtener el video asociado a la ronda y el participante
+        $result = $jls_database->jls_get_round_video_by_participant_id($round_id, $participant_id);
+
+        // Construir la respuesta según el resultado
+        if ($result['status'] === 'success') {
+            $response = [
+                'status' => 'success',
+                'title' => 'Video encontrado',
+                'video_url' => $result['video_url'],
+                'message' => 'El video se obtuvo correctamente.'
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'title' => 'Error al obtener video',
+                'message' => 'Ocurrió un error al obtener el video.'
+            ];
+        }
+
+        // Responder con los datos en formato JSON
         return json_encode($response);
     }
 }

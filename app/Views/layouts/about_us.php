@@ -3,48 +3,52 @@
 <body>
     <?php include_once TEMPLATES_VIEWS_PATH . 'header.php'; ?>
 
-    <main class="main-content">
+    <main class="main-content mt-10">
         <section class="about">
             <div class="about__container">
                 <h2 class="about__title">Nuestra Historia</h2>
                 <p class="about__description">
-                    Fundada con pasión por el baile, nuestra misión es crear una comunidad inclusiva y vibrante donde los amantes del arte puedan expresar su creatividad. A lo largo de los años, hemos trabajado para promover el talento y el espíritu competitivo en un entorno de apoyo.
+                    El Jumpstyle nació a finales de los años 90 en los Países Bajos como un estilo de baile que acompañaba a la música electrónica hardstyle y techno. Su energía contagiosa y movimientos rítmicos pronto se extendieron por Europa, ganando adeptos en países como Alemania, Francia y Bélgica. Más que un baile, el Jumpstyle se convirtió en una cultura, uniendo a personas de distintas edades y orígenes bajo una misma pasión: el baile.
+
+                    Inspirados por esta fuerza unificadora, Jumpstyle League Series surgió como un proyecto para preservar y promover esta cultura única. Nuestro sueño comenzó con pequeños meetings al rededor de España, pero con el tiempo evolucionamos hasta convertirnos en un punto de referencia internacional para jumpers de todas partes del mundo. Desde entonces, hemos trabajado para consolidar un espacio donde el talento, la creatividad y la compañía sean los pilares.
+
+                    Hoy en día, Jumpstyle League Series se dedica a organizar torneos que trascienden lo competitivo. Queremos que el Jumpstyle nunca se pierda, fomentar el crecimiento de la comunidad y crear lazos entre naciones a través del baile. Cada evento no solo es un espectáculo, sino una oportunidad para escribir nuevas páginas en la historia de esta cultura.
+
+                    Unimos culturas. Celebramos el talento. Mantenemos vivo el espíritu del Jumpstyle.
                 </p>
+                <div class="about__description-video d-flex justify-content-center pt-2 mt-4">
+                    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="img-fluid rounded">
+                        <source src="<?php base_url() ?>video/Our_history.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </section>
 
         <section class="values">
             <div class="values__container">
                 <h2 class="values__title">Nuestros Valores</h2>
-                <ul class="values__list">
-                    <li class="values__item">Pasión por el arte</li>
-                    <li class="values__item">Inclusión y diversidad</li>
-                    <li class="values__item">Trabajo en equipo</li>
-                    <li class="values__item">Excelencia en todo lo que hacemos</li>
-                </ul>
+                <div class="values__list mt-3">
+
+                </div>
             </div>
         </section>
 
         <section class="team">
             <div class="team__container">
                 <h2 class="team__title">Conoce al Equipo</h2>
-                <p class="team__description">
-                    Nuestro equipo está compuesto por profesionales apasionados con experiencia en el mundo del baile y la organización de eventos. Cada miembro aporta su visión única para garantizar el éxito de nuestra comunidad.
-                </p>
-            </div>
-        </section>
+                <div class="team__owners-container d-flex flex-row justify-content-center gap-5 mb-5 mt-5">
 
-        <section class="contact">
-            <div class="contact__container">
-                <h2 class="contact__title">Contáctanos</h2>
-                <p class="contact__description">
-                    Si tienes preguntas o deseas colaborar con nosotros, no dudes en escribirnos. ¡Estamos aquí para ayudarte!
+                </div>
+                <p class="team__description">
+                    Nuestro equipo está compuesto por profesionales apasionados con experiencia en el mundo del baile y la organización de eventos.
                 </p>
-                <a href="contacto.html" class="contact__link">Ir a la página de contacto</a>
             </div>
         </section>
     </main>
     <?php include_once TEMPLATES_VIEWS_PATH . 'footer.php'; ?>
+    <script>
+        const BASE_URL = "<?= base_url() ?>"; //Constante para poder usar desde el js la base_url()
+    </script>
 </body>
 </body>
 

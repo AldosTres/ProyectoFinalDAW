@@ -64,7 +64,7 @@ $(document).ready(function () {
 
         })
     }
-
+    
     //Método JQuery parecido a AddEventListener, ya que al devolver un objeto JQuery, debo aplicar un método igual
     $('#sidebar-tournaments').on('click', () => loadTournamentsByStatus())
     $('#tournaments-filter-button').on('click', () => loadTournamentsByStatus())
@@ -105,8 +105,8 @@ $(document).ready(function () {
         let formData = new FormData(form[0]) //Para trabajar directamente con el objeto DOM y no con el objeto jquery
         
         loadRenderedData('POST', 'admin/tournament/update', formData, (data) => {
-                closeModal()          // Cierra el modal
-                showModal(data.title, data.message) // Muestra mensaje del servidor
+                closeModal()
+                showModal(data.title, data.message)
         }, true)
     }
 
@@ -151,7 +151,7 @@ $(document).ready(function () {
     $('#tournament-list').off('click', '.tournaments__list-table-button--change-status').on('click', '.tournaments__list-table-button--change-status', updateTournamentStatus)
 
     /**
-     * 
+     * Función que genera un template de un particpante
      * @param {*} participant 
      * @returns 
      */
@@ -169,6 +169,9 @@ $(document).ready(function () {
                 </tr>`
     }
 
+    /**
+     * Función que me permite mostrar por pantalla un listado de participantes correspondientes a un torneo
+     */
     function handleTournamentParticipants() {
         let tournamentId = $(this).attr('data-id')
         let participantsTable = `<table class="participants__list-table table table-hover table-striped" id="participants-table">
@@ -193,6 +196,9 @@ $(document).ready(function () {
     $('.tournaments__list-table').on('click', '.tournaments__list-table-button--show-participants', handleTournamentParticipants)
 
 
+    /**
+     * Función que permite cambiar el estado del participante del de activo a inactivo
+     */
     function updateParticipantStatus (){
         let participantId = $(this).attr('data-id')
         let participantStatus = $(this).attr('status-data-id')
@@ -222,7 +228,7 @@ $(document).ready(function () {
     }
 
     /**
-     * Función que devuelve un template u otro dependiendo de isFirstRound(bool)
+     * Función que devuelve un template u otro dependiendo de si nos encontramos en la primera ronda o si existe un enfrentamiento en una posición
      * @param {*} isFirstRound 
      * @param {*} tournamentId 
      * @returns 
@@ -291,9 +297,22 @@ $(document).ready(function () {
 
 
     /**
-     * Función que genera un template de bracket de un torneo dinámico
-     * @param {*} rounds 
-     * @param {*} tournamentId 
+     * Genera un bracket dinámico para un torneo en formato HTML.
+     *
+     * Esta función toma la información de las rondas de un torneo y genera un bracket visual que
+     * incluye los enfrentamientos de cada ronda. Es compatible con datos de enfrentamientos existentes
+     * (opcional) para actualizar el bracket con información predefinida.
+     *
+     * @param {Array} tournamentRounds - Array que contiene los datos de las rondas del torneo. Cada elemento
+     *                                   debe incluir al menos un nombre o identificador para la ronda.
+     * @param {Number|String} tournamentId - Identificador único del torneo, que se incluirá en los atributos
+     *                                       de los elementos generados.
+     * @param {Array|null} matchs - (Opcional) Arreglo con los datos de los enfrentamientos existentes. Cada
+     *                              elemento debe contener información como `posicion_enfrentamiento` e
+     *                              `id_tipo_ronda` para asignarlos correctamente al bracket.
+     *
+     * @returns {void} - La función no devuelve valores, pero actualiza el contenido de un contenedor
+     *                   HTML con el id `#tournament-bracket` para mostrar el bracket generado.
      */
     function generateBracketHtml(tournamentRounds, tournamentId, matchs = null) {
         const numParticipants = 8
@@ -325,7 +344,6 @@ $(document).ready(function () {
     }
     /**
      * Función que busca información en el servidor para pasar información necesaria a generateBracketHtml
-     * @param {*} tournament
      */
     function loadAndRenderTournamentBracket() {
         // $('#tournament-bracket').empty();
@@ -364,21 +382,21 @@ $(document).ready(function () {
      * Función que muestra en un modal un formulario para elegir participantes para el enfrentamiento de un torneo específico
      */
     function loadAndDisplayParticipantsForm() {
-        const tournamentId = $('.tournament__bracket').attr('data-id');
-        const matchPosition = $(this).attr('match-position-data');
-        const roundTypeId = $(this).attr('round-type-id-data');
+        const tournamentId = $('.tournament__bracket').attr('data-id')
+        const matchPosition = $(this).attr('match-position-data')
+        const roundTypeId = $(this).attr('round-type-id-data')
         const existsBracket = true
 
         const participantsFormStart = `
             <form id="add-participant-form" class="participants__form">
-                <ul class="participants__form-list">`;
+                <ul class="participants__form-list">`
     
         loadRenderedData('GET', 'admin/tournament/participants', { tournamentId, existsBracket}, (data) => {
             // Verificar si los participantes existen y no son nulos
             const participants = data.participants || [];
             const rows = participants.length > 0 
                 ? renderItems(participants, generateParticipantItemHtml) 
-                : `<li>No hay participantes disponibles para este torneo.</li>`;
+                : `<li>No hay participantes disponibles para este torneo.</li>`
     
             // Completar el formulario
             const participantsForm = `
@@ -386,14 +404,14 @@ $(document).ready(function () {
                     ${rows}
 
                 </ul>
-            </form>`;
+            </form>`
             if (participants.length > 0) {
                 // Mostrar modal con el formulario
                 showModal('Selecciona participantes', participantsForm, () => {
                     //Para que el boton confirmar solo cierre en caso de que participants no tenga ningun elemento
                     const selectedCheckboxes = $('.participants__form-item-checkbox:checked');
                     if (selectedCheckboxes.length !== 2) {
-                        showModal('Elección de participantes', 'Tienes que seleccionar exactamente 2 participantes.');
+                        showModal('Elección de participantes', 'Tienes que seleccionar exactamente 2 participantes.')
                     }
                     // Obtener los valores seleccionados
                     const selectedParticipants = [];
@@ -409,7 +427,7 @@ $(document).ready(function () {
         });
     }
     
-    $('#tournaments').on('click', '#add-participants', loadAndDisplayParticipantsForm)
+    $('#tournament-bracket').on('click', '.tournament__bracket-add-participants-btn', loadAndDisplayParticipantsForm)
 
     /**
      * Función que añade enfrentamientos a un torneo específico
@@ -429,9 +447,17 @@ $(document).ready(function () {
     }
 
     /**
-     * Función que a partir de un criterio, genera un template de un input:range para un formulario
-     * @param {*} criteria 
-     * @returns 
+     * Genera un componente HTML para un criterio de evaluación en forma de input tipo range.
+     * 
+     * Esta función crea dinámicamente un elemento de formulario que permite evaluar un criterio
+     * mediante un control deslizante (`input:range`). Es útil para integrar criterios personalizados
+     * en el sistema de evaluación.
+     *
+     * @param {Object} criteria - Objeto que contiene la información del criterio.
+     *        - `criteria.nombre` (String): Nombre del criterio, que se usará como etiqueta y como identificador del input.
+     *        - `criteria.id` (Number): Identificador único del criterio, asignado como atributo en el input.
+     *
+     * @returns {String} - Una cadena de texto HTML que representa el componente del criterio.
      */
     function generateRoundResultForm(criteria) {
         return `
@@ -454,26 +480,31 @@ $(document).ready(function () {
     }
 
     /**
-     * Función que muestra en un modal el formulario de votación sobre un bailarin
-     * @param {*} params 
+     * Muestra un formulario en un modal para evaluar a un participante en una ronda.
+     * 
+     * Esta función se ejecuta al hacer clic en un participante del bracket del torneo. Carga 
+     * dinámicamente un formulario que incluye un video relacionado con el participante y criterios
+     * de evaluación representados por controles deslizantes.
+     *
+     * @param {Object} params - Parámetros adicionales (opcional).
      */
     function handleRoundResultForm() {
         let participantId = $(this).attr('participant-id-data')
         let roundTypeId = $(this).attr('round-type-id-data')
         let roundId = $(this).attr('round-id-data')
-        let criteriaFormStart = `
+        let matchPosition = $('.tournament__bracket-match').attr('match-position-data')
+        // $roundId, $position, $participantId
+        let urlprimera = `tournament/showvideos/${roundId}/${participantId}`
+        console.log(urlprimera)
+        let video = ``
+        loadRenderedData('GET',urlprimera,{},(data)=> {
+            video = data.video_url
+            // showModal('hola', data.message)
+            let criteriaFormStart = `
                                 <form class="round-vote-form" participant-id-data="${participantId}" round-type-id-data="${roundTypeId}" round-id-data="${roundId}">
                                     <!-- Contenedor del iframe -->
                                     <div class="round-vote-form__video-container">
-                                        <iframe 
-                                            class="round-vote-form__video" 
-                                            id="video-frame" 
-                                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                                            width="352" 
-                                            height="198" 
-                                            frameborder="0" 
-                                            allowfullscreen>
-                                        </iframe>
+                                        ${data.video_url ?? 'Aún no se ha subido video'}
                                     </div>
                                     <!-- Contenedor de los criterios -->
                                     <div class="round-vote-form__criteria">
@@ -499,9 +530,16 @@ $(document).ready(function () {
                 });    
             })
         })
-    }
-    $('#tournaments').on('click', '.tournament__bracket-participant', handleRoundResultForm)
 
+        })
+        
+    }
+    $('#tournament-bracket').on('click', '.tournament__bracket-participant', handleRoundResultForm)
+
+    /**
+     * Envía las puntuaciones de un participante en una ronda al servidor.
+     * 
+     */
     function submitRoundResultForm() {
         let tournamentId = $('.tournament__bracket').attr('data-id');
         let participantId = $('.round-vote-form').attr('participant-id-data');
