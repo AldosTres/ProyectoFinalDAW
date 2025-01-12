@@ -74,33 +74,6 @@ $(document).ready(function () {
             renderPagination(data.total_pages, page, this, 'events');
         })
     }
-
-    function generateGoogleMapsEmbed(link) {
-        if (!link) {
-            return '<span>No disponible</span>';
-        }
-    
-        let embedLink = '';
-    
-        // Si el enlace contiene '/maps/place', lo transformamos en un enlace embebido
-        if (link.includes('/maps/place')) {
-            embedLink = link.replace('https://www.google.com/maps/place', 'https://www.google.com/maps/embed/v1/place');
-            embedLink += '?key=YOUR_GOOGLE_MAPS_API_KEY';  // Reemplaza con tu API Key de Google
-        } else {
-            return `<span>Enlace no compatible para embebido.</span>`;
-        }
-    
-        // Retornar el iframe con la URL embebida
-        return `<iframe
-                    src="${embedLink}"
-                    width="400"
-                    height="300"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>`;
-    }
     
     /**
      * Función que genera un template para mostrar los detalles del evento

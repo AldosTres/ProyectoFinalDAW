@@ -805,10 +805,30 @@ class DataBaseHandler extends Model
         try {
             $builder = $this->db->table('rondas r');
 
-            $builder->select('r.id, i1.alias AS participante1_alias, i2.alias AS participante2_alias, i1.id AS participante1_id, i2.id AS participante2_id, r.resultado, r.id_tipo_ronda, r.posicion_enfrentamiento');
+            $builder->select('r.id,
+             i1.alias AS participante1_alias,
+             i2.alias AS participante2_alias,
+             i1.id AS participante1_id,
+             i2.id AS participante2_id,
+             r.resultado, r.id_tipo_ronda,
+             r.posicion_enfrentamiento,
+             i3.alias AS ganador_alias,
+             u1.foto_perfil AS participante1_foto, 
+             u2.foto_perfil AS participante2_foto,
+             u3.foto_perfil AS ganador_foto');
 
             $builder->join('inscripciones i1', 'r.id_participante1 = i1.id');
             $builder->join('inscripciones i2', 'r.id_participante2 = i2.id');
+
+            // Join para obtener el alias del ganador
+            //Asegura de que todas las filas de la tabla rondas aparezcan incluso si no hay resultado aún
+            //ya que inner solo incluye filas cuando hay una coincidencia en ambas tablas.
+            $builder->join('inscripciones i3', 'r.resultado = i3.id', 'left'); // `left` porque puede no haber ganador aún
+
+            // Joins con la tabla de usuarios para obtener fotos de perfil
+            $builder->join('usuarios u1', 'i1.id_usuario = u1.id', 'left'); // Foto del participante 1
+            $builder->join('usuarios u2', 'i2.id_usuario = u2.id', 'left'); // Foto del participante 2
+            $builder->join('usuarios u3', 'i3.id_usuario = u3.id', 'left'); // Foto del ganador (si existe)
 
             $builder->where('r.id_torneo', $tournament_id);
             $builder->orderBy('r.id_tipo_ronda', 'ASC');
@@ -1245,14 +1265,14 @@ class DataBaseHandler extends Model
     /**
        Obtiene las rondas en las que un usuario aún no ha subido su video.
      *
-     * @param int $userId ID del usuario.
+     * @param int $user_id ID del usuario.
      * @return array Devuelve un arreglo con las rondas faltantes de video.
      */
-    public function jls_get_user_rounds_without_video($userId)
+    public function jls_get_user_rounds_without_video($user_id)
     {
         try {
             // Validar que el ID del usuario sea un número válido
-            if (!is_numeric($userId)) {
+            if (!is_numeric($user_id)) {
                 throw new InvalidArgumentException('El ID del usuario no es válido.');
             }
 
@@ -1288,11 +1308,11 @@ class DataBaseHandler extends Model
             // Filtrar rondas donde el usuario aún no ha subido su video
             $builder->groupStart()
                 ->groupStart()
-                ->where('i1.id_usuario', $userId)            // El usuario es participante 1
+                ->where('i1.id_usuario', $user_id)            // El usuario es participante 1
                 ->where('r.url_video_participante1 IS NULL') // Aún no ha subido su video
                 ->groupEnd()
                 ->orGroupStart()
-                ->where('i2.id_usuario', $userId)            // El usuario es participante 2
+                ->where('i2.id_usuario', $user_id)            // El usuario es participante 2
                 ->where('r.url_video_participante2 IS NULL') // Aún no ha subido su video
                 ->groupEnd()
                 ->groupEnd();
@@ -1306,9 +1326,9 @@ class DataBaseHandler extends Model
 
             // Procesar los resultados para determinar el rol del usuario en cada ronda
             foreach ($result as &$round) {
-                if ($round['participante1_id'] == $userId) {
+                if ($round['participante1_id'] == $user_id) {
                     $round['participant_role'] = 1; // Usuario es participante 1
-                } elseif ($round['participante2_id'] == $userId) {
+                } elseif ($round['participante2_id'] == $user_id) {
                     $round['participant_role'] = 2; // Usuario es participante 2
                 } else {
                     $round['participant_role'] = null; // No pertenece a esta ronda
@@ -1328,14 +1348,14 @@ class DataBaseHandler extends Model
     /**
        Obtiene las rondas con los videos subidos por un usuario.
      *
-     * @param int $userId ID del usuario.
+     * @param int $user_id ID del usuario.
      * @return array Devuelve un arreglo con las rondas y los videos subidos por el usuario.
      */
-    public function getUserUploadedVideos($userId)
+    public function jls_get_user_uploaded_videos($user_id)
     {
         try {
             // Validar el ID del usuario
-            if (!is_numeric($userId)) {
+            if (!is_numeric($user_id)) {
                 throw new InvalidArgumentException('El ID del usuario no es válido.');
             }
 
@@ -1352,6 +1372,8 @@ class DataBaseHandler extends Model
             tr.nombre AS ronda_nombre,
             r.url_video_participante1,
             r.url_video_participante2,
+            r.id_participante1,
+            r.id_participante2,
             i1.id_usuario AS participante1_id,
             i2.id_usuario AS participante2_id
         ')
@@ -1364,12 +1386,12 @@ class DataBaseHandler extends Model
                 ->join('tipos_ronda tr', 'tr.id = r.id_tipo_ronda', 'inner')
                 // Condición: Verificar si el usuario es participante 1 y tiene video subido
                 ->groupStart()
-                ->where('i1.id_usuario', $userId)
+                ->where('i1.id_usuario', $user_id)
                 ->where('r.url_video_participante1 IS NOT NULL')
                 ->groupEnd()
                 // O bien, si el usuario es participante 2 y tiene video subido
                 ->orGroupStart()
-                ->where('i2.id_usuario', $userId)
+                ->where('i2.id_usuario', $user_id)
                 ->where('r.url_video_participante2 IS NOT NULL')
                 ->groupEnd()
                 // Ordenar resultados por torneo y tipo de ronda
@@ -1381,12 +1403,14 @@ class DataBaseHandler extends Model
 
             // Procesar los resultados para identificar qué video corresponde al usuario
             foreach ($result as &$round) {
-                if ($round['participante1_id'] == $userId) {
+                if ($round['participante1_id'] == $user_id) {
                     // Si el usuario es el participante 1, obtener su video
                     $round['user_video'] = $round['url_video_participante1'];
-                } elseif ($round['participante2_id'] == $userId) {
+                    $round['participant_role'] = 1; // Usuario es participante 1
+                } elseif ($round['participante2_id'] == $user_id) {
                     // Si el usuario es el participante 2, obtener su video
                     $round['user_video'] = $round['url_video_participante2'];
+                    $round['participant_role'] = 2; // Usuario es participante 2
                 } else {
                     // Por seguridad, establecer el video como nulo si no corresponde al usuario
                     $round['user_video'] = null;
@@ -1601,6 +1625,70 @@ class DataBaseHandler extends Model
             return [
                 'status' => 'error',
                 'message' => 'Ocurrió un error al actualizar el perfil del usuario.',
+            ];
+        }
+    }
+
+    /**
+     * Elimina un video asociado a un participante en una ronda específica.
+     *
+     * @param int $round_id ID de la ronda a la que pertenece el video.
+     * @param int $participant_role Rol del participante en la ronda (1 para participante 1 o 2 para participante 2).
+     *
+     * @return array Devuelve un array con el estado de la operación:
+     *               - 'status': Indica si la operación fue exitosa ('success') o fallida ('error').
+     *               - 'message': Mensaje descriptivo del resultado de la operación.
+     *
+     * Descripción:
+     * - Valida los parámetros de entrada ($roundId y $participantRole).
+     * - Determina qué columna (url_video_participante1 o url_video_participante2) debe ser actualizada a null según el rol.
+     * - Actualiza la tabla 'rondas' en la base de datos.
+     * - Devuelve un mensaje indicando si la operación fue exitosa o si ocurrió un error.
+     *
+     * Ejemplo de Uso:
+     * $result = $this->jls_delete_user_video(5, 1);
+     * if ($result['status'] === 'success') {
+     *     echo $result['message']; // "Video eliminado correctamente."
+     * } else {
+     *     echo $result['message']; // "No se pudo eliminar el video. Intente nuevamente."
+     */
+    public function jls_delete_user_video($round_id, $participant_role)
+    {
+        try {
+            if (!is_numeric($round_id) || !in_array($participant_role, [1, 2])) {
+                throw new InvalidArgumentException('Datos inválidos proporcionados.');
+            }
+
+            // Determinar qué columna actualizar según el rol
+            $data = [];
+            if ($participant_role == 1) {
+                $data = ['url_video_participante1' => null];
+            } elseif ($participant_role == 2) {
+                $data = ['url_video_participante2' => null];
+            }
+
+            // Actualizar la base de datos
+            $this->db->table('rondas')
+                ->set($data)
+                ->where('id', $round_id)
+                ->update();
+
+            if ($this->db->affectedRows() > 0) {
+                return [
+                    'status' => 'success',
+                    'message' => 'Video eliminado correctamente.',
+                ];
+            } else {
+                return [
+                    'status' => 'error',
+                    'message' => 'No se pudo eliminar el video. Intente nuevamente.',
+                ];
+            }
+        } catch (\Throwable $th) {
+            log_message('error', 'Error al eliminar video: ' . $th->getMessage());
+            return [
+                'status' => 'error',
+                'message' => 'Ocurrió un error al eliminar el video.',
             ];
         }
     }

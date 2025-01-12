@@ -19,6 +19,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
+    <link rel="icon" href="<?= base_url() ?>img/logoTipo_JLS.png">
     <title>Administracion | JLS</title>
 </head>
 
@@ -122,7 +123,7 @@
             </div>
             <div id="home" class="home menu__section">
                 <h1 class="home__title">Bienvenido</h1>
-                <p class="home__description">Gestiona fácilmente tus torneos de baile, jueces y configuraciones desde esta plataforma.</p>
+                <p class="home__description">Gestiona fácilmente tus torneos de baile, usuarios y configuraciones desde esta plataforma.</p>
 
                 <div class="home__stats">
                     <div class="home__stat">

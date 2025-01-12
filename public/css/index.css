@@ -2,12 +2,16 @@
 
 :root {
   --serie-black: hsla(0, 2%, 11%, 1);
-  --red-jls: hsla(0, 67%, 53%, 1);
-  --red-jls-opacity: hsla(0, 67%, 53%, 0.8);
+  --poppy: hsla(0, 67%, 53%, 1);
+  --poppy-hover: hsla(
+    0,
+    67%,
+    58%,
+    1
+  ); /* Color ligeramente más claro para el hover */
   --white: hsla(0, 0%, 100%, 1);
   --viridian: hsla(154, 15%, 49%, 1);
   --platinum: hsla(0, 0%, 87%, 1);
-  --font: Helvetica;
 }
 
 p {
@@ -98,7 +102,7 @@ p {
   bottom: 0;
   height: 0;
   width: 100%;
-  background-color: var(--red-jls);
+  background-color: var(--poppy);
   transition: 0.4s ease;
   z-index: -1;
 }
@@ -323,4 +327,144 @@ p {
   .music-recommendation__card {
     max-width: 600px;
   }
+}
+
+/******************************TOURNAMENT BRACCKET *************************************************/
+
+.tournament__bracket {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: normal;
+  flex-wrap: wrap; /* Permitir que las rondas se acomoden en varias filas si es necesario(Si ya no hay espacio) */
+  height: 90%;
+  width: 100%;
+  margin: 0;
+  gap: 20px; /* Espacio entre rondas */
+}
+
+/* Rondas */
+.tournament__bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto; /* Permitir que crezca dinámicamente */
+  width: 25%; /* Ancho inicial para rondas en pantallas grandes */
+  min-width: 200px; /* Ancho mínimo para rondas en pantallas pequeñas */
+}
+
+/* Matches */
+.tournament__bracket-match {
+  background-color: var(--platinum);
+  border: 1px solid var(--serie-black); /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Se ajusta al ancho de la columna */
+}
+
+/* Fecha del partido */
+.tournament__bracket-date {
+  font-size: 12px;
+  color: var(--serie-black);
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* Resultados */
+.tournament__bracket-score {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--success);
+  margin-bottom: 5px;
+}
+
+/* Participantes */
+.tournament__bracket-participants {
+  display: flex;
+  justify-content: space-around; /* Separa los participantes */
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+  max-width: 100%;
+
+  /* flex-wrap: wrap; */
+}
+
+.tournament__bracket-participant {
+  display: flex;
+  align-items: center; /* Centrar texto con imagen de participante */
+  justify-content: space-around;
+  gap: 5px;
+  flex-wrap: wrap;
+  max-width: 45%;
+  min-width: 110px;
+}
+
+.tournament__bracket-participant-alias {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--serie-black);
+}
+
+.tournament__bracket-participant-logo {
+  font-size: 24px;
+  color: var(--viridian);
+}
+
+/* Responsive: Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .tournament__bracket {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tournament__bracket-round {
+    width: 90%; /* Las rondas ocupan casi todo el ancho en móviles */
+    min-width: unset; /* Quitar el ancho mínimo */
+  }
+
+  .tournament__bracket-match {
+    margin: 15px 0; /* Más espacio entre los matches */
+  }
+
+  .tournament__bracket-participants {
+    flex-direction: column; /* Participantes uno encima del otro */
+    gap: 5px;
+  }
+
+  .tournament__bracket-participant-logo {
+    font-size: 20px;
+  }
+
+  .tournament__bracket-participant-alias {
+    font-size: 12px;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+  .tournament__bracket-match {
+    padding: 8px;
+  }
+
+  .tournament__bracket-date {
+    font-size: 10px;
+  }
+
+  .tournament__bracket-score {
+    font-size: 14px;
+  }
+}
+
+/* Efectos de hover para los participantes (cuando se pasa el ratón por encima) */
+.tournament__bracket-first-participant:hover,
+.tournament__bracket-second-participant:hover {
+  background-color: var(--viridian); /* Color de fondo verde para resaltar */
+  color: var(--white); /* Cambiar texto a blanco */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }

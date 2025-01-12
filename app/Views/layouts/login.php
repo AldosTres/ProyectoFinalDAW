@@ -21,8 +21,6 @@
     </div>
 
 
-
-
     <form action="login/check" class="form-login" method="post">
         <div class="form-login__mark">
             <a href="index" class="form-login__link form-login__link--no-color">
@@ -34,14 +32,14 @@
             <div class="form-login__input-icon">
                 <i class="fa-solid fa-user form-login__icon"></i>
             </div>
-            <input type="text" class="form-login__input-field" id="jls_username" name="jls_username" placeholder="Nombre usuario">
+            <input type="text" class="form-login__input-field" id="jls_username" name="jls_username" placeholder="Nombre usuario" required>
         </div>
 
         <div class="form-login__input-container">
             <div class="form-login__input-icon">
                 <i class="fa-solid fa-lock form-login__icon"></i>
             </div>
-            <input type="password" class="form-login__input-field" id="jls_user_password" name="jls_user_password" placeholder="Contraseña">
+            <input type="password" class="form-login__input-field" id="jls_user_password" name="jls_user_password" placeholder="Contraseña" required>
         </div>
 
 
@@ -62,7 +60,7 @@
         }
         ?>
         <a class="form-login__forgot-link form_login__link" href="#">¿Olvidaste la contraseña?</a>
-        <a href="<?= base_url() ?>register" class="form-login__new_user form_login__link">¿Nuevo miembro?</a>
+        <a href="<?= base_url() ?>register" class="form-login__new_user form-login__link">¿Nuevo miembro?</a>
     </form>
 </body>
 

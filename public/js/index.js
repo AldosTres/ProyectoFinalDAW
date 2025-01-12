@@ -118,16 +118,16 @@ $(document).ready(function () {
         if (existsMatch) {
             return `
                 <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                    <div class="tournament__bracket-date">Fecha pendiente</div>
-                    <div class="tournament__bracket-score">${match['resultado'] ?? 'Esperando Ganador...'}</div>
+                    <div class="tournament__bracket-date">Ganador:</div>
+                    <div class="tournament__bracket-score">${match['ganador_alias'] ?? 'Esperando Ganador...'}</div>
                     <div class="tournament__bracket-participants">
                         <div class="tournament__bracket-first-participant tournament__bracket-participant">
                             <span class="tournament__bracket-participant-alias">${match['participante1_alias'] ?? 'Desconocido'}</span>
-                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                            <img src="${BASE_URL}img/perfil_usuarios/${match['participante1_foto']}" alt="perfil_usuario" width="32" height="32" class="rounded-circle">
                         </div>
                         <div class="vs"><p>vs</p></div>
                         <div class="tournament__bracket-second-participant tournament__bracket-participant">
-                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                            <img src="${BASE_URL}img/perfil_usuarios/${match['participante2_foto']}" alt="perfil_usuario" width="32" height="32" class="rounded-circle">
                             <span class="tournament__bracket-participant-alias">${match['participante2_alias'] ?? 'Desconocido'}</span>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ $(document).ready(function () {
         } else {
             return `
                 <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                    <div class="tournament__bracket-date">Fecha pendiente</div>
+                    
                     <div class="tournament__bracket-score">Esperando Ganador...</div>
                     <div class="tournament__bracket-participants">
                         <div class="tournament__bracket-first-participant">Esperando resultado...</div>
@@ -159,7 +159,7 @@ $(document).ready(function () {
 
         tournamentRounds.forEach((round, index) => {
             html += `<div class="tournament__bracket-round" data-id="${index + 1}">
-                        <h2 class="tournament__bracket-round-title">${round.nombre}</h2>`;
+                        <h3 class="tournament__bracket-round-title">${round.nombre}</h3>`;
             const numMatches = calculateNumMatches(numParticipants, index);
             for (let j = 0; j < numMatches; j++) {
                 const currentMatch = matches?.find(match => 
@@ -180,7 +180,8 @@ $(document).ready(function () {
      * y genera el HTML del bracket.
      */
     function loadAndRenderTournamentBracket(tournamentId) {
-        const url = `admin/tournament/bracket/${tournamentId}`; // Ruta para obtener datos del torneo
+        //idea porque sino salia /tournamente/admin... y no encuentra la ruta
+        const url = `${BASE_URL}admin/tournament/bracket/${tournamentId}`; // Ruta para obtener datos del torneo
     
         // Llamar al servidor y cargar el bracket
         loadRenderedData('GET', url, {}, (data) => {
@@ -191,14 +192,14 @@ $(document).ready(function () {
         });
     }
     
-    // $('.available-tournaments__action').on('click', loadAndRenderTournamentBracket)
-
-    const urlParts = window.location.pathname.split('/'); // Divide la URL en partes
-    const tournamentId = urlParts[urlParts.length - 1]; // Última parte de la URL
-
-    if (tournamentId) {
-        loadAndRenderTournamentBracket(tournamentId); // Llamar a la función para cargar el bracket
-        console.log(tournamentId)
+    if (typeof TOURNAMENT_ID !== 'undefined') {
+        loadAndRenderTournamentBracket(TOURNAMENT_ID) // Usar la variable global
     }
     
+
+    $('.delete-video-form').on('submit', function (e) {
+        if (!confirm('¿Estás seguro de que deseas eliminar este video?')) {
+            e.preventDefault();
+        }
+    });   
 });

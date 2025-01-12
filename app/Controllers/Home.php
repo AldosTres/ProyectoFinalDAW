@@ -66,13 +66,37 @@ class Home extends BaseController
         return view('layouts/about_us', $data);
     }
 
+    public function get_all_tournaments_page()
+
+    {
+        $jls_database = new DataBaseHandler();
+        $tournaments = $jls_database->jls_get_tournaments_by_filter('active');
+        if (session()->get('user_id')) {
+            $user_data = $jls_database->jls_get_user_data(session()->get('user_id'));
+            $data = [
+                'title' => 'JLS | Torneos',
+                'user_alias' => $user_data->alias_usuario,
+                'user_name' => $user_data->nombre_usuario,
+                'tournaments' => $tournaments,
+                'profile_picture' => $user_data->foto_perfil
+            ];
+        } else {
+            $data = [
+                'title' => 'JLS | Torneos',
+                'tournaments' => $tournaments,
+            ];
+        }
+        return view('layouts/tournaments', $data);
+    }
+
+
     public function get_user_profile_page($user_name, $user_id): string
     {
         $jls_database = new DatabaseHandler();
         $user_data = $jls_database->jls_get_user_data($user_id);
         //video aqui
         $roundsSV = $jls_database->jls_get_user_rounds_without_video($user_id);
-        $roundsCV = $jls_database->getUserUploadedVideos($user_id);
+        $roundsCV = $jls_database->jls_get_user_uploaded_videos($user_id);
         // Formateo de fecha
         // Crear un objeto DateTime con la fecha de la base de datos
         $fecha = new DateTime($user_data->fecha_registro);
@@ -121,7 +145,6 @@ class Home extends BaseController
         }
 
         $result = $jls_database->jls_update_user_img_profile($user_id, $unique_id . '.' . $file_extension);
-        session()->setFlashdata('profile_picture_error', 'El nombre de usuario o contraseña son incorrectos');
         session()->set('jumper_image_profile', $unique_id . '.' . $file_extension);
         return redirect()->to(base_url('profile/' . session()->get('jumper_user_name') . '/' . $user_id));
     }
@@ -178,9 +201,9 @@ class Home extends BaseController
         $resultado = $jls_database->jls_register_user($name, $user, $password);
 
         if ($resultado) {
-            return redirect()->to('login')->with('success', 'Usuario registrado correctamente, inicia sesión para continuar.');
+            return redirect()->to(base_url('login'))->with('success', 'Usuario registrado correctamente, inicia sesión para continuar.');
         } else {
-            return redirect()->to('register')->with('error', 'El nombre de usuario o alias ya se encuentra en uso.');
+            return redirect()->to(base_url('register'))->with('user_exists', 'El nombre de usuario o alias ya se encuentra en uso.');
         }
     }
     public function logout()
@@ -221,7 +244,7 @@ class Home extends BaseController
                 'profile_picture' => $user_data->foto_perfil
             ];
             $jls_database->jls_update_last_connection($result);
-            session()->set('jumper_user_name', $user_data->nombre_usuario);
+            session()->set('jumper_user_name', $user_data->alias_usuario);
             session()->set('user_id', $result);
             session()->set('jumper_image_profile', $user_data->foto_perfil);
 
@@ -916,5 +939,34 @@ class Home extends BaseController
 
         // Responder con los datos en formato JSON
         return json_encode($response);
+    }
+    public function delete_user_video()
+    {
+        $jlsDatabase = new DataBaseHandler();
+
+        $roundId = $this->request->getPost('round_id');
+        $participantRole = $this->request->getPost('participant_role'); // Rol (1 o 2)
+        $tournamentId = $this->request->getPost('tournament_id');
+        $userId = $this->request->getPost('user_id');
+
+        if (!session()->get('user_id')) {
+            return redirect()->to('login')->with('error', 'Debe iniciar sesión para eliminar un video.');
+        }
+
+        // Opcional: Validar que la ronda pertenece al torneo
+        $roundInfo = $jlsDatabase->fetchRecord('rondas', ['id' => $roundId]);
+        if ($roundInfo && $roundInfo->id_torneo != $tournamentId) {
+            return redirect()->back()->with('error', 'La ronda no pertenece al torneo indicado.');
+        }
+
+        // Llamar a la función para eliminar el video
+        $result = $jlsDatabase->jls_delete_user_video($roundId, $participantRole);
+
+        if ($result['status'] === 'success') {
+            return redirect()->to(base_url('profile/' . session()->get('jumper_user_name') . '/' . $userId))
+                ->with('success', $result['message']);
+        } else {
+            return redirect()->back()->with('error', $result['message']);
+        }
     }
 }

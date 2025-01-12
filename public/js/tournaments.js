@@ -238,18 +238,18 @@ $(document).ready(function () {
             if (roundTypeId == match['id_tipo_ronda']) {
                 return `
                 <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                    <div class="tournament__bracket-date">18 Junio 2025</div>
-                    <div class="tournament__bracket-score">${match['resultado']??'Esperando Ganador...'}</div>
+                    <div class="tournament__bracket-score">${match['ganador_alias']??'Esperando Ganador...'}</div>
                     <div class="tournament__bracket-participants">
                         <div class="tournament__bracket-first-participant tournament__bracket-participant" id="" participant-id-data="${match['participante1_id']}" round-type-id-data="${roundTypeId}" round-id-data="${match['id']}">
                             <span class="tournament__bracket-participant-alias">${match['participante1_alias']}</span>
-                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                            <img src="${BASE_URL}img/perfil_usuarios/${match['participante1_foto']}" alt="perfil_usuario" width="32" height="32" class="rounded-circle">
+                        
                         </div>
                         <div class="vs">
                         <p>vs</p>
                         </div>
                         <div class="tournament__bracket-second-participant tournament__bracket-participant" id="" participant-id-data="${match['participante2_id']}" round-type-id-data="${roundTypeId}" round-id-data="${match['id']}">
-                            <i class="fa-solid fa-circle-user tournament__bracket-participant-logo"></i>
+                            <img src="${BASE_URL}img/perfil_usuarios/${match['participante2_foto']}" alt="perfil_usuario" width="32" height="32" class="rounded-circle">
                             <span class="tournament__bracket-participant-alias">${match['participante2_alias']}</span>
                         </div>
                         
@@ -258,7 +258,6 @@ $(document).ready(function () {
             } else {
                 return `
                 <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                    <div class="tournament__bracket-date">18 Junio 2025</div>
                     <div class="tournament__bracket-score">Esperando Ganador...</div>
                     <div class="tournament__bracket-participants">
                         <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
@@ -271,7 +270,6 @@ $(document).ready(function () {
             if (isFirstRound) {
                 return `
                     <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                        <div class="tournament__bracket-date">18 Junio 2025</div>
                         <div class="tournament__bracket-score">Esperando Ganador...</div>
                         <div class="tournament__bracket-participants">
                             <button class="tournament__bracket-add-participants-btn" id="add-participants" value="" match-position-data="${matchPosition}" round-type-id-data="${roundTypeId}">
@@ -283,7 +281,6 @@ $(document).ready(function () {
             }
             return `
                 <div class="tournament__bracket-match" match-position-data="${matchPosition}">
-                    <div class="tournament__bracket-date">18 Junio 2025</div>
                     <div class="tournament__bracket-score">Esperando Ganador...</div>
                     <div class="tournament__bracket-participants">
                         <div class="tournament__bracket-first-participant tournament__bracket-participant" id="">Esperando resultado...</div>
@@ -328,7 +325,7 @@ $(document).ready(function () {
                 if (matchs) {
                     // Busca el match específico para esta posición y tipo de ronda
                     currentMatch = matchs.find(match => 
-                        match['posicion_enfrentamiento'] == (j + 1) && 
+                        match['posicion_enfrentamiento'] == (j + 1) &&
                         match['id_tipo_ronda'] == (index + 1)
                     );
                 }

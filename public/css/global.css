@@ -1,9 +1,24 @@
 /******************************* Paleta de colores para toda la web *******************************/
 :root {
+  /* Colores principales */
   --serie-black: hsla(0, 2%, 11%, 1);
-  --poppy: hsla(0, 67%, 53%, 1);
   --white: hsla(0, 0%, 100%, 1);
+
+  /* Colores de acción */
+  --poppy: hsla(0, 67%, 53%, 1);
+  --poppy-hover: hsla(0, 67%, 58%, 1);
+
+  /* Colores de éxito */
   --viridian: hsla(154, 15%, 49%, 1);
+  --viridian-shadow: hsla(154, 15%, 35%, 0.6);
+  --success: #04aa6d;
+  --success-transition: #46a049;
+
+  /* Colores de error */
+  --danger: #f44336;
+  --danger-transition: #da190b;
+
+  /* Colores secundarios */
   --platinum: hsla(0, 0%, 87%, 1);
 }
 
@@ -11,6 +26,22 @@
 
 * {
   font-family: "Raleway", sans-serif;
+}
+h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+h2 {
+  font-weight: 600;
+  font-size: 24px;
+}
+p {
+  font-weight: 300;
+  font-size: 16px;
+}
+label,
+button {
+  font-size: 0.9rem;
 }
 
 /******************************* Estilos generales *******************************/

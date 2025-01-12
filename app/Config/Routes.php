@@ -21,12 +21,19 @@ $routes->post('user/register', 'Home::register_user');
 $routes->get('about-us', 'Home::get_about_us_page');
 
 /**
+ PAGINA TORNEOS
+ */
+$routes->get('all-tournaments', 'Home::get_all_tournaments_page');
+
+
+/**
  SECCION PERFIL USUARIO
  */
 $routes->get('profile/(:any)/(:num)', 'Home::get_user_profile_page/$1/$2');
 $routes->post('profile/upload/profile-picture/(:num)', 'Home::update_user_img_profile/$1');
 $routes->post('profile/update', 'Home::update_user_profile');
 $routes->post('uploadVideo', 'Home::upload_user_video');
+$routes->post('delete-video', 'Home::delete_user_video');
 
 /**
  SECCION DE TORNEOS

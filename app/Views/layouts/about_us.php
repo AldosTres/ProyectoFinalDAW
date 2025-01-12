@@ -3,8 +3,8 @@
 <body>
     <?php include_once TEMPLATES_VIEWS_PATH . 'header.php'; ?>
 
-    <main class="main-content mt-10">
-        <section class="about">
+    <main class="main-content mt-5">
+        <section class="about mt-5">
             <div class="about__container">
                 <h2 class="about__title">Nuestra Historia</h2>
                 <p class="about__description">

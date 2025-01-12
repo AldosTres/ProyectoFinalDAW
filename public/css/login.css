@@ -10,7 +10,7 @@
 
 body {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   height: 90vh;
   font-family: var(--font);
@@ -27,7 +27,7 @@ body {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
   overflow: hidden;
   height: 50%;
-  margin-right: 5%;
+  /* margin-right: 5%; */
 }
 
 .form-login__mark {

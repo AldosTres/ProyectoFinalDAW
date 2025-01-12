@@ -1,0 +1,28 @@
+body {
+  height: 100%;
+}
+.available-tournaments-page {
+  padding-top: 20%;
+  padding: 20px; /* Espaciado interno */
+  background-color: var(--platinum); /* Fondo suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para destacar */
+  border-radius: 10px; /* Bordes redondeados */
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.available-tournaments__title {
+  font-size: 2rem; /* Tamaño del texto más grande */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Centrar el título */
+  color: var(--serie-black); /* Color oscuro */
+  margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.available-tournaments__no-tournaments {
+  font-size: 1.2rem; /* Tamaño del texto */
+  color: var(--danger); /* Resalta en color de advertencia */
+  text-align: center; /* Centrado */
+  margin-top: 20px; /* Espaciado superior */
+}

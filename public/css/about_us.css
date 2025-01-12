@@ -16,6 +16,12 @@
   border-radius: 5px;
 }
 
+@media (max-width: 768px) {
+  .about {
+    margin-top: 25% !important;
+  }
+}
+
 .about__title {
   font-size: 1.8rem;
   margin-bottom: 10px;

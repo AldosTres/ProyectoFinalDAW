@@ -35,7 +35,8 @@
   width: 100%;
   height: auto;
 }
-.profile-page__avatar-button .profile-page__video-delete {
+.profile-page__avatar-button,
+.profile-page__video-delete {
   background-color: var(--poppy) !important;
   border-color: var(--poppy) !important;
 }
@@ -45,5 +46,9 @@
 
 .profile-page__form-submit {
   background-color: var(--viridian);
-  border-color: var(--viridian);
+  border-color: var(--viridian) !important;
+}
+.profile-page__form-submit:hover {
+  background-color: var(--viridian-shadow);
+  border-color: var(--viridian) !important;
 }

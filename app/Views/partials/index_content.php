@@ -13,7 +13,7 @@
 
     <div class="about-us">
         <div class="about-us__card-container">
-            <img src="<?php echo base_url() ?>img/allparticipantsjls.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers img-fluid rounded">
+            <img src="<?php echo base_url() ?>img/propietarios/team.jpg" alt="origin-jumpers" class="about-us__img-origin-jumpers img-fluid rounded">
         </div>
         <div class="about-us__text-container">
             <span class="about-us__label about-us__label--title">Nuestros inicios</span>

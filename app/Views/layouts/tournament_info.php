@@ -4,12 +4,9 @@
     <!-- Navbar -->
     <?php include_once TEMPLATES_VIEWS_PATH . 'header.php' ?>
 
-    <!-- Sidebar -->
-    <?php include_once TEMPLATES_VIEWS_PATH . 'sidebar.php' ?>
-
     <div class="tournament-page">
-        <div class="tournament-page__tournament-image col-12 d-flex justify-content-center">
-            <img src="<?= base_url() ?>img/logos_torneos/<?= $tournament->logo_path ?>.jpg" alt="" class="img-fluid">
+        <div class="tournament-page__tournament-image col-12 d-flex justify-content-center mt-3">
+            <img src="<?= base_url() ?>img/logos_torneos/<?= $tournament->logo_path ?>.jpg" alt="" class="rounded img-fluid" width="800">
         </div>
         <div class="tournament-page__presentation">
             <h1 class="tournament-page__title"><?= $title ?></h1>
@@ -43,7 +40,7 @@
 
             <!-- Información del torneo -->
             <div class="tournament-page__info col-6">
-                <h3 class="tournament-page__info-title">Reglas del Torneo</h3>
+                <h2 class="tournament-page__info-title">Reglas del Torneo</h2>
                 <ul>
                     <li>Prohibido acelerar o estirar los videos</li>
                     <li>El solo debe verse con claridad</li>
@@ -57,19 +54,40 @@
         <div class="tournament-page__participants">
             <h2 class="tournament-page__participants-title">Lista de Participantes</h2>
             <ul class="tournament-page__participants-list">
-                <?php foreach ($participants as $participant): ?>
-                    <li class="tournament-page__participant"><?= htmlspecialchars($participant["alias"], ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endforeach; ?>
+
+                <?php
+                if (!empty($participants)) {
+                    foreach ($participants as $participant) {
+                ?>
+                        <li class="tournament-page__participant">
+                            <img src="<?= base_url() ?>img/perfil_usuarios/<?= $participant['foto_perfil'] ?>" alt="perfil_usuario" width="32" height="32" class="rounded-circle">
+                            <?= htmlspecialchars($participant["alias"], ENT_QUOTES, 'UTF-8') ?>
+                        </li>
+                    <?php }
+                } else {
+                    ?>
+                    <p>Ningún participante registrado por el momento</p>
+                <?php
+                }
+                ?>
+
             </ul>
         </div>
         <!-- Clasificación -->
         <div class="tournament-page__ranking">
-            <h3 class="tournament-page__ranking-title">Clasificación del Torneo</h3>
+            <h2 class="tournament-page__ranking-title">Clasificación del Torneo</h2>
             <div id="tournament-bracket" class="tournament-bracket">
 
             </div>
         </div>
     </div>
+    <script>
+        const TOURNAMENT_ID = "<?= $tournament_id  ?>";
+    </script>
+
+    <script>
+        const BASE_URL = "<?= base_url() ?>"; //Constante para poder usar desde el js la base_url()
+    </script>
 </body>
 
 </html>

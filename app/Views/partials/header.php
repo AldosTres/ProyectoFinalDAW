@@ -12,7 +12,7 @@ if (session()->get('user_id')) {
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 header__link">
                     <li class="header__link-item"><a href="<?= base_url() ?>index" class="nav-link px-2 text-secondary">Inicio</a></li>
                     <li class="header__link-item"><a href="<?= base_url() ?>about-us" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-                    <li class="header__link-item"><a href="#" class="nav-link px-2 text-white">Torneos</a></li>
+                    <li class="header__link-item"><a href="<?= base_url('all-tournaments') ?>" class="nav-link px-2 text-white">Torneos</a></li>
                     <li class="header__link-item"><a href="#" class="nav-link px-2 text-white">Eventos</a></li>
                 </ul>
                 <span class="text-white header__user-name"><?= session()->get('jumper_user_name') ?></span>
@@ -44,7 +44,7 @@ if (session()->get('user_id')) {
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 header__link">
                     <li class="header__link-item"><a href="<?= base_url() ?>index" class="nav-link px-2 text-secondary">Inicio</a></li>
                     <li class="header__link-item"><a href="<?= base_url() ?>about-us" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-                    <li class="header__link-item"><a href="#" class="nav-link px-2 text-white">Torneos</a></li>
+                    <li class="header__link-item"><a href="<?= base_url('all-tournaments') ?>" class="nav-link px-2 text-white">Torneos</a></li>
                     <li class="header__link-item"><a href="#" class="nav-link px-2 text-white">Eventos</a></li>
                 </ul>
                 <div class="text-end">

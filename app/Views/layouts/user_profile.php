@@ -96,14 +96,14 @@
 
                                 <div class="card-body profile-page__video-card-body">
                                     <h5 class="profile-page__video-title card-title"><?= $value['torneo_nombre'] ?></h5>
-                                    <p class="profile-page__video-date card-text">Ronda:<?= $value['ronda_nombre'] ?></p>
+                                    <p class="profile-page__video-date card-text">Ronda: <?= $value['ronda_nombre'] ?></p>
                                     <form action="<?= base_url() ?>uploadVideo" method="POST">
                                         <input type="hidden" name="round_id" value="<?= $value['ronda_id'] ?>">
                                         <input type="hidden" name="participant_role" value="<?= $value['participant_role'] ?>">
                                         <input type="hidden" name="tournament_id" value="<?= $value['id_torneo'] ?>">
                                         <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
-                                        <label for="video_url">Enlace del Video (YouTube):</label>
-                                        <input type="text" name="video_url" id="video_url" placeholder="https://youtube.com/..." required>
+                                        <label for="video_url">Iframe del video de YT</label>
+                                        <input type="text" name="video_url" id="video_url" placeholder="<iframe src='https://..." required>
                                         <button type="submit" class="btn btn-primary profile-page__form-submit">Subir Video</button>
                                     </form>
 
@@ -122,8 +122,14 @@
                                 </div>
                                 <div class="card-body profile-page__video-card-body">
                                     <h5 class="profile-page__video-title card-title"><?= $value['torneo_nombre'] ?></h5>
-                                    <p class="profile-page__video-date card-text"><?= $value['ronda_nombre'] ?></p>
-                                    <a href="[Ruta para eliminar]" class="profile-page__video-delete btn btn-danger btn-sm">Eliminar</a>
+                                    <p class="profile-page__video-date card-text">Ronda: <?= $value['ronda_nombre'] ?></p>
+                                    <form action="<?= base_url() ?>delete-video" method="POST" class="delete-video-form">
+                                        <input type="hidden" name="round_id" value="<?= $value['ronda_id'] ?>">
+                                        <input type="hidden" name="participant_role" value="<?= $value['participant_role'] ?>">
+                                        <input type="hidden" name="tournament_id" value="<?= $value['id_torneo'] ?>">
+                                        <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

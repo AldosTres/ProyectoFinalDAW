@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/headers.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>css/user_profile.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/tournaments.css">
 
     <script type="module" src="<?= base_url() ?>js/index.js"></script>
 
